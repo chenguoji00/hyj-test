@@ -1,0 +1,21 @@
+<!--pageOther/page/fast-inquiry/index.wxml-->
+
+<!-- <view></view> -->
+<van-cell title="患者描述:" value="" />
+
+<view class="textarea-c">
+  <textarea placeholder="请简单描述你的症状(200字数以内)" maxlength="200" style="width:100%;background-color:#F8F8F8;"  />
+ </view>
+
+<van-cell title="是否复诊">
+  <van-switch checked="{{ isVisitAgain }}" bind:change="isVisitAgainClick" size="22px" />
+</van-cell>
+
+<van-cell title="存在过敏源">
+  <van-switch checked="{{ isAllergy }}" bind:change="isAllergyClick" size="22px" />
+</van-cell>
+
+<van-cell title="过敏源" wx:if="{{isAllergy}}" value="{{allergiesHistory}}"  is-link />
+
+<van-cell title="补充图片:" value="" />
+<van-uploader file-list="{{ fileList }}" max-count="9" bind:delete="deleteImg"  multiple/>

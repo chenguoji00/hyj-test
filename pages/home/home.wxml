@@ -1,0 +1,58 @@
+<!--pages/home/home.wxml-->
+<view class="home-page">
+	<!-- search 搜索栏  start  -->
+	<van-search class="search" value="{{ value }}" shape="round" bindtap="goToPage" data-navname="search" disabled placeholder="搜索疾病 /科室 /医生" />
+	<!-- search 搜索栏  end  -->
+	<view class="home-content">
+	<!-- swiper 轮播图  start  -->
+		<swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+			<block wx:for="{{background}}" wx:key="*this">
+				<swiper-item>
+					<image src="http://hyjfile.qn.phd91.com/hospital_banner.png" style="width:100%;" mode="widthFix" lazy-load />
+				</swiper-item>
+			</block>
+		</swiper>
+		<!-- swiper 轮播图  end  -->
+		<!-- main-nav 主要导航  start  -->
+		<view class="main-navs">
+			<view class="navs-item" bindtap="goToPage" data-navname="fastInquiry">
+				<image src="../../public/img/main-nav/bc4a8d157d82c58d.png" mode="widthFix" lazy-load  />
+				<text>快速问诊</text>
+			</view>
+			<view class="navs-item" bindtap="goToPage" data-navname="onLineMall">
+				<image src="../../public/img/main-nav/7f67b6492a44fc5f.png" mode="widthFix" lazy-load  />
+				<text>在线商城</text>
+			</view>
+			<view class="navs-item" bindtap="goToPage" data-navname="fastMedicineDelivery">
+				<image src="../../public/img/main-nav/518937cd6e24103f.png" mode="widthFix" lazy-load  />
+				<text>闪电送药</text>
+			</view>
+			<view class="navs-item" bindtap="goToPage" data-navname="allDept">
+				<image src="../../public/img/main-nav/6fe4a86675de0d4d.png" mode="widthFix" lazy-load />
+				<text>所有科室</text>
+			</view>
+		</view>
+		<!-- main-nav 主要导航  end  -->
+
+    <!-- 医生列表  start -->
+    <!-- 找医生字样 start-->
+    <view class="rec-doctor-title">
+      <text class="lt">找医生</text>
+      <view class="rt">
+        <view>更多医生</view>
+          <image src="../../public/img/common/goto.svg" mode="widthFix" style="width:40rpx;height:40rpx;" />
+      </view>
+    </view>
+    <!-- 找医生字样 end-->
+    <!-- 科室滚动区域 start -->
+    <van-tabs swipeable>
+      <van-tab title="{{item.title}}" wx:for="{{deptSwipe}}" wx:key="index" >
+        <gj-doctor-show deptDoctorData="{{deptDoctorData}}" />
+      </van-tab>
+    </van-tabs>
+    <!-- 科室滚动区域 end -->
+
+    <!-- 医生列表  end -->
+	</view>
+
+</view>

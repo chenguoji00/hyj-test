@@ -1,0 +1,25 @@
+/* pageOther/page//privatypolicy/PrivatyPolicy.wxss */
+.userUserContent {
+  width: 95%;
+  margin: 20rpx 2.5%;
+}
+.userUserTitle {
+  width: 100%;
+  height: 80rpx;
+  font-size: 36rpx;
+  font-weight: bolder;
+  text-align: center;
+  line-height: 80rpx;
+}
+text{
+  letter-spacing: 2px;
+  text-indent: 2rpx;
+  line-height: 0.4rem;
+}
+.textind{
+  text-indent:1em;
+}
+.text-title{
+  margin:20rpx 0;
+  font-size:35rpx;
+}

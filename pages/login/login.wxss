@@ -1,0 +1,232 @@
+/* pages/login/login.wxss */
+page{ 
+  height: 100%; 
+  background-color: #fff;
+ }
+
+.login{
+  width: 500rpx;
+  height: 600rpx;
+  background-color: #fff;
+}
+.main {
+  width: 100%;
+  height:500rpx;
+  position:absolute;
+  left:0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+.logo{
+  width: 75%;
+  margin:auto;
+  border-radius: 26rpx;
+  background-color: #fff;
+  height:500rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.logo image{
+  width: 150rpx;
+  height: auto;
+}
+.logo .title-name{
+  font-size: 50rpx;
+  color: #2f86f6;
+  line-height: 100rpx;
+  margin:30rpx;
+}
+.title-name{
+  font-size: 45rpx;
+  color: #2f86f6;
+  line-height: 90rpx;
+}
+.wxlogin{
+  width:250rpx;
+  text-align: center;
+  color:white;
+  border: 1px solid #ccc;
+  background-color: rgb(7,193,6);
+  border-radius:20rpx;
+}
+
+
+
+
+.header {
+  margin: 90rpx 0 90rpx 50rpx;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  width: 650rpx;
+  height: 300rpx;
+  line-height: 450rpx;
+}
+
+.header image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.header-phone{
+  margin: 20rpx 0 20rpx 50rpx;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  width: 650rpx;
+  height: 300rpx;
+  line-height: 450rpx;
+}
+.header-phone image{
+  width: 200rpx;
+  height: 200rpx;
+}
+.content-phone {
+  margin-left: 50rpx;
+  margin-bottom: 30rpx;
+}
+
+.btn-phone{
+  height:100rpx;
+  width:100%;
+}
+
+.content {
+  margin-left: 50rpx;
+  margin-bottom: 90rpx;
+}
+
+.content text {
+  display: block;
+  color: #9d9d9d;
+  margin-top: 40rpx;
+} 
+/* .operBtn{
+  border-radius: 80rpx;
+  margin: 70rpx 50rpx;
+  font-size: 35rpx;
+}
+.operBtns{
+  background: #eef0ed !important;
+  border-radius: 80rpx;
+  margin: 70rpx 50rpx;
+  font-size: 35rpx;
+  color: #000300 !important;
+} */
+.hide{
+  border-radius: 80rpx;
+  margin: 70rpx 50rpx;
+  font-size: 35rpx;
+  display: none;
+}
+.show{
+  display: block;
+  /* background: #eef0ed !important; */
+  border-radius: 80rpx;
+  margin: 70rpx 50rpx;
+  font-size: 35rpx;
+  /* color: #000300 !important; */
+}
+.show-phone{
+  display: block;
+  width: 100%;
+  margin-top: 150rpx;
+  font-size: 35rpx;
+  background-color: #2f86f6;
+  color: #fff;
+}
+.phone{
+  display: block;
+  width: 400rpx;
+  font-size: 35rpx;
+}
+
+.c {
+  animation: mymove 0.5s linear;
+}  
+@keyframes mymove {
+  /* from { */
+    /* top: 0px; */
+    /* transform: rotate(7deg) skew(50deg) translate(30rpx, 30rpx); */
+  /* } */
+  0%{
+    top: -25px;
+  }
+  100%{
+    top: 0rpx;
+  }
+
+  /* to { */
+    /* top: 50rpx; */
+    /* transform: rotate(700deg) skew(5deg) translate(100rpx, 100rpx);
+  } */
+}
+ .container { 
+  height:32%; 
+  margin-top: 100rpx;
+  display: flex; 
+  flex-direction: column; 
+  padding: 0; 
+  box-sizing: border-box; 
+  background-color: #fff;
+ } 
+   
+ /*登录图片*/
+ .login-icon{ 
+  width: 200rpx;
+  height: 200rpx;
+  margin-top: 100rpx;
+ } 
+ .login-img{ 
+  width: 200rpx; 
+ } 
+   
+ /*表单内容*/
+ .login-from { 
+  position: relative;
+  flex: auto; 
+  height:40%; 
+  width:75%;
+  margin: 0 auto;
+ } 
+ 
+   
+ .line { 
+  width: 100%; 
+  height: 1px; 
+  background-color: #cccccc; 
+  margin-top: 1px; 
+ } 
+ /*按钮*/
+ .loginBtnView { 
+  width: 100%; 
+  height: auto; 
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-top: 0px; 
+  margin-bottom: 50rpx; 
+  padding-bottom: 0px; 
+ } 
+   
+ .loginBtn { 
+  width: 100%; 
+  margin-top: 35px; 
+ }
+  
+ .registerBtn { 
+  width: 100%; 
+  margin-top: 5px; 
+ }
+ .rightknow{
+   color:#666;
+   font-size: 26rpx;
+   width:100%;
+   text-align: center;
+ }
+ .rightknow-out{
+   color:#2f86f6;
+   display: inline-block;
+ }

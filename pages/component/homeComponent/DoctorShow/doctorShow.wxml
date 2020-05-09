@@ -1,0 +1,15 @@
+<!--pages/component/homeComponent/DoctorShow/doctorShow.wxml-->
+<view class="dt-it" wx:for="{{deptDoctorData}}" wx:key="index">
+	<image src="{{item.doctorPic}}" mode="widthFix" />
+	<view class="ct">
+		<view class="info">
+			<text class="dtname">{{item.doctorName}}</text>
+			<text style="margin:0 10rpx;">{{item.level}}</text>
+			<text style="color: rgb(61, 145, 254); background-color: rgb(232, 240, 254); padding: 2px;">可挂号</text>
+		</view>
+		<view class="dept">{{item.hospitalName || ''}} {{item.deptName || ''}}</view>
+		<view class="specialty">
+			擅长：{{item.specialty}}
+		</view>
+	</view>
+</view>

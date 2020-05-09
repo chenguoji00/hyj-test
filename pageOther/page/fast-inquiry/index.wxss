@@ -1,0 +1,12 @@
+/* pageOther/page/fast-inquiry/index.wxss */
+page{
+  background-color: #fff;
+}
+.van-cell__title,.van-cell__value {
+  font-size: 32rpx;
+}
+.textarea-c{
+  width: 94%;
+  margin: 0 auto;
+  border: 1px solid #f0f0f0;
+}

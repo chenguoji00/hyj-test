@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/login/login",
+    "pages/logs/logs",
+    "pages/index/index",
+    "pages/person/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "subPackages": [
+    {
+      "root": "pageOther/page/",
+      "pages": [
+        "index/index",
+        "privatypolicy/PrivatyPolicy",
+        "fast-inquiry/index"
+      ]
+    }
+  ],
+  "tabBar": {
+    "color": "#6e6b6b",
+    "selectedColor": "#3d99fe",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "/public/img/tabbar/indexS.png",
+        "iconPath": "/public/img/tabbar/indexN.png",
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "/public/img/tabbar/messageS.png",
+        "iconPath": "/public/img/tabbar/messageN.png",
+        "pagePath": "pages/login/login",
+        "text": "消息"
+      },
+      {
+        "selectedIconPath": "/public/img/tabbar/shopCartS.png",
+        "iconPath": "/public/img/tabbar/shopCartN.png",
+        "pagePath": "pages/logs/logs",
+        "text": "购物车"
+      },
+      {
+        "selectedIconPath": "/public/img/tabbar/myS.png",
+        "iconPath": "/public/img/tabbar/myN.png",
+        "pagePath": "pages/person/index",
+        "text": "我的"
+      }
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+/* pages/component/homeComponent/DoctorShow/doctorShow.wxss */
+/* 醫生页面 start */
+@import '../../../../public/css/common.wxss';
+page{
+  /* background-color: var(--theme-color); */
+  color: var(--textColor)
+}
+.dt-it{
+  position: relative;
+  padding: 30rpx;
+  height: 190rpx;
+  min-height: 190rpx;
+  display: flex;
+  z-index: 0;
+}
+.dt-it::after {
+  content: "";
+  position: absolute;
+  width: 90%;
+  height: 2rpx;
+  left: 5%;
+  bottom: 0px;
+  border-bottom: 2rpx solid #eee;
+}
+.dt-it image{
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 20rpx;
+  min-width: 100rpx;
+  min-height: 100rpx;
+  border-radius: 50rpx;
+}
+.dt-it .ct{
+  margin-left: 20rpx;
+}
+.dt-it .ct .info{
+  color: var(--textColor);
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 28rpx;
+}
+.dt-it .ct .info .dtname{
+  font-size: 31rpx;
+}
+.dt-it .ct .dept{
+  font-size: 28rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  color: #858b9c;
+}
+.dt-it .ct .specialty{
+  font-size: 28rpx;
+  margin-top: 21.3333rpx;
+  line-height: 35rpx;
+  color: #666;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+  -webkit-box-sizing: border-box !important;
+  word-wrap: break-word !important;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+/* 醫生页面 end */

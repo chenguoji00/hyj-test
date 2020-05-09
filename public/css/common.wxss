@@ -1,0 +1,9 @@
+page{
+  --theme-color:#3d99fe;
+  --bg-withe: #ffffff;
+  --bg-gray: #f9f9f9;
+  --textColor: #666;
+  --grayTextColor: #858b9c;
+  --grayTextColor2:#b1b1b1;
+  
+}

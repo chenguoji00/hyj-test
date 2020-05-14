@@ -8,7 +8,7 @@
  * http://es6.ruanyifeng.com/#docs/promise
  */
 import {
-  APP_SERVER
+  APP_SERVER,WG
 } from '../config'; //请求地址
 /**
  * 发起get请求
@@ -27,6 +27,7 @@ export const get = (url, data, headers) => request('GET', url, data, headers);
  * @returns {Promise}
  */
 export const post = (url, data, headers) => request('POST', url, data, headers);
+
 /**
  * 发起put请求
  * @param url 请求路径 必填
@@ -53,11 +54,16 @@ export const del = (url, data, headers) => request('DELETE', url, data, headers)
  * @returns {Promise}
  */
 export function request(method, url, data, header = {
-  'Content-Type': 'application/json'
+  'Client-Auth': 'aHlqX2g1X3VpOjZjYjcwODEzLTk0NTQtNWVlZC04NzUyLTQyZDZmNDk2MGJmMQ==',
+  'Authorization': wx.getStorageSync('hyjToken')
 }) {
   console.group('==============>新请求<==============');
   console.info(method, url);
-  url = APP_SERVER + url;
+  if(url.includes('getOpenId') || url.includes('wx/decode')){
+    url = APP_SERVER + url;
+  }else {
+    url = APP_SERVER + WG + url;
+  }
   if (data) console.info('参数：', data);
   return new Promise((resolve, reject) => {
     const response = {};
@@ -70,8 +76,15 @@ export function request(method, url, data, header = {
       fail: (error) => response.fail = error,
       complete() {
         if (response.success) {
-          console.log(response)
           console.info('请求成功：', response.success);
+          if(response.success.code == 401) {
+            console.log("这个是因为没有权限导致的错误，需要跳转到登录页");
+            setTimeout(() => {
+              wx.navigateTo({
+                url: '/pages/login/login',
+              })
+            }, 1000);
+          }
           resolve(response.success)
         } else {
           console.info('请求失败：', response.fail);
@@ -81,3 +94,5 @@ export function request(method, url, data, header = {
     });
   });
 }
+
+

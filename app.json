@@ -17,15 +17,20 @@
     {
       "root": "pageOther/page/",
       "pages": [
-        "index/index",
         "privatypolicy/PrivatyPolicy",
-        "fast-inquiry/index"
+        "fast-inquiry/index",
+        "prescription-renewal/DeliverMedicine/index",
+        "informright/index",
+        "allergen/index",
+        "select-patient/selectPatient",
+        "doctor/find-doctor/index",
+        "shop-mall/index"
       ]
     }
   ],
   "tabBar": {
     "color": "#6e6b6b",
-    "selectedColor": "#3d99fe",
+    "selectedColor": "#15D2C3",
     "borderStyle": "white",
     "list": [
       {
@@ -37,7 +42,7 @@
       {
         "selectedIconPath": "/public/img/tabbar/messageS.png",
         "iconPath": "/public/img/tabbar/messageN.png",
-        "pagePath": "pages/login/login",
+        "pagePath": "pages/logs/logs",
         "text": "消息"
       },
       {

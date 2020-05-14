@@ -1,41 +1,482 @@
 /* pages/home/home.wxss */
-page{
-  /* background-color: var(--theme-color); */
+@import '../../colorui/main.wxss';
+
+page {
+  background-color: #fff;
 }
-.van-cell__left-icon-wrap{
-  color:var(--bg-gray);
+
+.van-cell__left-icon-wrap {
+  color: var(--bg-gray);
 }
-.van-tabs__line{
-  background-color: var(--theme-color) !important;
+
+.van-tabs__line {
+  background-color: var(--main-theme-color) !important;
 }
+
 /* 页面布局 */
-.home-page{
-  width:100%;
-  height:100%;
-  position:absolute;
-  
+.home-page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+
   font-size: 27rpx;
   color: var(--textColor);
 }
+
 /* 搜索 */
-.search{}
+.search {
+  position: relative;
+  color: var(--textWhiteColor)
+}
+
+.search-contain {
+  display: flex;
+  top: 59rpx;
+  position: absolute;
+  width: 100%;
+  height: 60rpx;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  /* color:rgba(180, 180, 180, 1); */
+  z-index: 2;
+  /* background:rgba(245,245,245,0.5); */
+  font-size: 24rpx;
+  line-height: 60rpx;
+}
+
+.search-contain-left {
+  width: 126rpx;
+  line-height: 60rpx;
+}
+
+.search-contain-left .left-show {
+  margin-left: 32rpx;
+  margin-right: 10rpx;
+}
+
+.search-contain-right {}
+
+.search-com {
+  border-radius: 30rpx;
+  display: flex;
+  width: 539.2rpx;
+  height: 60rpx;
+  background: rgba(245, 245, 245, 0.5);
+}
+
+.search-com input {
+  width: 80%;
+  height: 60rpx;
+  color: #fff;
+}
+
+.search-img-view {
+  width: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+}
+
+.search-img-view image {
+  width: 28rpx;
+  height: 30rpx;
+}
+
+/* .search{
+  position: absolute;
+  top: 0;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  z-index: 1; 
+} */
+
+.phcolor {
+  color: #fff;
+}
 
 /* 内容展示区 start */
-.home-content{
-  height:calc(100% - 108rpx);
-  width:100%;
+.home-content {
+  height: 100%;
+  width: 100%;
   overflow-y: scroll;
   padding: 0px;
   margin: 0px;
   flex-grow: 1;
 }
+
 /* 轮播图 */
-.swiper{ 
-  width:94%;margin:0 auto;
-  height: 216rpx;
+.swiper {
+  height: 370rpx;
 }
+
+/* 主要功能区  三大功能   start */
+.main-func {
+  height: 374rpx;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+.main-func-top {
+  /* display: flex;
+  justify-content: space-around;
+  align-items: center; */
+  position:relative;
+  left: 0;
+  top: 0;
+  height:250rpx;
+}
+.clearfix{
+  zoom: 1;
+}
+.clearfix:after{ clear:both; display:block; content:""; height:0px; overflow:hidden;}
+.main-item {
+  
+  display: inline-block;
+  width: 215.7rpx;
+  height: 216rpx;
+  border-radius: 20rpx;
+  position: relative;
+}
+
+.main-one {
+  position: absolute;
+  top: 40rpx;
+  left: 31rpx;
+  background-color: rgba(214, 246, 253, 1);
+}
+
+.main-two {
+  position: absolute;
+  left: 267rpx;
+  top: 40rpx;
+  background-color: rgba(252, 240, 212, 1);
+}
+
+.main-three {
+  left: 502rpx;
+  position: absolute;
+  top: 40rpx;
+  background-color: rgba(212, 227, 252, 1);
+}
+
+.main-item-one-top {
+  position: absolute;
+  top: 34rpx;
+  left: 79rpx;
+}
+
+.main-item-one-top image {
+  width: 57rpx;
+  height: 60rpx;
+}
+
+.main-item-one-center {
+  position: absolute;
+  top: 115rpx;
+  left: 44rpx;
+  color: rgb(21, 210, 195);
+  font-size: 32rpx;
+}
+
+.main-item-one-bottom {
+  position: absolute;
+  top: 159rpx;
+  left: 22rpx;
+  font-size: 22rpx;
+}
+
+.main-item-two-center {
+  position: absolute;
+  top: 115rpx;
+  left: 44rpx;
+  color: rgba(212, 155, 65, 1);
+  font-size: 32rpx;
+}
+
+
+.main-item-three-center {
+  position: absolute;
+  top: 115rpx;
+  left: 61rpx;
+  color: rgba(69, 150, 239, 1);
+  font-size: 32rpx;
+}
+
+
+.main-top-textcolor {
+  color: rgba(254, 112, 71, 1);
+}
+
+.main-bottom-textcolor {
+  color: rgba(153, 153, 153, 1)
+}
+
+/* 主要功能区  三大功能  end */
+/* 副功能  start */
+.sub-main {
+  height: 834rpx;
+  position: relative;
+}
+
+.sub-main-func {
+  height: 140rpx;
+  /* display: flex; */
+  left: 0;
+  right: 0;
+  /* align-items: center; */
+  position: relative;
+  top: 0;
+  /* justify-content: space-around; */
+}
+
+.sub-main-func-item {
+  width: 110rpx;
+  height: 100%;
+  position: absolute;
+  text-align: center;
+}
+.item-one{
+  left: 36rpx;
+  top: 0;
+}
+.item-two{
+  left: 181rpx;
+  top: 0;
+}
+.item-three{
+  left: 322rpx;
+  top: 0;
+}
+.item-four{
+  left: 465rpx;
+  top: 0;
+}
+.item-five{
+  right: 42rpx;
+  top: 0;
+}
+
+.sub-main-item-top {
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 98rpx;
+  height: 98rpx;
+}
+
+.sub-main-item-bottom {
+  position: absolute;
+  top: 103rpx;
+  font-size: 27.99rpx;
+  left: 0;
+  width: 100%;
+}
+
+/* 体检功能 start */
+.medical-package {
+  height: 126rpx;
+  position: absolute;
+  top: 182rpx;
+  left: 0;
+  right: 0;
+}
+
+.medical-package-left {
+  position: absolute;
+  left: 30rpx;
+  width: 334rpx;
+  height: 126rpx;
+  border: 1px solid #00f;
+  border-radius: 19.95rpx;
+}
+
+.medical-package-right {
+  position: absolute;
+  right: 32rpx;
+  width: 334rpx;
+  height: 126rpx;
+  border: 1px solid #f0f;
+  border-radius: 19.95rpx;
+}
+
+
+
+/* 体检功能 end */
+
+/* 在线药房  start */
+.online-pharmacy-font {
+  position: absolute;
+  top: 358rpx;
+  width: 100%;
+}
+
+.pharmacy-font {
+  position: absolute;
+  left: 30rpx;
+  top: 0;
+  color: rgb(0, 0, 0);
+  font-size: 32rpx;
+  font-weight: bolder;
+}
+
+.pharmacy-font-more {
+  position: absolute;
+  right: 34rpx;
+  top: 0;
+  color: rgba(153, 153, 153, 1);
+
+}
+
+.online-pharmacy {
+  height: 128rpx;
+  left: 0;
+  right: 0;
+  width: 100%;
+  position: relative;
+  top: 300rpx;
+  font-size: 28.15rpx;
+}
+
+.online-pharmacy-item {
+  width: 110rpx;
+  height: 128rpx;
+  position: absolute;
+}
+.online-pharmacy-item.online-one{
+  left: 38rpx;
+  top: -6rpx;
+}
+.online-pharmacy-item.online-two{
+  left: 181rpx;
+  top: -6rpx;
+}
+.online-pharmacy-item.online-three{
+  left: 323rpx;
+  top: -6rpx;
+}
+.online-pharmacy-item.online-four{
+  left: 466rpx;
+  top: -6rpx;
+}
+.online-pharmacy-item.online-five{
+  left: 608rpx;
+  top: -6rpx;
+}
+.online-pharmacy-item-top {
+  position: absolute;
+  left: 11rpx;
+  top: 10rpx;
+  width: 82rpx;
+  height: 82rpx;
+  margin: 0 auto;
+}
+
+.online-pharmacy-item-bottom {
+  position: absolute;
+  left: 0;
+  top: 19rpx;
+  width: 110rpx;
+  height: 30rpx;
+  font-size: 28.15rpx;
+}
+
+
+
+.online-pharmacy-bottom {
+  position: absolute;
+  top: 103rpx;
+  font-size: 27.99rpx;
+  left: 0;
+  width: 100%;
+}
+
+/* 在线药房  end */
+
+/* 副功能   end */
+/* 医生推荐  start*/
+.doctor-rec {
+  position: absolute;
+  top: 607rpx;
+  width: 100%;
+}
+
+.doctor-rec-font {
+  position: absolute;
+  left: 32rpx;
+  top: 0;
+  color: rgb(0, 0, 0);
+  font-size: 32rpx;
+  font-weight: bolder;
+}
+
+.doctor-rec-item {
+  position: absolute;
+  top: 76rpx;
+  left: 32rpx;
+  right: 32rpx;
+  height: 50rpx;
+  margin: 0 auto;
+}
+
+.doctor-rec-item-contain {
+  box-shadow: #f0f0f0 2px 2px 16px 3px;
+  border-radius: 10rpx;
+  margin-bottom: 30rpx;
+}
+
+.doctor-item-left {
+  color: rgba(133, 133, 133, 1);
+  height: 298rpx;
+  left: 0;
+  right: 0;
+  position: relative;
+  display: flex;
+  border-bottom: 1px solid rgba(222, 222, 222, 1);
+}
+.doctor-item-left-img{
+  position:relative;
+  width:129rpx;
+}
+.doctor-item-left-img image{
+  border-radius:50%;
+  width:86rpx;
+  height:86rpx;
+  position:absolute;
+  top:50rpx;
+  left:17rpx;
+}
+.doctor-item-contain{
+  position:relative;
+  width:100%;
+  padding-left:20rpx;
+}
+.doctor-item-contain-top{
+  margin-top:54rpx;
+}
+.doctor-item-contain-top-text{
+  font-size:32rpx;
+  font-weight:bolder;
+  color:#000;
+}
+.doctor-item-contain-center{
+  margin:22rpx 0 22rpx 0;font-size:24rpx;
+}
+.doctor-item-contain-bottom{
+  margin:0rpx 0 22rpx 0;
+  font-size:24rpx;
+}
+.doctor-item-contain-advi{
+  font-size:28rpx;
+}
+.money-color{
+  color:rgba(254, 112, 71, 1);
+}
+/* 医生推荐  end */
+
 /* 主要功能导航 start*/
-.main-navs{
+.main-navs {
   padding: 20rpx;
   display: flex;
   background-color: #ffffff;
@@ -43,7 +484,8 @@ page{
   justify-content: flex-start;
   flex-wrap: wrap;
 }
-.navs-item{
+
+.navs-item {
   width: 25%;
   height: 160rpx;
   display: flex;
@@ -51,16 +493,21 @@ page{
   align-items: center;
   justify-content: flex-start;
 }
-.navs-item text{
+
+.navs-item text {
   line-height: 60rpx;
 }
-.navs-item image{
-  width:100rpx;height:100rpx;
+
+.navs-item image {
+  width: 100rpx;
+  height: 100rpx;
 }
+
+
 /* 主要功能导航 end */
 
 /* 找医生 start */
-.rec-doctor-title{
+.rec-doctor-title {
   background-color: #fff;
   margin-top: 20rpx;
   width: 100%;
@@ -70,13 +517,15 @@ page{
   display: flex;
   justify-content: space-between;
 }
-.rec-doctor-title .lt{
+
+.rec-doctor-title .lt {
   color: #2e2d2d;
   font-weight: bolder;
   margin-left: 20rpx;
   font-size: 38rpx;
 }
-.rec-doctor-title .rt{
+
+.rec-doctor-title .rt {
   line-height: 90rpx;
   height: 90rpx;
   text-align: center;
@@ -90,3 +539,22 @@ page{
 
 /* 找医生  end */
 /* 内容展示区 end */
+.specialty {
+  font-size: 28rpx;
+  margin-top: 21.3333rpx;
+  line-height: 35rpx;
+  color: #666;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+  -webkit-box-sizing: border-box !important;
+  word-wrap: break-word !important;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}

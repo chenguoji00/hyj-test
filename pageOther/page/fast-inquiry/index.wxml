@@ -1,21 +1,70 @@
 <!--pageOther/page/fast-inquiry/index.wxml-->
 
-<!-- <view></view> -->
-<van-cell title="患者描述:" value="" />
+<!-- 是否过敏  start -->
+<van-notice-bar
+  scrollable="false"
+  mode="closeable"
+  text="重要：急重症不适合网上咨询，请立即前往当地医院就医。"
+/>
 
+<van-cell title="是否有过敏史">
+	<van-radio-group value="{{ isAllergy }}" bind:change="isAllergyClick">
+		<van-radio style="display:inline-block;margin-right:10rpx;" name="1">有 </van-radio>
+		<van-radio style="display:inline-block;" name="0"> 无</van-radio>
+	</van-radio-group>
+</van-cell>
+<van-cell title="过敏源" wx:if="{{isAllergy==0?false:true}}" bind:click="goToPage" data-navpath="allergy"  value="{{showAllergies}}" is-link />
+<!-- 是否过敏  end -->
+<!-- 初诊复诊 start -->
+<van-cell title="本次为">
+	<van-radio-group value="{{ radio }}" bind:change="onChange">
+		<van-radio style="display:inline-block;margin-right:10rpx;" name="0">初诊 </van-radio>
+		<van-radio style="display:inline-block;" name="1"> 复诊</van-radio>
+	</van-radio-group>
+</van-cell>
+<!-- 初诊复诊 end -->
+
+<!-- 病情描述  start -->
+<van-cell title="病情描述" value="" />
 <view class="textarea-c">
-  <textarea placeholder="请简单描述你的症状(200字数以内)" maxlength="200" style="width:100%;background-color:#F8F8F8;"  />
- </view>
+	<textarea bindinput="inputIllness" value="{{illnessDescription}}" 
+  placeholder="请用10~500字详细描述您的症状、疾病和身体状况,否则可能无法获得医生的详细解答。请勿透露您的真实姓名或联系方式" minlength="10" maxlength="500" style="width:100%;background-color:#fff;" placeholder-style="placeholder-s" adjust-position />
+</view>
+<!-- 病情描述  end -->
 
-<van-cell title="是否复诊">
-  <van-switch checked="{{ isVisitAgain }}" bind:change="isVisitAgainClick" size="22px" />
-</van-cell>
+<!-- 图片上传 start -->
+<view class="cu-bar bg-white">
+  <view class="action">
+  </view>
+  <view class="action" >
+    {{imgList.length}}/9
+  </view>
+</view>
+<view class="cu-form-group" style="">
+  <view class="grid col-3 grid-square flex-sub">
+    <view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
+      <image src='{{imgList[index]}}' mode="aspectFill" style='width:250rpx;height:400rpx;'></image>
+      <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+        <text class="cuIcon-close"></text>
+      </view>
+    </view>
+    <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<9}}">
+      <text class="cuIcon-cameraadd"></text>
+    </view>
+    <view style="display:inline-block;color:#B4B4B4;width:60%;">
+      上传相关图片(检查单、CT、病历、患处、药品等),慧医家会确保您的隐私安全
+    </view>
+  </view>
+</view>
+<!-- 图片上传 end -->
+<!-- 知情同意书 start-->
+<view style="margin-left:30rpx;margin-bottom:120rpx;" >
+  <van-checkbox value="{{ consentChecked }}" shape="square" bind:change="onChangeConsent">
+  <text style="color:#858585;">我已阅读并同意</text><text style="font-weight:600;" catchtap="goToPage" data-navpath="zqtys">《知情同意书》</text>
+</van-checkbox>
+</view>
+<!-- 知情同意书  end-->
 
-<van-cell title="存在过敏源">
-  <van-switch checked="{{ isAllergy }}" bind:change="isAllergyClick" size="22px" />
-</van-cell>
-
-<van-cell title="过敏源" wx:if="{{isAllergy}}" value="{{allergiesHistory}}"  is-link />
-
-<van-cell title="补充图片:" value="" />
-<van-uploader file-list="{{ fileList }}" max-count="9" bind:delete="deleteImg"  multiple/>
+<view class="next-click" bindtap="upload_btn">
+  <view class="next-text {{ consentChecked === false || radio == 0 ? 'bgcNoActive' :'bgcActive'}}">下一步</view>
+</view>

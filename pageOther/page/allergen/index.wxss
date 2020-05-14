@@ -1,0 +1,41 @@
+/* pageOther/page/allergen/index.wxss */
+page{
+  background-color: var(--bg-f5);
+}
+.showTitle {
+  font-size:24.03rpx;
+  display: inline-block;
+  padding: 15rpx 23rpx 15rpx 23rpx; 
+  background-color: var(--main-theme-color);
+  color: #fff;
+  margin:0  21rpx 16rpx 0;
+  border-radius: 10rpx;
+}
+.container-title {
+  height: 50rpx;
+  line-height: 50rpx;
+  background-color: var(--bg-withe);
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 31rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+.subcontain{
+  width: 91%;
+  margin: 25rpx auto 0;
+  padding-bottom: 20rpx;
+}
+.subitemclass {
+  display: inline-block;
+  padding: 15rpx 23rpx 15rpx 23rpx; 
+  background-color: #F5F5F5;
+  color: #333333;
+  margin:0  21rpx 16rpx 0;
+  border-radius: 10rpx;
+  font-size:24.03rpx;
+}
+.isActive {
+  background-color: var(--main-theme-color);
+  color: var(--bg-withe);
+}

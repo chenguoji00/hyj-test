@@ -1,11 +1,13 @@
 /* pages/component/homeComponent/DoctorShow/doctorShow.wxss */
 /* 醫生页面 start */
 @import '../../../../public/css/common.wxss';
-page{
+
+page {
   /* background-color: var(--theme-color); */
   color: var(--textColor)
 }
-.dt-it{
+
+.dt-it {
   position: relative;
   padding: 30rpx;
   height: 190rpx;
@@ -13,6 +15,7 @@ page{
   display: flex;
   z-index: 0;
 }
+
 .dt-it::after {
   content: "";
   position: absolute;
@@ -22,7 +25,8 @@ page{
   bottom: 0px;
   border-bottom: 2rpx solid #eee;
 }
-.dt-it image{
+
+.dt-it image {
   width: 100rpx;
   height: 100rpx;
   margin-top: 20rpx;
@@ -30,25 +34,30 @@ page{
   min-height: 100rpx;
   border-radius: 50rpx;
 }
-.dt-it .ct{
+
+.dt-it .ct {
   margin-left: 20rpx;
 }
-.dt-it .ct .info{
+
+.dt-it .ct .info {
   color: var(--textColor);
   height: 50rpx;
   line-height: 50rpx;
   font-size: 28rpx;
 }
-.dt-it .ct .info .dtname{
+
+.dt-it .ct .info .dtname {
   font-size: 31rpx;
 }
-.dt-it .ct .dept{
+
+.dt-it .ct .dept {
   font-size: 28rpx;
   height: 50rpx;
   line-height: 50rpx;
   color: #858b9c;
 }
-.dt-it .ct .specialty{
+
+.dt-it .ct .specialty {
   font-size: 28rpx;
   margin-top: 21.3333rpx;
   line-height: 35rpx;
@@ -65,6 +74,93 @@ page{
   -webkit-box-sizing: border-box !important;
   word-wrap: break-word !important;
   outline: none;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
+
+
+/* 2 */
+.doctor-item-left {
+  color: rgba(133, 133, 133, 1);
+  height: 298rpx;
+  left: 0;
+  right: 0;
+  position: relative;
+  display: flex;
+  border-bottom: 1px solid #DEDEDE;
+  width: 97%;
+  margin: 0 auto;
+}
+.doctor-item-left:last-child { 
+  border: none;
+}
+.doctor-item-left-img {
+  position: relative;
+  width: 129rpx;
+}
+
+.doctor-item-left-img image {
+  border-radius: 50%;
+  width: 86rpx;
+  height: 86rpx;
+  position: absolute;
+  top: 50rpx;
+  left: 17rpx;
+}
+
+.doctor-item-contain {
+  position: relative;
+  width: 100%;
+  padding-left: 20rpx;
+}
+
+.doctor-item-contain-top {
+  margin-top: 54rpx;
+}
+
+.doctor-item-contain-top-text {
+  font-size: 32rpx;
+  font-weight: bolder;
+  color: #000;
+}
+
+.doctor-item-contain-center {
+  margin: 11rpx 0 11rpx 0;
+  font-size: 24rpx;
+  color: #333333;
+}
+
+.doctor-item-contain-bottom {
+  margin: 0rpx 0 22rpx 0;
+  font-size: 24rpx;
+}
+
+.doctor-item-contain-advi {
+  font-size: 28rpx;
+}
+
+.money-color {
+  color: rgba(254, 112, 71, 1);
+}
+
 /* 醫生页面 end */
+
+.specialty {
+  font-size: 28rpx;
+  margin-top: 21.3333rpx;
+  line-height: 35rpx;
+  color: #858585;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+  -webkit-box-sizing: border-box !important;
+  word-wrap: break-word !important;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}

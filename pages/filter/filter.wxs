@@ -1,0 +1,24 @@
+
+var formatPrice = function(num){
+  return '￥'+num;
+}
+
+var defaultDoctorImg = function(sex){ 
+  return sex == 1 ? 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2104351895,3299575660&fm=26&gp=0.jpg' : 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1978012991,1411388119&fm=26&gp=0.jpg';
+}
+
+var getSex = function(id){
+  console.log(id,"sex")
+  if(id == 1){
+      return '男'
+  }else if(id == 2) {
+    return '女'
+  }
+}
+
+
+module.exports = {
+  formatPrice: formatPrice,
+  defaultDoctorImg:defaultDoctorImg,
+  getSex: getSex
+}

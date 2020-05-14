@@ -1,6 +1,11 @@
 // pages/login/login.js
 const app = getApp()
-import { send } from "../../utils/wx_network/service";
+import {
+  send
+} from "../../utils/wx_network/service";
+import {
+  getTokenByWeappOpenId
+} from "../../utils/wx_network/login"
 let cfg = require('../../utils/config.js');
 Page({
   /**
@@ -14,19 +19,19 @@ Page({
     flaglogin: true
   },
 
-  
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app,"this is send")
+    console.log(app, "this is send")
     let that = this;
     wx.getSetting({
       success: function (res) {
         if (res.authSetting['scope.userInfo']) {
-          if(wx.getStorageSync('openid')){
-            that.data.flaglogin = false  
-          }else{
+          if (wx.getStorageSync('openid')) {
+            that.data.flaglogin = false
+          } else {
             that.data.flaglogin = true
           }
         } else {
@@ -106,39 +111,84 @@ Page({
   getPhoneNumber(e) {
     let that = this;
     //成功："getPhoneNumber:ok"  失敗 ："getPhoneNumber:fail user deny" ,"getPhoneNumber:fail:user deny"
-    if(e.detail.errMsg == "getPhoneNumber:fail user deny" || e.detail.errMsg == "getPhoneNumber:fail:user deny"){
+    if (e.detail.errMsg == "getPhoneNumber:fail user deny" || e.detail.errMsg == "getPhoneNumber:fail:user deny") {
       wx.showModal({
         title: "提示",
-        content: "手机号码获取失败!",
+        content: "手机号码获取失败",
         showCancel: !1
       }), wx.hideLoading();
-    }else{
+    } else {
       app.wxloginBtn().then(function () {
         wx.showLoading({
-          title: "获取手机号登陆..."
-        }),
-        send('/wx/decode',{ //获取openid
-          "appid": cfg.WXAPP_ID,
-          "session_key": wx.getStorageSync('session_key'),
-          "encryptedData": e.detail.encryptedData,
-          "iv": e.detail.iv
-        }).then(res => {
-          console.log(res,"this is res");
-          if (res.phoneNumber) {
+            title: "获取手机号登陆..."
+          }),
+          send('/wx/decode', { //获取openid
+            "appid": cfg.WXAPP_ID,
+            "session_key": wx.getStorageSync('session_key'),
+            "encryptedData": e.detail.encryptedData,
+            "iv": e.detail.iv
+          }).then(res => {
+            console.log(res, "this is res");
+            if (res.phoneNumber) {
+              wx.hideLoading();
+              wx.setStorageSync('phone', res.phoneNumber);
+              // wx.reLaunch({
+              //   url: '/pages/index/index',
+              // })
+              that.getHyjLogin();
+            }
+          }).catch(err => {
+            console.log(err)
+            wx.showToast({
+              title: '请求失败,请重试'
+            });
             wx.hideLoading();
-            wx.setStorageSync('phone', res.phoneNumber);
-            wx.reLaunch({
-              url: '/pages/index/index',
-            })
-          }
-        }).catch(err=>{
-          console.log(err)
-          wx.showToast({title: '请求失败,请重试'});
-          wx.hideLoading();
-        });
+          });
       });
     }
   },
+
+  getHyjLogin() {
+    let wxUserInfo = wx.getStorageSync('wxUserInfo')
+    let params = wxUserInfo == null || wxUserInfo == '' ? {} : wxUserInfo;
+    params.openid = wx.getStorageSync('openid');
+    params.appid = cfg.WXAPP_ID;
+    let data = {
+      // TODO  这里的tenantId是默认000001的吗？
+      tenantId: "000001",
+      phone: wx.getStorageSync('phone')
+    }
+    getTokenByWeappOpenId(`/auth/getTokenByWeappOpenId?tenantId=${data.tenantId}&phone=${data.phone}`, params).then(res => {
+      if (res.code == 200) {
+        wx.setStorageSync('hyjToken', res.data.token);
+        wx.setStorageSync('hyjUserInfo', res.data.userInfo);
+        wx.setStorageSync('userId', res.data.userInfo.userId);
+        let default_tenantId = '';
+        let tenants = res.data.userInfo.tenants;
+        if (tenants.length == 1) {
+          default_tenantId = tenants[0].tenantId;
+        } else {
+          tenants.forEach(i => {
+            if (i.isDefault == 1) {
+              default_tenantId = i.tenantId;
+            }
+          });
+        }
+        wx.setStorageSync('tenantId', default_tenantId)
+        wx.navigateBack({
+          complete: (res) => {
+            console.log(res)
+          },
+        })
+      } else {
+        wx.showToast({
+          title: '登录失败，请重试',
+        })
+      }
+    })
+
+  },
+
   /**
    * 微信登录按钮
    */
@@ -181,7 +231,7 @@ Page({
             e.code ? (
               wx.getUserInfo({
                 success: function (datas) {
-                  send(`/wx/weapp/getOpenId`,{ //获取openid
+                  send(`/wx/weapp/getOpenId`, { //获取openid
                     "appid": cfg.WXAPP_ID,
                     "js_code": e.code
                   }).then(res => {
@@ -195,8 +245,10 @@ Page({
                       wx.hideLoading();
                       resolve(res)
                     }
-                  }).catch(err=>{
-                    wx.showToast({title: '请求失败'});
+                  }).catch(err => {
+                    wx.showToast({
+                      title: '请求失败'
+                    });
                     reject(err);
                   })
                 }
@@ -215,7 +267,7 @@ Page({
   },
 
   //用户隐私
-  privateBtn(){
+  privateBtn() {
     wx.navigateTo({
       url: '/pageOther/page/privatypolicy/PrivatyPolicy',
     })

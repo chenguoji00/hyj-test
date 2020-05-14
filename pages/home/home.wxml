@@ -1,58 +1,219 @@
 <!--pages/home/home.wxml-->
 <view class="home-page">
 	<!-- search 搜索栏  start  -->
-	<van-search class="search" value="{{ value }}" shape="round" bindtap="goToPage" data-navname="search" disabled placeholder="搜索疾病 /科室 /医生" />
-	<!-- search 搜索栏  end  -->
+	<!-- <view style="display:flex;position:absolute;top:0;width:539.2rpx;height:60rpx;margin:0 auto;left:0;right:0;color:#fff;z-index:2;border:1px solid rgba(222,222,222,1);background:rgba(245,245,245,0.5);border-radius:30rpx;">
+		<image src="../../public/img/common/setting.svg" style="width:60rpx;height:60rpx;"/>
+		<input value="搜索医院、科室、医生、药品" style="width:100%;height:60rpx;color:#fff;"  disabled/>
+	</view> -->
+	<!-- <van-search class="search"  value="{{ value }}" shape="round" bindtap="goToPage" data-navname="search" disabled placeholder="搜索疾病 /科室 /医生" /> -->
 	<view class="home-content">
-	<!-- swiper 轮播图  start  -->
+		<view class="search">
+			<view class="search-contain">
+				<view class="search-contain-left">
+					<text class="left-show">西安</text>
+					<image src="../../public/img/common/dingwei.png" style="vertical-align:middle;z-index:5;width:21rpx;height:28rpx;margin-top:-3rpx;" />
+				</view>
+				<view class="search-com">
+					<view class="search-img-view">
+						<image src="../../public/img/common/dingwei.png" />
+					</view>
+					<input value="" placeholder-class="phcolor" placeholder="搜索医院、科室、医生、药品" />
+				</view>
+				<view class="search-contain-right">
+					<view class="search-img-view">
+						<image src="../../public/img/common/saoyisao.png" />
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- search 搜索栏  end  -->
+		<!-- swiper 轮播图  start  -->
 		<swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-			<block wx:for="{{background}}" wx:key="*this">
+			<block wx:for="{{backgroundList}}" wx:key="*this">
 				<swiper-item>
-					<image src="http://hyjfile.qn.phd91.com/hospital_banner.png" style="width:100%;" mode="widthFix" lazy-load />
+					<image src="../../public/img/banner.png" style="width:100%;" mode="widthFix" lazy-load />
 				</swiper-item>
 			</block>
 		</swiper>
 		<!-- swiper 轮播图  end  -->
+		<!-- 三大流程 start -->
+		<view class="main-func">
+			<view class="main-func-top clearfix">
+				<view class="main-item main-one" bindtap="goToPage" data-navname="fastInquiry">
+					<view class="main-item-one-top">
+						<image src="../../public/img/common/mainfuncleft.png" />
+					</view>
+					<view class="main-item-one-center">
+						快速问诊
+					</view>
+					<view class="main-item-one-bottom">
+						<text class="main-top-textcolor">知名专家 </text>
+						<text class="main-bottom-textcolor">在线接诊</text>
+					</view>
+				</view>
+				<view class="main-item main-two" bindtap="goToPage" data-navname="sysm">
+					<view class="main-item-one-top">
+						<image src="../../public/img/common/mainfuncenter.png" />
+					</view>
+					<view class="main-item-two-center sysm">
+						送药上门
+					</view>
+					<view class="main-item-one-bottom">
+						<text class="main-top-textcolor">快速复购 </text>
+						<text class="main-bottom-textcolor">送货上门</text>
+					</view>
+				</view>
+				<view class="main-item main-three">
+					<view class="main-item-one-top">
+						<image src="../../public/img/common/mainfuncright.png" />
+					</view>
+					<view class="main-item-three-center">
+						找医生
+					</view>
+					<view class="main-item-one-bottom">
+						<text class="main-top-textcolor">海量名医 </text>
+						<text class="main-bottom-textcolor">丰富经验</text>
+					</view>
+				</view>
+			</view>
+			<view style="width:100%;position:relative;">
+				<text style="font-size:32rpx;font-weight:bolder;color:#000000;position:absolute;left:31rpx;top:48rpx;">院内服务</text>
+				<text style="float:right;color:#999999;position:absolute;right:34rpx;top:48rpx;">进入主页 ></text>
+			</view>
+		</view>
+		<!-- 三大流程 end -->
+
+		<!-- 副功能 start -->
+		<view class="sub-main">
+			<!-- 功能显示  5大功能 start -->
+			<view class="sub-main-func">
+				<view class="sub-main-func-item item-one" bindtap="inHospitalServicesBtn">
+					<image src="../../public/img/common/yuyue.png" class="sub-main-item-top" />
+					<text class="sub-main-item-bottom">预约挂号</text>
+				</view>
+				<view class="sub-main-func-item item-two">
+					<image src="../../public/img/common/menzheng.png" class="sub-main-item-top" />
+					<text class="sub-main-item-bottom">门诊缴费</text>
+				</view>
+				<view class="sub-main-func-item item-three">
+					<image src="../../public/img/common/tijian.png" class="sub-main-item-top" />
+					<text class="sub-main-item-bottom">预约体检</text>
+				</view>
+				<view class="sub-main-func-item item-four">
+					<image src="../../public/img/common/jiancha.png" class="sub-main-item-top" />
+					<text class="sub-main-item-bottom">预约检查</text>
+				</view>
+				<view class="sub-main-func-item item-five">
+					<image src="../../public/img/common/baogaodan.png" class="sub-main-item-top" />
+					<text class="sub-main-item-bottom">报告单</text>
+				</view>
+			</view>
+			<!-- 功能显示  5大功能 end -->
+			<!-- 体检套餐  strat -->
+			<view class="medical-package">
+				<view class="medical-package-left"></view>
+				<view class="medical-package-right"></view>
+			</view>
+			<!-- 体检套餐  end -->
+			<!-- 在线药房 start -->
+			<view class="online-pharmacy-font">
+				<view class="pharmacy-font">
+					在线药房
+				</view>
+				<view class="pharmacy-font-more">查看更多 ></view>
+			</view>
+			<view class="online-pharmacy">
+				<view class="online-pharmacy-item online-one">
+					<image src="../../public/img/common/yuyue.png" class="online-pharmacy-item-top" />
+					<text class="online-pharmacy-bottom">风湿骨伤</text>
+				</view>
+				<view class="online-pharmacy-item online-two">
+					<image src="../../public/img/common/menzheng.png" class="online-pharmacy-item-top" />
+					<text class="online-pharmacy-bottom">肠胃用药</text>
+				</view>
+				<view class="online-pharmacy-item online-three">
+					<image src="../../public/img/common/tijian.png" class="online-pharmacy-item-top" />
+					<text class="online-pharmacy-bottom">男科用药</text>
+				</view>
+				<view class="online-pharmacy-item online-four">
+					<image src="../../public/img/common/jiancha.png" class="online-pharmacy-item-top" />
+					<text class="online-pharmacy-bottom">妇科用药</text>
+				</view>
+				<view class="online-pharmacy-item online-five">
+					<image src="../../public/img/common/baogaodan.png" class="online-pharmacy-item-top" />
+					<text class="online-pharmacy-bottom">滋补调养</text>
+				</view>
+			</view>
+			<!-- 在线药房 end -->
+			<!-- 医生推荐 start -->
+			<view class="doctor-rec">
+				<view class="doctor-rec-font">
+					医生推荐
+				</view>
+				<view class="doctor-rec-item">
+					<view class="doctor-rec-item-contain">
+						<!-- <scroll-view scroll-x class="bg-white nav">
+							<view class="flex text-center">
+								<view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{deptList}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+									{{item.title}}
+								</view>
+							</view>
+						</scroll-view> -->
+						<van-tabs active="{{ active }}" swipeable bind:click="tabSelect" sticky>
+							<van-tab title="{{item.deptName}}" wx:for="{{deptList}}" wx:key="id" data-id="{{id}}">
+							</van-tab>
+						</van-tabs>
+						<view>
+							<gj-doctor-show deptDoctorData="{{deptDoctorData}}" />
+						</view>
+					</view>
+				</view>
+			</view>
+			<!-- 医生推荐 end -->
+		</view>
+
+		<!-- 副功能 end -->
+
 		<!-- main-nav 主要导航  start  -->
-		<view class="main-navs">
+		<!-- <view class="main-navs">
 			<view class="navs-item" bindtap="goToPage" data-navname="fastInquiry">
-				<image src="../../public/img/main-nav/bc4a8d157d82c58d.png" mode="widthFix" lazy-load  />
+				<image src="../../public/img/main-nav/bc4a8d157d82c58d.png" mode="widthFix" lazy-load />
 				<text>快速问诊</text>
 			</view>
 			<view class="navs-item" bindtap="goToPage" data-navname="onLineMall">
-				<image src="../../public/img/main-nav/7f67b6492a44fc5f.png" mode="widthFix" lazy-load  />
+				<image src="../../public/img/main-nav/7f67b6492a44fc5f.png" mode="widthFix" lazy-load />
 				<text>在线商城</text>
 			</view>
 			<view class="navs-item" bindtap="goToPage" data-navname="fastMedicineDelivery">
-				<image src="../../public/img/main-nav/518937cd6e24103f.png" mode="widthFix" lazy-load  />
+				<image src="../../public/img/main-nav/518937cd6e24103f.png" mode="widthFix" lazy-load />
 				<text>闪电送药</text>
 			</view>
 			<view class="navs-item" bindtap="goToPage" data-navname="allDept">
 				<image src="../../public/img/main-nav/6fe4a86675de0d4d.png" mode="widthFix" lazy-load />
 				<text>所有科室</text>
 			</view>
-		</view>
+		</view> -->
 		<!-- main-nav 主要导航  end  -->
 
-    <!-- 医生列表  start -->
-    <!-- 找医生字样 start-->
-    <view class="rec-doctor-title">
-      <text class="lt">找医生</text>
-      <view class="rt">
-        <view>更多医生</view>
-          <image src="../../public/img/common/goto.svg" mode="widthFix" style="width:40rpx;height:40rpx;" />
-      </view>
-    </view>
-    <!-- 找医生字样 end-->
-    <!-- 科室滚动区域 start -->
-    <van-tabs swipeable>
-      <van-tab title="{{item.title}}" wx:for="{{deptSwipe}}" wx:key="index" >
-        <gj-doctor-show deptDoctorData="{{deptDoctorData}}" />
-      </van-tab>
-    </van-tabs>
-    <!-- 科室滚动区域 end -->
+		<!-- 医生列表  start -->
+		<!-- 找医生字样 start-->
+		<!-- <view class="rec-doctor-title">
+			<text class="lt">找医生</text>
+			<view class="rt">
+				<view>更多医生</view>
+				<image src="../../public/img/common/goto.svg" mode="widthFix" style="width:40rpx;height:40rpx;" />
+			</view>
+		</view> -->
+		<!-- 找医生字样 end-->
+		<!-- 科室滚动区域 start -->
+		<!-- <van-tabs swipeable>
+			<van-tab title="{{item.title}}" wx:for="{{deptSwipe}}" wx:key="index">
+				<gj-doctor-show deptDoctorData="{{deptDoctorData}}" />
+			</van-tab>
+		</van-tabs> -->
+		<!-- 科室滚动区域 end -->
 
-    <!-- 医生列表  end -->
+		<!-- 医生列表  end -->
 	</view>
 
 </view>

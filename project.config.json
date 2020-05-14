@@ -6,6 +6,7 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
 		"preloadBackgroundData": false,
 		"minified": true,
@@ -59,17 +60,44 @@
 			"current": -1,
 			"list": [
 				{
-					"id": -1,
-					"name": "pages/login/login",
-					"pathName": "pages/login/login",
+					"id": 0,
+					"name": "pageOther/page/fast-inquiry/index",
+					"pathName": "pageOther/page/fast-inquiry/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 1,
-					"name": "快速问诊",
-					"pathName": "pageOther/page/fast-inquiry/index",
+					"name": "pageOther/page/prescription-renewal/DeliverMedicine/index",
+					"pathName": "pageOther/page/prescription-renewal/DeliverMedicine/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "pageOther/page/allergen/index",
+					"pathName": "pageOther/page/allergen/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pageOther/page/select-patient/selectPatient",
+					"pathName": "pageOther/page/select-patient/selectPatient",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pageOther/page/doctor/find-doctor/index",
+					"pathName": "pageOther/page/doctor/find-doctor/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/login/login",
+					"pathName": "pages/login/login",
 					"scene": null
 				}
 			]

@@ -1,5 +1,5 @@
 <!--pages/component/homeComponent/DoctorShow/doctorShow.wxml-->
-<view class="dt-it" wx:for="{{deptDoctorData}}" wx:key="index">
+<!-- <view class="dt-it" wx:for="{{deptDoctorData}}" wx:key="index">
 	<image src="{{item.doctorPic}}" mode="widthFix" />
 	<view class="ct">
 		<view class="info">
@@ -12,4 +12,40 @@
 			擅长：{{item.specialty}}
 		</view>
 	</view>
+</view> -->
+<wxs src="../../../filter/filter.wxs" module="filter"></wxs>
+<view wx:if="{{deptDoctorData.length}}">
+	<!-- <gj-doctor-show deptDoctorData="{{deptDoctorData}}" /> -->
+	<view wx:for="{{deptDoctorData}}" wx:key="index" class="doctor-item-left">
+		<view class="doctor-item-left-img">
+			<image src="{{item.doctorPic||filter.defaultDoctorImg(item.sex)}}"/>
+		</view>
+		<view class="doctor-item-contain">
+			<view class="doctor-item-contain-top">
+				<text class="doctor-item-contain-top-text">{{item.doctorName}} </text>
+				<text>{{item.level}}</text>
+			</view>
+			<view class="doctor-item-contain-center">
+				<text>{{item.hospitalName || ' '}}</text>
+				<text> {{item.deptName || ' '}}</text>
+			</view>
+			<view class="doctor-item-contain-bottom">
+				<text class="specialty">擅长：{{item.specialty}}</text>
+			</view>
+			<view>
+				<view class="doctor-item-contain-advi">
+					<text class="money-color">￥50 </text>
+					<text>可咨询</text>
+				</view>
+			</view>
+			<!-- <view style="border:2px solid #fff;box-shadow: 2px 3px 6px #888888;text-align:center;line-height:50rpx;color:#fff;position:absolute;right:10px;top:20rpx;width:50rpx;height:50rpx;background-color:rgba(254, 112, 71, 1);border-radius:50%;">
+										1
+										</view> -->
+		</view>
+	</view>
 </view>
+<view wx:else style="height:300rpx;width:100%;text-align:center;line-height:300rpx;">
+	暂无内容
+</view>
+
+

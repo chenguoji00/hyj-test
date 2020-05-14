@@ -1,0 +1,7 @@
+/* colorui/components/cu-custom.wxss */
+.content{
+color: black;
+}
+.action{
+  color: black;
+}

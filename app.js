@@ -40,6 +40,7 @@ App({
   globalData: {
     userInfo: null
   },
+  // 微信登录
   wxloginBtn() {
     var t = this;
     return wx.showLoading({

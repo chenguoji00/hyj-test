@@ -1,0 +1,8 @@
+/* pageOther/page/patient-list/index.wxss */
+page{
+  background-color: #f0f0f0;
+}
+.van-radio__icon--checked {
+  background-color: var(--main-theme-color, #1989fa) !important;
+  border-color: var(--main-theme-color, #1989fa) !important;
+}

@@ -49,7 +49,7 @@ page {
 .image-group {
   display: flex;
   white-space: nowrap;
-  height: 220rpx;
+  height: 300rpx;
   width: 100%;
 }
 
@@ -61,6 +61,8 @@ page {
 /* 药品展示  start*/
 .medical-contain {
   margin-right: 30rpx;
+  width: 498rpx;
+  height: 200rpx;
 }
 
 .medical-contain:first-child {
@@ -87,10 +89,11 @@ page {
 
 
 .medical-name {
-  width: 100%;
+  width:250rpx;
+  height:200rpx;
   color: rgba(51, 51, 51, 1);
   font-size: 28rpx;
-  padding: 28rpx 0 0rpx 0;
+  padding: 28rpx 0 0 0;
 }
 
 .medical-diagnosis {
@@ -121,6 +124,7 @@ page {
   flex-direction: column;
   justify-content: center;
   align-items: space-around;
+  color:#858585;
 }
 
 .prescription-buy {
@@ -193,9 +197,8 @@ page {
 /* 药房 start */
 .pharmacy {
   width: 91.5%;
-  height: auto;
   margin: 0 auto;
-  border-radius: 15rpx;
+  border-radius: 25rpx;
 }
 
 .pharmacy-contain {
@@ -205,6 +208,7 @@ page {
   background-color: #fff;
   display: flex;
   justify-content: flex-start;
+  
   align-items: center;
 }
 .pharmacy-image{
@@ -224,5 +228,26 @@ page {
 }
 .pharmacy-distinct{
   flex:1;color:#333333;
+  font-size: 24rpx;
 }
 /* 药房 end */
+
+.special {
+  font-size: 28rpx;
+  margin-top: 21.3333rpx;
+  line-height: 35rpx;
+  color: #858585;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+  -webkit-box-sizing: border-box !important;
+  word-wrap: break-word !important;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}

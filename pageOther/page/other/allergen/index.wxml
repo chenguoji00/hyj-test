@@ -1,0 +1,19 @@
+<!--pageOther/page/allergen/index.wxml-->
+<view style="padding-left:32rpx;padding-top:25rpx;padding-bottom:42rpx;height:auto;width:100%;background-color:#fff; ">
+	<view wx:for="{{AllergyList}}" class="showTitle" bindtap="deleteAllergy" data-index="{{index}}" data-item="{{item}}" wx:key="index">
+		{{item.title}}
+		<image src="../../../../public/img/common/gmyxx.png" style="width:22rpx;height:22rpx;" />
+	</view>
+</view>
+<view style="height:70rpx;width:100%;line-height:70rpx;font-size:24rpx;color:#858585;">
+	<text style="margin-left:32rpx;">可选择以下过敏源</text>
+</view>
+<!-- <md-check-group v-model="insurants"></md-check-group> -->
+<view wx:for="{{alleryData}}" wx:key="index" style="margin-bottom:16rpx;background-color:#fff;">
+	<view class="container-title">{{item.title}}</view>
+	<view class="subcontain">
+		<view class="subitemclass {{ subItem.isActive ? 'isActive' :''}}" bindtap="subItemClick" data-subItem="{{subItem}}" data-item="{{item}}" wx:for-item="subItem" wx:for-index="subIndex" data-index="{{subIndex}}" wx:for="{{item.children}}" wx:key="subIndex">
+			{{subItem.title}}
+		</view>
+	</view>
+</view>

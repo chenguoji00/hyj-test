@@ -1,0 +1,39 @@
+<import src="../../../../pages/template/noData/noData.wxml" />
+<wxs src="../../../filter/filter.wxs" module="filter"></wxs>
+<view wx:if="{{deptDoctorData.length}}">
+	<radio-group bindchange="radioChange">
+		<label wx:for="{{deptDoctorData}}" wx:key="index">
+			<view class="contain">
+				<view class="show-image">
+					<image src="{{item.doctorPic||filter.defaultDoctorImg(item.sex)}}" lazy-load />
+				</view>
+				<view class="person-detail">
+					<view style="position:absolute;top:37rpx;left:0rpx;font-size:32rpx;margin-right:20rpx;">
+						{{item.doctorName}}
+						<text style="margin-right:20rpx;font-size:28rpx;">{{item.deptName}} </text>
+						<text style="color:#FEA50B;font-size:28rpx;">{{item.level}}</text>
+					</view>
+					<view style="position:absolute;top:84rpx;left:0rpx;color:#858585;font-size:28rpx;">
+						<text style="margin-right:20rpx;">{{item.hospitalName}}</text>
+						<!-- <text>知名医院</text> -->
+					</view>
+					<view class="special" style="position:absolute;top:133rpx;width:566rpx;overflow:hidden;left:0rpx;color:#858585;font-size:24rpx;">
+						擅长：{{item.specialty}}
+					</view>
+					<view class="link"></view>
+					<view style="position:absolute;top:238rpx;left:0rpx;font-size:28rpx;">
+						<text style="color:#FE7047;margin-right:20rpx;">{{item.textPrice?("￥"+ item.textPrice):"无"}}</text>
+						<!-- TODOS  ：这个价格和购买人数是哪个字段 -->
+						<text style="color:#858585;" wx:if="item.reply">{{item.reply}}人购买</text>
+					</view>
+				</view>
+				<view class="radio-show">
+					<radio color="rgba(21, 210, 195, 1)" value="{{item.doctorId}}" checked="{{item.checked}}" />
+				</view>
+			</view>
+		</label>
+	</radio-group>
+</view>
+<view wx:else>
+	<template is="msgItem" />
+</view>

@@ -21,6 +21,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    goToPage(e) {
+      wx.navigateTo({
+        url: `/pageOther/page/doctor/doctor-detail/index?doctorId=${e.currentTarget.dataset.doctorid}`,
+      })
+    }
   }
 })

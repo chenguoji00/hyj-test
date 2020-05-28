@@ -1,11 +1,17 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/login/login",
     "pages/logs/logs",
     "pages/index/index",
-    "pages/person/index"
+    "pages/person/index",
+    "pages/message/main/main",
+    "pages/message/chat/chatroom"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -17,14 +23,25 @@
     {
       "root": "pageOther/page/",
       "pages": [
-        "privatypolicy/PrivatyPolicy",
-        "fast-inquiry/index",
+        "other/privatypolicy/PrivatyPolicy",
+        "inquiry/fast-inquiry/index",
         "prescription-renewal/DeliverMedicine/index",
-        "informright/index",
-        "allergen/index",
-        "select-patient/selectPatient",
+        "other/informright/index",
+        "other/allergen/index",
+        "patient/select-patient/selectPatient",
         "doctor/find-doctor/index",
-        "shop-mall/index"
+        "other/shop-mall/index",
+        "doctor/doctor-detail/index",
+        "patient/patient-list/index",
+        "my-consultation/index",
+        "consultation-detail/index",
+        "doctor/personal-profile/index",
+        "prescription-renewal/all-prescription/index",
+        "inquiry/inquiry-order/index",
+        "inquiry/open-medicine/index",
+        "person/person-info/index",
+        "person/setting/index",
+        "prescription-renewal/prescription-detail/index"
       ]
     }
   ],
@@ -42,14 +59,8 @@
       {
         "selectedIconPath": "/public/img/tabbar/messageS.png",
         "iconPath": "/public/img/tabbar/messageN.png",
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/message/main/main",
         "text": "消息"
-      },
-      {
-        "selectedIconPath": "/public/img/tabbar/shopCartS.png",
-        "iconPath": "/public/img/tabbar/shopCartN.png",
-        "pagePath": "pages/logs/logs",
-        "text": "购物车"
       },
       {
         "selectedIconPath": "/public/img/tabbar/myS.png",

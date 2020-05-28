@@ -1,0 +1,22 @@
+/* pageOther/page/my-consultation/index.wxss */
+.consu-item{
+  width: 687rpx;
+  height: 235rpx;
+  margin: 22rpx auto 0;
+  background-color: #fff;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: column;
+  font-size: 28rpx;
+}
+.blue {
+  color: #3d99fe;
+}
+
+.red {
+  color: rgb(236, 82, 61);
+}
+
+.green {
+  color: rgb(64, 218, 50);
+}

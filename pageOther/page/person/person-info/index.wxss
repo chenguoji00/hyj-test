@@ -1,0 +1,46 @@
+/* pageOther/page/person/person-info/index.wxss */
+.gj-cell {
+  padding: 20rpx 32rpx;
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 28rpx;
+  line-height: 48rpx;
+  color: #333;
+  background-color: #fff;
+  font-family: -apple-system, Helvetica, sans-serif;
+  border-bottom:2rpx solid #ebedf0;
+}
+
+.gj-cell-title {
+  flex: 1;
+  -webkit-flex: 1;
+  font-size: 32rpx;
+}
+
+.gj-cell-value {
+  flex: 1;
+  -webkit-flex: 1;
+  font-size: 32rpx;
+  overflow: hidden;
+  text-align: right;
+  vertical-align: middle;
+  color: #B4B4B4;
+}
+
+.gj-cell:after {
+  box-sizing: border-box;
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  content: " ";
+  pointer-events: none;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: 16px;
+  border-bottom: 1px solid yellow;
+  -webkit-transform: scaleY(.5);
+  transform: scaleY(.5);
+  background-color: firebrick;
+}

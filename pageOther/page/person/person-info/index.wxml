@@ -1,0 +1,53 @@
+<!--pageOther/page/person/person-info/index.wxml-->
+<view class="gj-cell">
+	<view class="gj-cell-title" style="line-height:80rpx;">
+		头像
+	</view>
+	<view class="gj-cell-value" style="color:#FE7047;">
+		<image style="width:80rpx;height:80rpx;border-radius:50%;" src="{{hyjUserInfo.avatar}}" mode="widthFix" lazy-load />
+	</view>
+</view>
+
+
+<view class="gj-cell">
+	<view class="gj-cell-title">
+		用户名
+	</view>
+	<view class="gj-cell-value">
+		{{hyjUserInfo.nickName}}
+	</view>
+</view>
+
+<view class="gj-cell">
+	<view class="gj-cell-title">
+		年龄
+	</view>
+	<view class="gj-cell-value">
+
+	</view>
+</view>
+<view class="gj-cell">
+	<view class="gj-cell-title">
+		性别
+	</view>
+	<view class="gj-cell-value">
+		{{hyjUserInfo.sex}}
+	</view>
+</view>
+<view class="gj-cell">
+	<view class="gj-cell-title">
+		出生日期
+	</view>
+	<view class="gj-cell-value">
+		{{hyjUserInfo.birthday}} ＞
+	</view>
+</view>
+
+<view class="gj-cell">
+	<view class="gj-cell-title">
+		所在地
+	</view>
+	<view class="gj-cell-value">
+		{{hyjUserInfo.address}}＞
+	</view>
+</view>

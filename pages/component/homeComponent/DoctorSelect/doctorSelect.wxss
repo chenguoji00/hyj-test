@@ -1,0 +1,74 @@
+/* pages/component/homeComponent/DoctorSelect/doctorSelect.wxss */
+/* 医生界面  start */
+.contain {
+  width: 100%;
+  height: 288rpx;
+  display: flex;
+  position: relative;
+  margin-bottom: 20rpx;
+  background-color: var(--bg-withe);
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.show-image {
+  width: 86rpx;
+  height: 86rpx;
+  position: absolute;
+  left: 32rpx;
+  top: 40rpx;
+}
+
+.show-image image {
+  border-radius: 50%;
+  width: 86rpx;
+  height: 86rpx;
+  position: absolute;
+}
+
+.person-detail {
+  width: 100%;
+  position: absolute;
+  left: 145rpx;
+  top: 0;
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.special {
+  font-size: 28rpx;
+  margin-top: 21.3333rpx;
+  line-height: 35rpx;
+  color: #858585;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+  -webkit-box-sizing: border-box !important;
+  word-wrap: break-word !important;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.radio-show {
+  width: auto;
+  position: absolute;
+  right: 14rpx;
+  bottom: 10rpx;
+}
+
+.link {
+  width: 78%;
+  height: 2rpx;
+  border-top: solid #DEDEDE 1px;
+  position: absolute;
+  top: 215rpx;
+  left: 0;
+  right: 0;
+}
+
+/* 医生界面  end */

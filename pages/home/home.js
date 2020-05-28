@@ -9,6 +9,7 @@ import {
 import {
   findDeptlist,deptDoctor
 } from '../../utils/wx_network/dept'
+const app = getApp()
 Page({
   /**
    * 页面的初始数据
@@ -16,6 +17,7 @@ Page({
   data: {
     deptList: [],
     active: 10,
+    indicatorColor:"rgba(255, 255, 255, .3)",
     indicatorDots: true, //轮播图指示点
     duration: 500,
     autoplay: true,
@@ -23,6 +25,7 @@ Page({
     interval: 2000,
     backgroundList: ['demo-text-1'], //首页轮播图
     deptDoctorData: [],//医生列表
+    
   },
   // 點擊tab切換
   tabSelect(e) {
@@ -33,9 +36,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     this.getData();
-    
   },
   async getData(){
     let hospital = await this.getHostipal();
@@ -47,7 +48,7 @@ Page({
     //TODO  这里的医院ID写死了
     return new Promise((resolve, reject) => {
       getHospitalDetail({
-        'hospitalId': '000003'
+        'hospitalId': app.globalData.hospitalId
       }).then(res => {
         wx.setNavigationBarTitle({
           title: res.data.hospitalName
@@ -66,7 +67,7 @@ Page({
   getDeptList() {
     return new Promise((resolve, reject) => {
       findDeptlist({
-        'hospitalId': '000003'
+        'hospitalId': app.globalData.hospitalId
       }).then(res => {
         this.deptList = res.data;
         this.setData({
@@ -84,8 +85,9 @@ Page({
   //获取推荐医生
   recDoctorList(){
     return new Promise((resolve,reject)=>{
-      recDoctorList({'hospitalId':'000003'}).then(res => {
+      recDoctorList({'hospitalId':app.globalData.hospitalId}).then(res => {
         this.data.deptDoctorData = res.data;
+        console.log(res.data,"this is res.data")
         this.setData({
           deptDoctorData : this.data.deptDoctorData 
         })
@@ -99,9 +101,10 @@ Page({
     })
   },
   
+  // TODOS 这里写死了医院ID
   deptDoctor(deptId){
     let param = {
-      hospitalId:'000003',
+      hospitalId:app.globalData.hospitalId,
       deptId:deptId
     }
     deptDoctor(param).then(res => {
@@ -115,7 +118,15 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    //获取地址  经纬度信息
+    const _this = this;
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        const latitude = res.latitude
+        const longitude = res.longitude
+      }
+    })
   },
 
   /**
@@ -123,6 +134,9 @@ Page({
    */
   onShow: function () {
 
+   
+
+    wx.setStorageSync('registerId', '');//如果跳到首页的话就把registerId 设置为null
   },
 
   /**
@@ -163,30 +177,25 @@ Page({
     let type = event.currentTarget.dataset.navname;
     let url = '';
     if (type == "search") { //跳转到搜索
-      url = "/pageOther/page/privatypolicy/PrivatyPolicy";
+      // url = "/pageOther/page/privatypolicy/PrivatyPolicy";
     } else if (type == "fastInquiry") { //跳转到快速问诊
-      url = "/pageOther/page/fast-inquiry/index";
+      url = "/pageOther/page/inquiry/fast-inquiry/index?flagFastInquiry=true";
     } else if (type == "onLineMall") { //跳转到在线商城
-      url = "/pageOther/page/privatypolicy/PrivatyPolicy";
+      // url = "/pageOther/page/privatypolicy/PrivatyPolicy";
     } else if (type == "fastMedicineDelivery") { //跳转到闪电送药
-      url = "/pageOther/page/privatypolicy/PrivatyPolicy";
+      // url = "/pageOther/page/privatypolicy/PrivatyPolicy";
     } else if (type == "allDept") {
-      url = "/pageOther/page/privatypolicy/PrivatyPolicy";
+      // url = "/pageOther/page/privatypolicy/PrivatyPolicy";
     } else if (type == "sysm") {
       url = "/pageOther/page/prescription-renewal/DeliverMedicine/index";
+    } else if (type == "find-doctor"){
+      wx.setStorageSync('flagDoctorShow', true);
+      url = "/pageOther/page/doctor/find-doctor/index"
     }
-
     if (url) {
       wx.navigateTo({
         url,
       })
     }
-  },
-  //院内会诊
-  inHospitalServicesBtn() {
-    let params = {doctorId:'2005',userId:'41a9787660676b4a',hospitalId:'000003'};
-    dtcollectionList(params).then(res => {
-      console.log(res,"res");
-    })
   }
 })

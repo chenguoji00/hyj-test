@@ -4,7 +4,9 @@
     "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
     "van-dropdown-item": "@vant/weapp/dropdown-item/index",
     "van-button": "@vant/weapp/button/index",
-    "van-loading": "@vant/weapp/loading/index"
-  },
-  "navigationBarTitleText": "找医生"
+    "refre-view": "../../../../pages/component/order-component/refresh-view",
+    "scroll-view-gj": "../../../../pages/component/scroll-view-gj",
+    "gj-doctor-show": "../../../../pages/component/homeComponent/DoctorShow/doctorShow",
+    "gj-doctor-select": "../../../../pages/component/homeComponent/DoctorSelect/doctorSelect"
+  }
 }

@@ -1,0 +1,14 @@
+<!--pages/component/scroll-view-gj/index.wxml-->
+<scroll-view 
+	scroll-y="true" 
+	style="height: {{height}};background-color:#f0f0f0;" 
+	scroll-with-animation="true" 
+	bindrefresherrefresh="bindrefresherrefresh" 
+	bindscrolltolower="bindscrolltolower"
+	refresher-enabled="true" 
+	refresher-default-style="black" 
+	refresher-triggered="{{refresherState}}">
+  
+    <slot></slot>
+
+  </scroll-view>

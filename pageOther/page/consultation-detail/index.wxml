@@ -1,0 +1,164 @@
+<!--pageOther/page/consultation-detail/index.wxml-->
+<wxs src="../../../pages/filter/filter.wxs" module="filter"></wxs>
+
+<view style="width:100%;height:180rpx;">
+	<view class="doctor" bindtap="goToPage" data-navname="doctorDetail" data-csult="{{csult}}">
+		<view class="dt-img">
+			<image src="{{csult.doctorPic?csult.doctorPic:filter.defaultDoctorImg(csult.doctorSex)}}" alt />
+		</view>
+		<view class="dt-info">
+			<view class="row1" style="color:#858585;font-size:24rpx;">
+				<text style="color:#333333;font-size:28rpx;font-weight:700;" class="dt-info-item">{{csult.doctorName}}</text>
+				<text style="margin:10rpx 0;" class="dt-info-item">{{csult.deptName}}</text>
+				<text class="dt-info-item">{{csult.level}}</text>
+			</view>
+			<view class="row2" style="color:#858585;font-size:24rpx;">{{csult.hospitalName}}</view>
+		</view>
+		<view class="dt-icon">
+			<image src="../../../public/img/common/go.png" />
+		</view>
+	</view>
+	<view style="padding:50rpx 0 50rpx 32rpx;line-height:60rpx;background-color:#fff;">
+		<view class="detail-show">
+			<text style="color:#858585;">就诊人：</text>
+			<text>{{csult.patientName}} {{filter.getSex(csult.patientSex)||''}} {{csult.age}}</text>
+		</view>
+		<view class="detail-show">
+			<text style="color:#858585;">问诊类型：</text>
+			<text>{{filter.getOrderTypeName(csult.orderType)||''}}</text>
+		</view>
+		<view class="detail-show">
+			<text style="color:#858585;">主诉：</text>
+			<text>{{csult.recordVO.diagnosis||''}}</text>
+		</view>
+		<view class="detail-show">
+			<text style="color:#858585;">医生建议：</text>
+			<text>{{csult.recordVO.handlingSuggestion||''}}</text>
+		</view>
+		<view class="detail-show">
+			<text style="color:#858585;">预约时间：</text>
+			<text>{{csult.seeTimeStr||''}}</text>
+		</view>
+		<view class="detail-show">
+			<text style="color:#858585;">接诊时间：</text>
+			<text>{{csult.inquiryTime||''}}</text>
+		</view>
+	</view>
+
+
+	<view style="width:100%;height:378rpx;margin-top:16rpx;background-color:#fff;">
+		<van-cell value="" is-link>
+			<view slot="title" bindtap="goToCf">
+				<view style="display:flex;">
+					<image src="../../../public/img/common/dzcf.png" style="width:35rpx;height:40rpx;margin-right:50rpx;" />
+					<view class="van-cell-text">电子处方</view>
+				</view>
+			</view>
+		</van-cell>
+    <!-- TODOS 对话记录还没有 -->
+		<van-cell value="" is-link>
+			<view slot="title">
+				<view style="display:flex;">
+					<image src="../../../public/img/common/dhjl.png" style="width:40rpx;height:40rpx;margin-right:50rpx;" />
+					<view class="van-cell-text">对话记录</view>
+				</view>
+			</view>
+		</van-cell>
+		<view bindtap="toQuickInquiry"  data-csult="{{csult}}" style="width:687rpx;height:90rpx;border-radius:45rpx;margin:41rpx auto;text-align:center;line-height:90rpx;color:#fff;background-color:#4086FF;font-size:32rpx;">
+			去复诊
+		</view>
+	</view>
+</view>
+
+
+
+
+<!-- <view  class="condel-main">
+	<view class="doctor" >
+		<view class="dt-img">
+			<image :src="{{filter.defaultDoctorImg(csult.doctorSex)}}"  alt />
+		</view>
+		<view class="dt-info">
+			<view class="row1">
+				<text class="dt-info-item">{{csult.doctorName}}</text>
+				<text class="dt-info-item">{{csult.deptName}}</text>
+				<text class="dt-info-item">{{csult.level}}</text>
+			</view>
+			<view class="row2">{{csult.hospitalName}}</view>
+		</view>
+		<view class="dt-icon">
+			<text style="font-size:30px;" class="md-icon-enter"></text>
+		</view>
+	</view>
+
+	<view class="consultation" wx:if="csult.recordVO">
+		<view class="row">
+			<view class="lt">就诊人:</view>
+			<view class="rt">{{csult.patientName}} 岁 {{filter.getSex(csult.patientSex)}} {{csult.age}}</view>
+		</view>
+
+		<view class="row">
+			<view class="lt">问诊类型:</view>
+			<view class="rt">{{filter.getOrderTypeName(csult.orderType)}}</view>
+		</view>
+
+		<view class="row">
+			<view class="lt">主诉:</view>
+			<ul class="rt">
+
+				{{csult.recordVO.diagnosis}}
+			</ul>
+		</view>
+
+		<view class="row">
+			<view class="lt">医生建议:</view>
+			<view class="rt">{{csult.recordVO.handlingSuggestion}}</view>
+		</view>
+
+		<view class="row">
+			<view class="lt">预约时间:</view>
+			<view class="rt">{{csult.seeTimeStr}}</view>
+		</view>
+
+		<view class="row">
+			<view class="lt">接诊时间:</view>
+			<view class="rt">{{csult.inquiryTime}}</view>
+		</view>
+	</view>
+
+	<view class="other">
+		<view class="row" >
+			<view class="icon blue">
+				<text class="md-icon-accessory"></text>
+			</view>
+			<view class="text">电子处方</view>
+			<view class="icon">
+				<text class="md-icon-enter"></text>
+			</view>
+		</view>
+
+		<view class="row">
+			<view class="icon blue">
+				<text class="md-icon-interactive"></text>
+			</view>
+			<view class="text">对话记录</view>
+			<view class="icon">
+				<text class="md-icon-enter"></text>
+			</view>
+		</view>
+
+		<view class="row">
+			<view class="icon blue">
+				<text class="md-icon-collection"></text>
+			</view>
+			<view class="text">服务评价</view>
+			<view class="icon">
+				<text class="md-icon-enter"></text>
+			</view>
+		</view>
+
+		<view class="row" >
+			<view class="btn">去复诊</view>
+		</view>
+	</view>
+</view> -->

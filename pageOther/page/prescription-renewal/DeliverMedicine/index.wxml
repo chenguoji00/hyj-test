@@ -3,25 +3,28 @@
 <view class="my-medical">
 	<view class="my-medical-top">
 		<view class="my-medical-top-left">我的用药</view>
-		<view class="my-medical-top-right">查看全部></view>
+    <!-- 箭头 -->
+		<view class="my-medical-top-right" bindtap="goToPage" data-navname="allPresciption">查看全部 ＞</view>
 	</view>
   <!-- 药品展示 start -->
 	<view class="medical-show">
-		<scroll-view class="image-group" scroll-x="true">
+		<scroll-view style="height:220rpx;"  scroll-x="true">
 			<view class="image-scroll">
-				<view wx:for="{{10}}" wx:for-item="item" wx:key="key" class="medical-contain">
+				<view wx:for="{{records}}" wx:for-item="item" wx:key="key" class="medical-contain">
 					<view class="medical-contain-item">
 						<view class="medical-content">
-							<view class="medical-name">
-								消痛贴膏5贴*1盒 塞来昔布...
+							<view class="special" style="padding-top: 22rpx;color:#333;font-size:28rpx;" >
+								{{item.itemName}}
 							</view>
-							<view class="medical-diagnosis">诊断结果:筋膜炎</view>
+              <!-- TODOS  诊断结果没找到字段 -->
+							<view class="medical-diagnosis">诊断结果:</view>
 							<view class="hx"></view>
 							<view class="medical-doctor-show">
 								<view class="doctor-show-text">
-									<text>医生:董庆</text>
-									<text>2019-05-07</text>
+									<text>医生:{{item.doctorName}}</text>
+									<text>{{item.createTime}}</text>
 								</view>
+                <!-- TODOS:复方续购还未完成页面跳转 -->
 								<view class="prescription-buy">
 									复方续购
 								</view>
@@ -35,7 +38,7 @@
   <!-- 药品展示 end -->
 
   <!-- 找医生问诊开方  start -->
-  <view class="open-prescription">
+  <view class="open-prescription" bindtap="goToPage" data-navname="findDoctor">
     <view class="open-prescription-image">
       <image src="../../../../public/img/common/kaiyaowenzhen.png" />
     </view>
@@ -54,12 +57,26 @@
 </view>
 <!-- 我的用药  end -->
 <!-- 闪电送药  start -->
-<view style="width:100%;height:115rpx;line-height:115rpx;">
+<!-- <view style="width:100%;height:115rpx;line-height:115rpx;">
   <text style="height:30rpx;margin-left:32rpx;">闪电送药</text>
-</view>
+</view> -->
 <!-- 药房 start -->
-<view class="pharmacy">
-  <view class="pharmacy-contain">
+<!-- <view class="pharmacy">
+  <view class="pharmacy-contain" wx:for="{{chainAll}}" wx:key="index" bindtap="goToPage" data-chainId="{{item.chainId}}">
+    <view class="pharmacy-image" style="">
+      <image src="{{item.imageSrc2}}"/>
+    </view>
+    <view class="pharmacy-text">
+      <view class="pharmacy-name">{{item.chainName}}</view>
+      <view class="pharmacy-score">暂无评分 月销 118</view>
+      <view>起送￥50 配送￥12</view>
+    </view>
+    <view class="pharmacy-distinct">
+      <text style="margin-right:20rpx;">70分钟</text>
+      <text>8KM</text>
+    </view>
+  </view> -->
+  <!-- <view class="pharmacy-contain">
     <view class="pharmacy-image" style="">
       <image src="../../../../public/img/kaiyao.jpg"/>
     </view>
@@ -71,20 +88,7 @@
     <view class="pharmacy-distinct">
     70分钟  8KM
     </view>
-  </view>
-  <view class="pharmacy-contain">
-    <view class="pharmacy-image" style="">
-      <image src="../../../../public/img/kaiyao.jpg"/>
-    </view>
-    <view class="pharmacy-text">
-      <view class="pharmacy-name">康美智慧药房</view>
-      <view class="pharmacy-score">暂无评分 月销 118</view>
-      <view>起送￥50 配送￥12</view>
-    </view>
-    <view class="pharmacy-distinct">
-    70分钟  8KM
-    </view>
-  </view>
-</view>
+  </view> -->
+<!-- </view> -->
 <!-- 药房 end -->
 <!-- 闪电送药  end -->

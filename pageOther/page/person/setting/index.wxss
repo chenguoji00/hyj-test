@@ -1,0 +1,4 @@
+/* pageOther/page/person/setting/index.wxss */
+page{
+  background-color: #f0f0f0;
+}

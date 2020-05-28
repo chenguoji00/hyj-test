@@ -23,11 +23,13 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.4",
-	"appid": "wxce8f15f48dc6cffb",
+	"libVersion": "2.11.0",
+	"appid": "wxdd31c980d9ed1c8f",
 	"projectname": "hyjMiniProgram",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -98,6 +100,55 @@
 					"id": -1,
 					"name": "pages/login/login",
 					"pathName": "pages/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pageOther/page/doctor/doctor-detail/index",
+					"pathName": "pageOther/page/doctor/doctor-detail/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/person/index",
+					"pathName": "pages/person/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pageOther/page/consultation-detail/index",
+					"pathName": "pageOther/page/consultation-detail/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pageOther/page/doctor/personal-profile/index",
+					"pathName": "pageOther/page/doctor/personal-profile/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pageOther/page/prescription-renewal/all-prescription/index",
+					"pathName": "pageOther/page/prescription-renewal/all-prescription/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pageOther/page/inquiry/inquiry-order/index",
+					"pathName": "pageOther/page/inquiry/inquiry-order/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/message/main/main",
+					"pathName": "pages/message/main/main",
 					"scene": null
 				}
 			]

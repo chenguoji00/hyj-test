@@ -115,7 +115,7 @@ page {
 }
 
 .doctor-item-contain-top {
-  margin-top: 54rpx;
+  margin-top: 42rpx;
 }
 
 .doctor-item-contain-top-text {
@@ -131,7 +131,7 @@ page {
 }
 
 .doctor-item-contain-bottom {
-  margin: 0rpx 0 22rpx 0;
+  margin: 24rpx 0 22rpx 0;
   font-size: 24rpx;
 }
 

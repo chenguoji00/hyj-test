@@ -1,0 +1,15 @@
+/* pageOther/page/prescription-renewal/all-prescription/index.wxss */
+page{
+  background-color: #f0f0f0;
+}
+.red {
+  color: #ff5257;
+}
+
+.green {
+  color: #6ce44f;
+}
+
+.blue {
+  color: #529de2;
+}

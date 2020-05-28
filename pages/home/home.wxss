@@ -48,14 +48,24 @@ page {
 .search-contain-left {
   width: 126rpx;
   line-height: 60rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.search-contain-left .left-show {
-  margin-left: 32rpx;
+.search-contain-left image {
   margin-right: 10rpx;
 }
 
-.search-contain-right {}
+.search-contain-left .left-show {
+  margin-left: 10rpx;
+  display:block;
+  overflow:hidden;
+  word-break:keep-all;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  width: 86rpx;
+}
 
 .search-com {
   border-radius: 30rpx;
@@ -143,13 +153,13 @@ page {
 .main-one {
   position: absolute;
   top: 40rpx;
-  left: 31rpx;
+  left: 34rpx;
   background-color: rgba(214, 246, 253, 1);
 }
 
 .main-two {
   position: absolute;
-  left: 267rpx;
+  left: 268rpx;
   top: 40rpx;
   background-color: rgba(252, 240, 212, 1);
 }
@@ -405,7 +415,7 @@ page {
 .doctor-rec-font {
   position: absolute;
   left: 32rpx;
-  top: 0;
+  top: 60rpx;
   color: rgb(0, 0, 0);
   font-size: 32rpx;
   font-weight: bolder;
@@ -413,7 +423,7 @@ page {
 
 .doctor-rec-item {
   position: absolute;
-  top: 76rpx;
+  top: 136rpx;
   left: 32rpx;
   right: 32rpx;
   height: 50rpx;
@@ -453,7 +463,7 @@ page {
   padding-left:20rpx;
 }
 .doctor-item-contain-top{
-  margin-top:54rpx;
+  margin-top: 43rpx;
 }
 .doctor-item-contain-top-text{
   font-size:32rpx;

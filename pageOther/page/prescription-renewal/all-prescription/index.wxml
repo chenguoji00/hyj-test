@@ -1,0 +1,47 @@
+<!--pageOther/page/prescription-renewal/all-prescription/index.wxml-->
+
+<wxs src="../../../../pages/filter/filter.wxs" module="filter"></wxs>
+<import src="../../../../pages/template/noData/noData.wxml" />
+
+<!-- 滑动区域 start -->
+<scroll-view-gj  refresherState="{{refresherState}}" 
+	bind:bindrefresherrefresh="bindrefresherrefresh"
+	bind:bindscrolltolower="bindscrolltolower"
+>	
+	<view style="margin-bottom:30rpx;">
+		<view wx:if="{{records.length!=0}}">
+			<view wx:for="{{records}}" bindtap="goToPage" data-navname="chufangDetail" data-pgoupNo="{{item.pgoupNo}}" data-registerId="{{item.registerId}}" wx:key="index" style="box-shadow: WhiteSmoke 2px 2px 16px 3px;width:687rpx;height:225rpx;margin:28rpx auto 0;background-color:#fff;border-radius:20rpx;">
+				<view class="specialty-set one-line" style="width:100%;height:78rpx;line-height:78rpx;border-bottom:1px solid #ccc;">
+					<text style="font-size:32rpx;margin-left:28rpx;" class="{{item.useStatus==0?'blue':item.useStatus==1?'green':item.useStatus==2?'red':''}}">[{{filter.fRecipeUseSatus(item.useStatus)}}]</text>
+					<text style="color:#000;"> {{item.itemName}}</text>
+				</view>
+				<view style="width:633rpx;margin:33rpx auto 0; height:80rpx;display:flex;justify-content:center;">
+					<view style="display:flex;flex-direction:column;width:70%;color:#858585;font-size:28rpx;">
+						<!-- 诊断结果没返回 -->
+						<text class="specialty-set one-line">诊断结果: {{}}</text>
+						<text>医生：{{item.doctorName}} {{item.createTime}}</text>
+					</view>
+					<view catchtap="goToPage1" data-navname="goumai" wx:if="{{item.useStatus==0}}" style="color:#fff;width:170rpx;height:64rpx;line-height:64rpx;text-align:center;font-size:28rpx;background-color:#15D2C3;border-radius:30rpx;">
+						购买
+					</view>
+					<view wx:elif="{{item.useStatus==1}}"  catchtap="goToPage1" data-navname="chufangxugou" style="color:#fff;width:170rpx;height:64rpx;line-height:64rpx;text-align:center;font-size:28rpx;background-color:#15D2C3;border-radius:30rpx;">
+						处方续购
+					</view>
+					<view wx:else style="width:170rpx;height:64rpx;line-height:64rpx;text-align:center;font-size:28rpx;">
+
+					</view>
+				</view>
+			</view>
+			<!-- 刷新控件 start -->
+				<refresh-view isLoading="{{isLoading}}" bgc="#f0f0f0" />
+			<!-- 刷新控件 end -->
+		</view>
+		<view wx:else>
+			<!-- 没有数据显示的模板 start -->
+				<template is="msgItem" />
+			<!-- 没有数据显示的模板 end -->
+		</view>
+	</view>
+
+</scroll-view-gj>
+<!-- 滑动区域 end -->

@@ -1,74 +1,113 @@
 <!--pages/person/index.wxml-->
-<view class="cube-page">
-  <view class="page-container">
-    <view class="member-main">
-      <!-- 头部 -头像 - 设置 start -->
-      <view class="m-header">
-        <image src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ5KcXpC9UviacHICSoMCicicWrzR82Fb6sAT8SBVAzCT0CRAFibxK0XRQjO0J7ibrNdIgp3XJQp5ANwmQ/132"
-         mode="widthFix" lazy-load />
-         <view class="name">International</view>
-         <view class="setting">
-          <text class="iconfont  icon-shezhi"></text>
-         </view>
-      </view>
-      <!-- 头部 -头像 - 设置 end -->
-      <!-- 问诊相关  start -->
-      <view class="mine">
-        <view class="title">
-          <view>问诊相关</view>
-        </view>
-        <view class="m-row">
-          <view class="m-item">
-            <view class="icon">
-              <text class="iconfont icon-yuyue"></text>
-            </view>
-            <text>我的预约</text>
-          </view>
-          <view class="m-item">
-            <view class="icon">
-              <text class="iconfont icon-icon_zaixianwenzhen" ></text>
-            </view>
-            <text>我的问诊</text>
-          </view>
-          <view class="m-item">
-            <view class="icon">
-              <text class="iconfont icon-chufang"></text>
-            </view>
-            <text>我的处方</text>
-          </view>
-          
-        </view>
-      </view>
-      <!-- 问诊相关 end -->
+<!-- 我的个人信息 start -->
+<view class="my-detail">
+	<view class="my-detail-top">
+		<view class="detail-show img">
+			<image src="{{wxUserInfo.avatarUrl||''}}" mode="widthFix" lazy-load />
+		</view>
+		<view class="detail-show detail-name">
+			<text>{{wxUserInfo.nickName||"请先登录"}}</text>
+		</view>
+		<view class="detail-show perfect-info" catchtap="goToPage" data-navname="perfectInformation">
+			<text>完善信息＞</text>
+		</view>
+		<view class="detail-show setting" catchtap="goToPage" data-navname="setting">
+			<image src="../../public/img/common/setting.png" lazy-load />
+			<text>设置</text>
+		</view>
+	</view>
 
-      <!-- 常用功能 start-->
-      <view class="mine" style="margin-top:30rpx">
-        <view class="title">
-          <view>常用功能</view>
-        </view>
-        <view class="m-row">
-          <view class="m-item">
-            <view class="icon">
-              <text class="iconfont icon-dingdan"></text>
-            </view>
-            <text>我的订单</text>
-          </view>
-          <view class="m-item">
-            <view class="icon">
-              <text class="iconfont icon-gz" ></text>
-            </view>
-            <text>关注的医生</text>
-          </view>
-          <view class="m-item">
-            <view class="icon">
-              <text class="iconfont icon-ren"></text>
-            </view>
-            <text>就诊人管理</text>
-          </view>
-        </view>
-      </view>
-      <!-- 常用功能  end -->
-    </view>
-  
-  </view>
+	<!-- 平台信息相关 start -->
+	<view class="platform-related">
+		<view class="platform-related-item">
+			<text>0.00</text>
+			<text>预存款</text>
+		</view>
+		<view class="platform-related-item">
+			<text>0</text>
+			<text>店铺券</text>
+		</view>
+		<view class="platform-related-item">
+			<text>0</text>
+			<text>平台券</text>
+		</view>
+		<view class="platform-related-item">
+			<text>0</text>
+			<text>积分</text>
+		</view>
+	</view>
+
+	<!-- 平台信息相关 end -->
+
 </view>
+<!-- 我的个人信息 end -->
+
+<!-- 我的订单  start -->
+<view class="my-order">
+	<view class="my-order-font">
+		<text>我的订单</text>
+	</view>
+	<view class="order-list">
+		<view class="list-item">
+			<image src="../../public/img/common/quanbu.png" style="width:50rpx;height:50rpx;" lazy-load />
+			<text style="margin-top:25rpx;">全部</text>
+		</view>
+		<view class="list-item">
+			<image src="../../public/img/common/daifukuan.png" style="width:58rpx;height:50rpx;" lazy-load />
+			<text style="margin-top:25rpx;">待付款</text>
+		</view>
+		<view class="list-item">
+			<image src="../../public/img/common/daishou.png" style="width:54rpx;height:50rpx;" lazy-load />
+			<text style="margin-top:25rpx;">待收/取货</text>
+		</view>
+		<view class="list-item">
+			<image src="../../public/img/common/daipingjia.png" style="width:60rpx;height:50rpx;" lazy-load />
+			<text style="margin-top:25rpx;">待评价</text>
+		</view>
+		<view class="list-item">
+			<image src="../../public/img/common/tuihuan.png" style="width:52rpx;height:52rpx;" lazy-load />
+			<text style="margin-top:25rpx;">退换/售后</text>
+		</view>
+	</view>
+</view>
+<!-- 我的订单  end -->
+
+<!-- 医疗服务  start -->
+<view class="medical-service">
+	<view class="my-order-font">
+		<text>医疗服务</text>
+	</view>
+	<view class="order-list">
+		<view class="list-item" bindtap="goToPage" data-navname="myConsultation">
+			<image src="../../public/img/common/wenzhen.png" style="width:50rpx;height:50rpx;" lazy-load />
+			<text style="margin-top:25rpx;">我的问诊</text>
+		</view>
+		<view class="list-item" bindtap="goToPage" data-navname="myMedication">
+			<image src="../../public/img/common/yongyao.png" style="width:58rpx;height:50rpx;" lazy-load />
+			<text style="margin-top:25rpx;">我的用药</text>
+		</view>
+		<!-- <view style="width:138rpx;height:174rpx;text-align:center;justify-content: center;align-items: center;display:flex;flex-direction:column;">
+			<image src="../../public/img/common/daishou.png" style="width:54rpx;height:50rpx;" lazy-load />
+			<text style="margin-top:25rpx;">待收/取货</text>
+		</view>
+		<view style="width:138rpx;height:174rpx;text-align:center;justify-content: center;align-items: center;display:flex;flex-direction:column;">
+			<image src="../../public/img/common/daipingjia.png" style="width:60rpx;height:50rpx;" lazy-load />
+			<text style="margin-top:25rpx;">待评价</text>
+		</view>
+		<view style="width:138rpx;height:174rpx;text-align:center;justify-content: center;align-items: center;display:flex;flex-direction:column;">
+			<image src="../../public/img/common/tuihuan.png" style="width:52rpx;height:52rpx;" lazy-load />
+			<text style="margin-top:25rpx;">退换/售后</text>
+		</view> -->
+	</view>
+</view>
+<!-- 医疗服务  end -->
+
+<!-- 健康档案 start -->
+<view class="health-record">
+	<view class="my-order-font">
+		<text>健康档案</text>
+	</view>
+	
+</view>
+
+<!-- 健康档案 end -->

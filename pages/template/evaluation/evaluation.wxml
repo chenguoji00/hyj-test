@@ -1,0 +1,17 @@
+<!-- 用户评价展示template  这部分没有操作所以就展示全部出来  之后需要修改的话在套用scroll-view 获取分页数据 -->
+<!-- wx:for="{{evaluationList}}" -->
+<template  name="evaluation">
+  <view wx:for="{{evaluation}}" wx:key="index" style="width:100%;height:234rpx;position:relative;top:0;left:0;border-bottom:1px solid #DEDEDE;">
+    <view style="position:absolute;left:34rpx;top:40rpx;width:100%;">
+      <image src="../../../../public/img/common/userPic.png" style="width:86rpx;height:86rpx;" />
+    </view>
+    <text style="position:absolute;left:147rpx;top:40rpx;">{{item.name}}</text>
+    <text style="position:absolute;left:493rpx;top:40rpx;font-size:24rpx;color:#858585;">医院就诊 {{item.time}}</text>
+    <view style="height:26rpx;position:absolute;left:147rpx;top:90rpx;font-size:24rpx;color:#858585;">
+      <van-rate size="15" readonly value="{{ item.rateValue }}" />
+    </view>
+    <view style="position:absolute;left:147rpx;top:128rpx;font-size:24rpx;color:#858585;" class="specialty-set three-line">
+      <text style="width:100%;">{{item.evaluation}}</text>
+    </view>
+  </view>
+</template>

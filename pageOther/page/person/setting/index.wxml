@@ -1,0 +1,9 @@
+<!--pageOther/page/person/setting/index.wxml-->
+<van-cell title="登录密码" value="" is-link size="large" label="绑定手机后可在此修改登录密码" />
+<van-cell title="手机验证" value="138****6153" is-link size="large" label="若您的手机已丢失或停用请立即修改更换" />
+<van-cell title="支付密码" value="" is-link size="large" label="绑定手机后可在此设置支付密码" />
+
+<van-cell title="实名认证" value="" is-link size="large" label="您尚未进行实名认证，点击认证" />
+
+<view style="margin-top:20rpx;"></view>
+<van-cell title="安全退出" bindtap="signOut"/>

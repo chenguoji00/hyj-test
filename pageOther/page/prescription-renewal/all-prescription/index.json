@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "refresh-view": "../../../../pages/component/order-component/refresh-view",
+    "scroll-view-gj": "../../../../pages/component/scroll-view-gj"
+  },
+  "navigationBarTitleText": "我的用药"
+}

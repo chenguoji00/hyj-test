@@ -1,0 +1,19 @@
+/* pageOther/page/doctor/personal-profile/index.wxss */
+.doctor-detail {
+  width: 687rpx;
+  height: 250rpx;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #DEDEDE;
+}
+.left{
+  width:80%;
+  height:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  line-height: 45rpx;
+}

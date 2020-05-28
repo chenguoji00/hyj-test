@@ -1,4 +1,6 @@
 /* pageOther/page/doctor/find-doctor/index.wxss */
+
+
 .van-ellipsis{
   color:#858585!important;
 }
@@ -34,7 +36,7 @@
 }
 
 .van-dropdown-menu {
-  height: 118rpx !important;
+  height: 108rpx !important;
 }
 
 .index-two-content {

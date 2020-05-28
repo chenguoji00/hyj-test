@@ -1,0 +1,36 @@
+<!--pageOther/page/my-consultation/index.wxml-->
+<import src="../../../pages/template/noData/noData.wxml" />
+<van-tabs active="{{ active }}" swipeable bind:click="tabSelect" sticky>
+	<van-tab title="{{item.consutitle}}" wx:for="{{consuList}}" wx:key="id" data-id="{{id}}">
+	</van-tab>
+</van-tabs>
+<wxs src="../../../pages/filter/filter.wxs" module="filter"></wxs>
+<!-- 我的问诊 start -->
+<scroll-view scroll-y scroll-with-animation="true" bindrefresherrefresh="bindrefresherrefresh" refresher-enabled="true"   refresher-default-style="black" refresher-triggered="{{refresherState}}" style="height:calc(100vh - 100rpx);background-color:#F5F5F5;">
+<view wx:if="{{todoList.length}}">
+	<view class="consu-item" wx:for="{{todoList}}" wx:key="index" bindtap="goToPage" data-registerId="{{item.registerId}}">
+		<view style="margin:38rpx 0 0 34rpx;">
+			<view style="display:flex;">
+				<text style="margin-right:20rpx;">接诊状态:</text>
+				<text class="{{item.status==1?'blue':item.status==2?'red':item.status==3?'green':''}}">{{filter.fInquiryType(item.status)}}</text>
+			</view>
+			<view style="margin:5rpx 0;">
+				<text style="margin-right:20rpx;">预约医生:</text>
+				<text>{{item.doctorName}} {{item.deptName}} {{filter.fOrderType(item.orderType)}}</text>
+			</view>
+			<view style="margin-bottom:5rpx;">
+				<text style="margin-right:20rpx;">患者名称:</text>
+				<text>{{item.patientName}} {{filter.getSex(item.patientSex)}} {{item.age}}</text>
+			</view>
+			<view>
+				<text style="margin-right:20rpx;">预约时间:</text>
+				<text>{{item.seeTimeStr}}</text>
+			</view>
+		</view>
+	</view>
+  </view>
+  <view wx:else>
+    <template is="msgItem" />
+  </view>
+</scroll-view>
+<!-- 我的问诊 end -->

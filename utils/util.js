@@ -1,3 +1,5 @@
+import cng from '../utils/config';
+const qiniuUploader = require("../utils/qiniuUploader");
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -7,6 +9,20 @@ const formatTime = date => {
   const second = date.getSeconds()
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+}
+const timeSet = date => {
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  if (month < 10) {
+    month = "0" + month;
+  }
+  if (day < 10) {
+    day = "0" + day;
+  }
+  var nowDate = year + "-" + month + "-" + day;
+  return nowDate
 }
 
 const formatNumber = n => {
@@ -43,7 +59,73 @@ const getAgeByIdCard = (identityCard) =>{
   return age+'岁';
 }
 
+
+const gjUploadFile = function(List){
+  var region = '';
+    switch (cng.qn_ossurl) {
+      case 'https://upload.qiniup.com':
+        region = 'ECN';
+        break;
+      case 'https://upload-z1.qiniup.com':
+        region = 'NCN';
+        break;
+      case 'https://upload-z2.qiniup.com':
+        region = 'SCN';
+        break;
+      case 'https://upload-na0.qiniup.com':
+        region = 'NA';
+        break;
+      case 'https://upload-as0.qiniup.com':
+        region = 'ASG';
+        break;
+    }
+    if (region == '') {
+      wx.showToast({
+        title: '请求的七牛云数据有误，请重试',
+        icon: 'none',
+      })
+      return;
+    }
+    var state = 0; //state记录当前已经上传到第几张图片
+    new Promise(function (resolve, reject) {
+      for (var i = 0; i < List.length; i++) {
+        qiniuUploader.upload(List[i], (res) => {
+          state++;
+          imgList1.push(res.imageURL);
+          if (state == List.length) {
+            resolve(imgList1);
+          }
+        }, (error) => {
+          reject('error');
+        }, {
+          region: region,
+          uptoken: that.data.osstoken, // 由其他程序生成七牛 uptoken
+        })
+      }
+    }).then(function (imgList1) {
+      console.log(imgList1, "所有图片上传到七牛成功了哦，接下来就是点下一步之后进行存储到我们的服务器了");
+      return imgList1;
+    }).catch(err => {
+      console.log(err, "错误啦")
+      wx.hideLoading()
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = {
   formatTime: formatTime,
-  getAgeByIdCard:getAgeByIdCard
+  getAgeByIdCard:getAgeByIdCard,
+  timeSet:timeSet,
+  gjUploadFile:gjUploadFile
 }

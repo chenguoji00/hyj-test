@@ -1,0 +1,51 @@
+.step-one {
+  background-color: #f0f0f0;
+  height: 76rpx;
+  line-height: 76rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:24rpx;
+}
+
+.step-one-contain {
+  display: flex;
+  height: 76rpx;
+  line-height: 76rpx;
+  align-items: center;
+  margin-right:10rpx;
+}
+
+.step-one-text-select {
+  background-color: #15D2C3;
+  color: #fff;
+  width: 26rpx;
+  text-align: center;
+  border-radius: 50%;
+  height: 26rpx;
+  line-height: 26rpx;
+}
+
+.color-select {
+  color: #15D2C3;
+}
+
+.select {
+  background-color: #15D2C3;
+  color: #fff;
+}
+.color-no-select{
+  color:#B4B4B4;
+}
+
+.step-one-text-no-select {
+  margin-right: 7rpx;
+  color: #fff;
+  width: 26rpx;
+  text-align: center;
+  background-color: #C8C8C8;
+  color: #fff;
+  border-radius: 50%;
+  height: 26rpx;
+  line-height: 26rpx;
+}

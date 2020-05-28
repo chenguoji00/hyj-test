@@ -59,7 +59,9 @@ export function request(method, url, data, header = {
 }) {
   console.group('==============>新请求<==============');
   console.info(method, url);
-  if(url.includes('getOpenId') || url.includes('wx/decode')){
+  if(url.includes('getOpenId') || url.includes('wx/decode')|| url.includes('/chain/all')
+  || url.includes('/api/member')
+  ){
     url = APP_SERVER + url;
   }else {
     url = APP_SERVER + WG + url;
@@ -79,15 +81,30 @@ export function request(method, url, data, header = {
           console.info('请求成功：', response.success);
           if(response.success.code == 401) {
             console.log("这个是因为没有权限导致的错误，需要跳转到登录页");
+            wx.showToast({
+              title: response.success.msg +'',
+              icon:"none",
+              duration:3000
+            })
+            
             setTimeout(() => {
               wx.navigateTo({
-                url: '/pages/login/login',
+                url: '/pageOther/page/other/login/login',
               })
             }, 1000);
           }
+          // 如果返回的code是401就是需要跳转到登录页面，然后code不是200就说明请求没成功
+          // 这里还需要判断一下授权登录获取openid也是没有code返回的,但是有openid会返回,所以如果没有openid并且不是
+          // code等于200的话就报错提示
+          else if(response.success.code != 200 && !response.success.openid && !response.success.phoneNumber){
+            wx.showToast({
+              title: response.success.msg||'请求出错请重试', 
+              duration:3000,
+              icon:'none'
+            })
+          }
           resolve(response.success)
         } else {
-          console.info('请求失败：', response.fail);
           reject(response.fail)
         }
       },

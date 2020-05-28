@@ -1,7 +1,7 @@
 <!--pageOther/page/doctor/find-doctor/index.wxml-->
 <import src="../../../../pages/template/noData/noData.wxml" />
 <!-- 搜索和筛选栏 start -->
-<view style="width:100%;height:230rpx;">
+<view style="width:100%;height:216rpx;">
 	<view class="search-bar">
 		<view class="search-image">
 			<image src="../../../../public/img/common/jiuzhenren.png" lazy-load />
@@ -14,7 +14,7 @@
 
 	<!-- 筛选下拉菜单 start -->
 	<van-dropdown-menu close-on-click-overlay="{{false}}" close-on-click-outside="{{false}}">
-		<van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
+		<!-- <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" /> -->
 		<van-dropdown-item value="{{ comprehensiveValue }}" bind:change="changeComprehensive" options="{{ comprehensiveSorting }}" />
 		<van-dropdown-item id="item" title="{{ itemTitle }}">
 			<view class="filter-contain">
@@ -53,59 +53,44 @@
 
 <!-- 医生数据展示  start -->
 <view>
-	<scroll-view scroll-y scroll-with-animation="true" bindrefresherrefresh="bindrefresherrefresh" refresher-enabled="true" bindscrolltolower="bindscrolltolower" refresher-default-style="black" refresher-triggered="{{refresherState}}" style="height:calc(100vh - 330rpx);background-color:#F5F5F5;">
-		<view style="margin-top:15rpx;background-color:#fff;" wx:if="{{doctorItems.length}}">
-			<radio-group bindchange="radioChange">
-				<label wx:for="{{doctorItems}}" wx:key="index">
-					<view class="contain">
-						<view class="show-image">
-							<image src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1978012991,1411388119&fm=26&gp=0.jpg" lazy-load />
-						</view>
-						<view class="person-detail">
-							<view style="position:absolute;top:37rpx;left:0rpx;font-size:32rpx;margin-right:20rpx;">
-								{{item.doctorName}}
-								<text style="margin-right:20rpx;font-size:28rpx;">{{item.deptName}} </text>
-								<text style="color:#FEA50B;font-size:28rpx;">{{item.level}}</text>
-							</view>
-							<view style="position:absolute;top:84rpx;left:0rpx;color:#858585;font-size:28rpx;">
-								<text style="margin-right:20rpx;">{{item.hospitalName}}</text>
-								<!-- <text>知名医院</text> -->
-							</view>
-							<view class="special" style="position:absolute;top:133rpx;width:566rpx;overflow:hidden;left:0rpx;color:#858585;font-size:24rpx;">
-								擅长：{{item.specialty}}
-							</view>
-							<view class="link"></view>
-							<view style="position:absolute;top:238rpx;left:0rpx;font-size:28rpx;">
-								<text style="color:#FE7047;margin-right:20rpx;">￥50</text>
-								<!-- TODOS  ：这个价格和购买人数是哪个字段 -->
-								<text style="color:#858585;" wx:if="item.reply">{{item.reply}}人购买</text>
-							</view>
-						</view>
-						<view class="radio-show">
-							<radio color="rgba(21, 210, 195, 1)" value="{{item.value}}" checked="{{item.checked}}" />
-						</view>
-					</view>
-				</label>
-			</radio-group>
+
+	<scroll-view-gj refresherState="{{refresherState}}"
+	bind:bindrefresherrefresh="bindrefresherrefresh"
+	bind:bindscrolltolower="bindscrolltolower"
+	height="calc(100vh - {{height}}rpx)"
+>
+
+
+	<!-- <scroll-view 
+	scroll-y 
+	scroll-with-animation="true" 
+	bindrefresherrefresh="bindrefresherrefresh" 
+	refresher-enabled="true" 
+	bindscrolltolower="bindscrolltolower" 
+	refresher-default-style="black" 
+	refresher-triggered="{{refresherState}}" 
+	style="height:calc(100vh - {{height}}rpx);background-color:#F5F5F5;"> -->
+		<view style="margin-top:15rpx;background-color:#fff;" wx:if="{{deptDoctorData.length}}">
+			<!-- 单选框的位置  start -->
+			<view wx:if="{{flagDoctorShow}}">
+				<gj-doctor-show deptDoctorData="{{deptDoctorData}}"></gj-doctor-show>
+			</view>
+			<view wx:else>
+				<gj-doctor-select deptDoctorData="{{deptDoctorData}}" bind:radioChange="radioChange"></gj-doctor-select>
+			</view>
 			<!-- 加载中 -->
-			<view style="font-size:24rpx;text-align:center;" wx:if="{{isLoading==2}}">
-				<van-loading color="#1989fa" />
-			</view>
-			<view style="#858585;font-size:24rpx;text-align:center;" wx:if="{{isLoading==3}}">
-				全部加载完毕
-			</view>
+			<refre-view isLoading="{{isLoading}}" bgc="#fff" />
 		</view>
 		<view wx:else>
 			<template is="msgItem" />
 		</view>
-	</scroll-view>
+	<!-- </scroll-view> -->
+	</scroll-view-gj>
 </view>
-
 <!-- 医生数据展示  end -->
 
 <!-- 提交按钮start -->
-<view bindtap="submitBtn" class="tiwen">
-	提问(0元)
+<view wx:if="{{!flagDoctorShow}}" bindtap="submitBtn" class="tiwen">
+	提问
 </view>
-
 <!-- 提交按钮end -->

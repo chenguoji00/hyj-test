@@ -1,0 +1,57 @@
+page{
+  background-color: #f0f0f0;
+}
+.doctor {
+  width: 96%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 10px;
+  align-items: center;
+  background: #fff;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  text-align: left;
+  border-bottom:1px solid #DEDEDE;
+}
+.dt-img {
+  width: 180rpx;
+  height: auto;
+  flex-grow: 1;
+  
+}
+.dt-img image {
+  margin: 15rpx;
+  width: 86rpx;
+  height: 86rpx;
+  border-radius: 50%;
+}
+
+.dt-info {
+  flex-grow: 2;
+  width: 100%;
+  height: 100%;
+  margin-right: 10rpx;
+}
+.dt-info .row1 {
+  height: 50%;
+  line-height: 120rpx;
+}
+.dt-info .row2 {
+  height: 50%;
+  line-height: 40rpx;
+}
+.dt-info .dt-icon {
+  flex-grow: 1;
+  width: 50rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+.dt-icon image{
+  width: 15rpx;height:24rpx;
+}
+.detail-show{
+  display: flex;
+  font-size: 28rpx;
+}

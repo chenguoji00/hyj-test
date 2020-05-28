@@ -1,4 +1,5 @@
 <!--pages/component/homeComponent/DoctorShow/doctorShow.wxml-->
+<import src="../../../../pages/template/noData/noData.wxml" />
 <!-- <view class="dt-it" wx:for="{{deptDoctorData}}" wx:key="index">
 	<image src="{{item.doctorPic}}" mode="widthFix" />
 	<view class="ct">
@@ -16,7 +17,7 @@
 <wxs src="../../../filter/filter.wxs" module="filter"></wxs>
 <view wx:if="{{deptDoctorData.length}}">
 	<!-- <gj-doctor-show deptDoctorData="{{deptDoctorData}}" /> -->
-	<view wx:for="{{deptDoctorData}}" wx:key="index" class="doctor-item-left">
+	<view wx:for="{{deptDoctorData}}" wx:key="index" class="doctor-item-left" bindtap="goToPage" data-doctorId="{{item.doctorId}}">
 		<view class="doctor-item-left-img">
 			<image src="{{item.doctorPic||filter.defaultDoctorImg(item.sex)}}"/>
 		</view>
@@ -34,7 +35,7 @@
 			</view>
 			<view>
 				<view class="doctor-item-contain-advi">
-					<text class="money-color">￥50 </text>
+					<text class="money-color">{{item.textPrice?("￥"+ item.textPrice):"无"}} </text>
 					<text>可咨询</text>
 				</view>
 			</view>
@@ -44,8 +45,7 @@
 		</view>
 	</view>
 </view>
-<view wx:else style="height:300rpx;width:100%;text-align:center;line-height:300rpx;">
-	暂无内容
+<view wx:else >
+	<!-- 暂无内容 -->
+	<template is="msgItem" />
 </view>
-
-

@@ -1,0 +1,111 @@
+<!--pageOther/page/doctor/doctor-detail/index.wxml-->
+<!-- 医生主页详情 start -->
+<wxs src="../../../../pages/filter/filter.wxs" module="filter"></wxs>
+<import src="../../../../pages/template/evaluation/evaluation.wxml"></import>
+<scroll-view scroll-y scroll-with-animation="true" refresher-default-style="black" refresher-triggered="{{refresherState}}" style="height:calc(100vh - 100rpx);background-color:#F5F5F5;">
+	<view style="position:relative;left:0;top:0;width:100%;height:330rpx;background-color:#fff;">
+		<view style="position:absolute;left:32rpx;top:60rpx;color:#333333;font-size:32rpx;font-weight:600;">{{doctorInfo.doctorName}}</view>
+		<view style="position:absolute;left:32rpx;top:118rpx;color:#858585;font-size:28rpx;">
+			<text>{{doctorInfo.deptName}} </text>
+			<text>{{doctorInfo.level}}</text>
+		</view>
+		<view style="position:absolute;left:32rpx;top:160rpx;color:#333333;font-size:24rpx;">
+			<text>{{doctorInfo.hospitalName}} </text>
+			<text style="color:#FEA50B;">{{doctorInfo.grade}} </text>
+		</view>
+		<view style="position:absolute;left:32rpx;top:218rpx;color:#858585;font-size:24rpx;" class="specialty">
+			擅长：{{doctorInfo.specialty}}
+		</view>
+		<!-- TODOS:暂没找到问诊量的字段和接诊率的字段 -->
+		<view style="position:absolute;left:32rpx;top:258rpx;color:#858585;font-size:24rpx;width:70%;display:flex;">
+			<text style="flex:1;">接诊率：{{doctorInfo.reply||0}}</text>
+			<text style="flex:1;">问诊量：500</text>
+			<text style="flex:1;">好评率：{{doctorInfo.evaluate||0}}%</text>
+		</view>
+		<view style="position:absolute;right:35rpx;top:60rpx;">
+			<image style="width:120rpx;height:120rpx;" src="{{doctorInfo.doctorPic?doctorInfo.doctorPic:filter.defaultDoctorImg(doctorInfo.sex)}}" lazy-load alt />
+		</view>
+		<view style="position:absolute;right:34rpx;top:244rpx;color:#333333;font-size:24rpx;" bindtap="personalProfile">
+			个人简介＞
+		</view>
+	</view>
+
+	<!-- 医生主页详情 end -->
+	<view style="height:15rpx;background-color:#f0f0f0;"></view>
+	<!-- 问诊类型 start-->
+	<view style="background-color:white;position:relative;left:0;top:0;width:100%;height:460rpx;">
+		<view bindtap="inquiryTypeBtn" data-current="1" class="{{current==1?'demo5-item-selected-g' :''}} demo5-item  demo5-item-g">
+			<view>
+				<image src="../../../../public/img/common/green.png" style="width:70rpx;height:70rpx;" />
+			</view>
+			<text style="margin:20rpx 0 15rpx 0;">{{filter.fOrderType('ORDER_TEXT')}}问诊</text>
+			<text style="color:#FE7047;font-size:24rpx;" wx:if="{{business1!=-1}}">{{doctorInfo.textPrice||0}}元/次</text>
+			<text style="font-size:24rpx;color:#B4B4B4;" wx:else>
+			<text>未开通</text>
+			</text>
+		</view>
+
+		<view bindtap="inquiryTypeBtn" data-current="2" class="{{current==2?'demo5-item-selected-b' :''}} demo5-item  demo5-item-b">
+			<view>
+				<image src="../../../../public/img/common/blue.png" style="width:70rpx;height:70rpx;" />
+			</view>
+			<text style="margin:20rpx 0 15rpx 0;">{{filter.fOrderType('ORDER_VIDEO')}}问诊</text>
+			<text style="color:#FE7047;font-size:24rpx;" wx:if="{{business2!=-1}}">{{doctorInfo.videoPrice||0}}元/次</text>
+			<text style="font-size:24rpx;color:#B4B4B4;" wx:else>
+			<text>未开通</text>
+			</text>
+		</view>
+
+		<view bindtap="inquiryTypeBtn" data-current="3" class="{{current==3?'demo5-item-selected-y' :''}} demo5-item  demo5-item-y">
+			<view>
+				<image src="../../../../public/img/common/yellow.png" style="width:70rpx;height:70rpx;" />
+			</view>
+			<text style="margin:20rpx 0 15rpx 0;">{{filter.fOrderType('ORDER_VOICE')}}问诊</text>
+			<text style="color:#FE7047;font-size:24rpx;" wx:if="{{business3!=-1}}">{{doctorInfo.voicePrice||0}}元/次</text>
+			<text style="font-size:24rpx;color:#B4B4B4;" wx:else>
+			<text>未开通</text>
+			</text>
+		</view>
+
+
+		<!-- 问诊详情 start -->
+		<view class='invite {{current==1?"arrow-one":current==2?"arrow-two":current==3?"arrow-three":""}}'>
+			<view style="width:100%;height:20rpx;"></view>
+			<text style="color:#333333;font-size:28rpx;margin-left:24rpx;">使用文字、图片、语音与医生线上沟通</text>
+			<view style="color:#858585;font-size:24rpx;margin:13rpx 0 13rpx 50rpx;">医生接诊后24小时内可不限次数交流</view>
+			<view style="color:#858585;font-size:24rpx;margin-left:50rpx;">医生24小时未接诊,自动退款</view>
+		</view>
+		<!-- 问诊详情 end -->
+	</view>
+	<!-- 问诊类型 end-->
+
+	<!-- 用户点评 start -->
+	<!-- TODOS :还没对接用户点评 -->
+	<view style="padding-left:32rpx;color:#333;font-size:32rpx;font-weight:700;background-color:white;">用户点评</view>
+	<view style="background-color:white;">
+		<!-- <view wx:for="{{5}}" style="width:100%;height:234rpx;position:relative;top:0;left:0;border-bottom:1px solid #DEDEDE;">
+			<view style="position:absolute;left:34rpx;top:40rpx;width:100%;">
+				<image src="../../../../public/img/common/userPic.png" style="width:86rpx;height:86rpx;" />
+			</view>
+			<text style="position:absolute;left:147rpx;top:40rpx;">张某某</text>
+			<text style="position:absolute;left:493rpx;top:40rpx;font-size:24rpx;color:#858585;">医院就诊 2019-11-01</text>
+			<view style="height:26rpx;position:absolute;left:147rpx;top:90rpx;font-size:24rpx;color:#858585;">
+				<van-rate size="15" readonly value="{{ rateValue }}" />
+			</view>
+			<view style="position:absolute;left:147rpx;top:128rpx;font-size:24rpx;color:#858585;">
+				<text style="width:100%;">耐心细心认真，医生指导的非常专业，以后还来找张医生，无微不至。</text>
+			</view>
+		</view> -->
+		<template is="evaluation" data="{{evaluation}}"/>
+	</view>
+	<!-- 用户点评 end -->
+</scroll-view>
+<view bindtap="selDoctorInquiry" data-doctorId="{{doctorInfo.doctorId}}" data-current="{{current}}" style="background-color:rgba(21, 210, 195, 1);color:#fff;width:100%;height:100rpx;justify-content: center;align-items: center;font-size:32rpx;line-height:100rpx;text-align:center;">
+	<text>{{inquiryType||'请选择问诊类型'}}</text>
+	<text wx:if="{{currentSelect}}">￥{{inquiryMoney||0}}元/次</text>
+	<text wx:else>
+		<text wx:if="{{inquiryType}}">
+			<text>-暂未开通</text>
+		</text>
+	</text>
+</view>

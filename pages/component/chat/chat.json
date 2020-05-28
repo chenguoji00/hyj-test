@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "chat-msglist": "msglist/msglist",
+    "chat-inputbar": "inputbar/inputbar"
+  }
+}

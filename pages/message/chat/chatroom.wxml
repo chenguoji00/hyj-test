@@ -1,0 +1,5 @@
+<!--pages/message/chat/chatroom.wxml-->
+<chat
+	id="chat"
+	username="{{ username }}"
+	chatType="singleChat"></chat>

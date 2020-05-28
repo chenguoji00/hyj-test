@@ -1,0 +1,119 @@
+/* pageOther/page/select-patient/selectPatient.wxss */
+@import '../../../../pages/template/fastInquiryStep/fastInquiryStep.wxss';
+.cu-page {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+}
+
+.forwhotext {
+  height: 92rpx;
+  line-height: 92rpx;
+  width: 100%;
+  background-color: var(--bg-f5);
+}
+
+.forwhotext text {
+  color: #858585;
+  font-size: 28rpx;
+  padding-left: 32rpx;
+}
+
+.main {
+  background-color: var(--bg-f5);
+  padding: 0px;
+  margin: 0px;
+  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+  border: 0;
+}
+
+.goto {
+  border: 0;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 128rpx;
+  background-color: var(--bg-f5);
+}
+
+.goToText {
+  width: 687rpx;
+  margin: 0 auto;
+  height: 90rpx;
+  background-color: var(--main-theme-color);
+  text-align: center;
+  font-size: 32.13rpx;
+  line-height: 90rpx;
+  border-radius: 50rpx;
+  color: var(--bg-withe)
+}
+
+.contain {
+  line-height: 143rpx;
+  width: 100%;
+  height: 143rpx;
+  display: flex;
+  position: relative;
+  margin-bottom: 20rpx;
+  background-color: var(--bg-withe);
+}
+
+.show-image {
+  width: 86rpx;
+  height: 86rpx;
+  position: absolute;
+  left: 32rpx;
+  top: 28rpx;
+  border-radius: 50%;
+  background-color: #F5F5F5;
+}
+
+.show-image image {
+  width: 47rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 19rpx;
+  left: 20rpx;
+}
+
+.person-detail {
+  width: 70%;
+  position: absolute;
+  left: 145rpx;
+  top: 0;
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.radio-show {
+  width: auto;
+  position: absolute;
+  right: 33rpx;
+  top: 0rpx;
+}
+
+.next-step {
+  width: 100%;
+  height: 100rpx;
+  background-color: white;
+  text-align: center;
+  line-height: 100rpx;
+}
+
+.next-step text {
+  color: var(--main-theme-color);
+  font-size: 32rpx;
+  font-weight: 550;
+}

@@ -4,11 +4,10 @@ var formatPrice = function(num){
 }
 
 var defaultDoctorImg = function(sex){ 
-  return sex == 1 ? 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2104351895,3299575660&fm=26&gp=0.jpg' : 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1978012991,1411388119&fm=26&gp=0.jpg';
+  return sex == 1 ? '/public/img/common/doctor_m.png' : '/public/img/common/doctor_wm.png';
 }
 
 var getSex = function(id){
-  console.log(id,"sex")
   if(id == 1){
       return '男'
   }else if(id == 2) {
@@ -16,9 +15,62 @@ var getSex = function(id){
   }
 }
 
+var fOrderType = function(id){
+  if(id == 'ORDER_TEXT'){
+    return '图文'
+  }else if(id == 'ORDER_VOICE'){
+    return '语音'
+  }else if(id == 'ORDER_VIDEO'){
+    return '视频'
+  }else if(id == 'ORDER_PRESC'){
+    return '处方'
+  }
+}
+
+var getOrderTypeName = function(id) {
+  console.log(id,"this is id");
+  if (id == "1") {
+    return "图文问诊";
+  }
+  if (id == "2") {
+    return "语音问诊";
+  }
+  if (id == "3") {
+    return "视频问诊";
+  }
+}
+var fInquiryType = function(id){
+  if (id == 1) {
+    return "待接诊";
+  }
+  if (id == 2) {
+    return "已接诊";
+  }
+  if (id == 3) {
+    return "已完成";
+  }
+  if (id == 5) {
+    return "已退款";
+  }
+}
+var fRecipeUseSatus =function(id) {
+  if (id == 0) {
+    return "未使用";
+  }
+  if (id == 1) {
+    return "已使用";
+  }
+  if (id == 2) {
+    return "已作废";
+  }
+}
 
 module.exports = {
   formatPrice: formatPrice,
   defaultDoctorImg:defaultDoctorImg,
-  getSex: getSex
+  getSex: getSex,
+  fOrderType:fOrderType,
+  fInquiryType:fInquiryType,
+  getOrderTypeName:getOrderTypeName,
+  fRecipeUseSatus:fRecipeUseSatus
 }

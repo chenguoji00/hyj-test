@@ -1,0 +1,49 @@
+<!--pageOther/page/doctor/personal-profile/index.wxml-->
+<!-- 医生简介 头部  start -->
+<wxs src="../../../../pages/filter/filter.wxs" module="filter"></wxs>
+<view class="doctor-detail">
+	<view class="left">
+		<text style="font-size:32rpx;color:#333333;font-weight:700;">{{doctorInfo.doctorName}}</text>
+		<text style="color:#858585;font-size:28rpx;">
+      <text style="margin-right:15rpx;">{{doctorInfo.deptName}}</text>
+		<text>{{doctorInfo.level}}</text>
+		</text>
+		<text style="font-size:24rpx;color:#333333;">
+      <text>{{doctorInfo.hospitalName}}</text>
+		<text style="color:#FEA50B;margin-left:15rpx;">{{doctorInfo.grade}}</text>
+		</text>
+	</view>
+	<view class="right">
+		<image style="width:120rpx;height:120rpx;" src="{{doctorInfo.doctorPic?doctorInfo.doctorPic:filter.defaultDoctorImg(doctorInfo.sex)}}" lazy-load alt />
+	</view>
+</view>
+<!-- 医生简介 头部  end -->
+
+
+<!-- 内容  start -->
+<view style="width:687rpx;margin:0 auto;height:113rpx;line-height:113rpx;display:flex;align-items: center;">
+	<view style="width:6rpx;height:32rpx;background-color:#15D2C3;margin-right:15rpx;"></view>
+	<view style="color:#333333;font-size:32rpx;font-weight:bolder;">擅长疾病</view>
+</view>
+<view style="width:687rpx;margin:0 auto;color:#858585;font-size:24rpx;">
+	{{doctorInfo.specialty}}
+</view>
+
+
+<view style="width:687rpx;margin:0 auto;height:113rpx;line-height:113rpx;display:flex;align-items: center;">
+	<view style="width:6rpx;height:32rpx;background-color:#15D2C3;margin-right:15rpx;"></view>
+	<view style="color:#333333;font-size:32rpx;font-weight:bolder;">个人简介</view>
+</view>
+<view style="width:687rpx;margin:0 auto;color:#858585;font-size:24rpx;">
+	{{doctorInfo.resume}}
+</view>
+
+<view style="width:687rpx;margin:0 auto;height:113rpx;line-height:113rpx;display:flex;align-items: center;">
+	<view style="width:6rpx;height:32rpx;background-color:#15D2C3;margin-right:15rpx;"></view>
+	<view style="color:#333333;font-size:32rpx;font-weight:bolder;">执业点</view>
+</view>
+<view style="width:687rpx;margin:0 auto;color:#858585;font-size:24rpx;">
+{{doctorInfo.hospitalName}}   {{doctorInfo.deptName}} <text style="color:#FEA50B;">{{doctorInfo.grade}}</text>
+</view>
+
+<!-- 内容  end -->

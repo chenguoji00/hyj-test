@@ -1,4 +1,5 @@
 <!--pages/home/home.wxml-->
+
 <view class="home-page">
 	<!-- search 搜索栏  start  -->
 	<!-- <view style="display:flex;position:absolute;top:0;width:539.2rpx;height:60rpx;margin:0 auto;left:0;right:0;color:#fff;z-index:2;border:1px solid rgba(222,222,222,1);background:rgba(245,245,245,0.5);border-radius:30rpx;">
@@ -10,7 +11,7 @@
 		<view class="search">
 			<view class="search-contain">
 				<view class="search-contain-left">
-					<text class="left-show">西安</text>
+					<text class="left-show">黑龙江</text>
 					<image src="../../public/img/common/dingwei.png" style="vertical-align:middle;z-index:5;width:21rpx;height:28rpx;margin-top:-3rpx;" />
 				</view>
 				<view class="search-com">
@@ -28,7 +29,7 @@
 		</view>
 		<!-- search 搜索栏  end  -->
 		<!-- swiper 轮播图  start  -->
-		<swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+		<swiper class="swiper" indicator-dots="{{indicatorDots}}" indicator-active-color="white" indicator-color="rgba(21, 210, 195, 1);" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
 			<block wx:for="{{backgroundList}}" wx:key="*this">
 				<swiper-item>
 					<image src="../../public/img/banner.png" style="width:100%;" mode="widthFix" lazy-load />
@@ -63,7 +64,7 @@
 						<text class="main-bottom-textcolor">送货上门</text>
 					</view>
 				</view>
-				<view class="main-item main-three">
+				<view class="main-item main-three" bindtap="goToPage" data-navname="find-doctor">
 					<view class="main-item-one-top">
 						<image src="../../public/img/common/mainfuncright.png" />
 					</view>
@@ -76,17 +77,17 @@
 					</view>
 				</view>
 			</view>
-			<view style="width:100%;position:relative;">
+			<!-- <view style="width:100%;position:relative;">
 				<text style="font-size:32rpx;font-weight:bolder;color:#000000;position:absolute;left:31rpx;top:48rpx;">院内服务</text>
-				<text style="float:right;color:#999999;position:absolute;right:34rpx;top:48rpx;">进入主页 ></text>
-			</view>
+				<text style="float:right;color:#999999;position:absolute;right:34rpx;top:48rpx;">进入主页 ＞</text>
+			</view> -->
 		</view>
 		<!-- 三大流程 end -->
 
 		<!-- 副功能 start -->
-		<view class="sub-main">
+		<!-- <view class="sub-main"> -->
 			<!-- 功能显示  5大功能 start -->
-			<view class="sub-main-func">
+			<!-- <view class="sub-main-func">
 				<view class="sub-main-func-item item-one" bindtap="inHospitalServicesBtn">
 					<image src="../../public/img/common/yuyue.png" class="sub-main-item-top" />
 					<text class="sub-main-item-bottom">预约挂号</text>
@@ -107,20 +108,20 @@
 					<image src="../../public/img/common/baogaodan.png" class="sub-main-item-top" />
 					<text class="sub-main-item-bottom">报告单</text>
 				</view>
-			</view>
+			</view> -->
 			<!-- 功能显示  5大功能 end -->
 			<!-- 体检套餐  strat -->
-			<view class="medical-package">
+			<!-- <view class="medical-package">
 				<view class="medical-package-left"></view>
 				<view class="medical-package-right"></view>
-			</view>
+			</view> -->
 			<!-- 体检套餐  end -->
 			<!-- 在线药房 start -->
-			<view class="online-pharmacy-font">
+			<!-- <view class="online-pharmacy-font">
 				<view class="pharmacy-font">
 					在线药房
 				</view>
-				<view class="pharmacy-font-more">查看更多 ></view>
+				<view class="pharmacy-font-more">查看更多 ＞</view>
 			</view>
 			<view class="online-pharmacy">
 				<view class="online-pharmacy-item online-one">
@@ -143,7 +144,7 @@
 					<image src="../../public/img/common/baogaodan.png" class="online-pharmacy-item-top" />
 					<text class="online-pharmacy-bottom">滋补调养</text>
 				</view>
-			</view>
+			</view> -->
 			<!-- 在线药房 end -->
 			<!-- 医生推荐 start -->
 			<view class="doctor-rec">
@@ -170,7 +171,7 @@
 				</view>
 			</view>
 			<!-- 医生推荐 end -->
-		</view>
+		<!-- </view> -->
 
 		<!-- 副功能 end -->
 

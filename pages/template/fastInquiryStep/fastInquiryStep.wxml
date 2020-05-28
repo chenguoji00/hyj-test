@@ -1,0 +1,127 @@
+<template name="fast-one">
+	<view class="step-one">
+		<view class="step-one-contain">
+			<view class="step-one-text-select">
+				1
+			</view>
+			<view class="color-select"> 提交病史 > </view>
+		</view>
+
+    <view class="step-one-contain">
+			<view class="step-one-text-no-select">
+				2
+			</view>
+			<view class="color-no-select"> 选择就诊人 > </view>
+		</view>
+
+		<view class="step-one-contain">
+			<view class="step-one-text-no-select">
+				3
+			</view>
+			<view class="color-no-select"> 医生开药 > </view>
+		</view>
+
+		<view class="step-one-contain">
+			<view class="step-one-text-no-select">
+				4
+			</view>
+			<view class="color-no-select"> 支付订单 > </view>
+		</view>
+	</view>
+</template>
+
+<template name="fast-two">
+	<view class="step-one">
+		<view class="step-one-contain">
+			<view class="step-one-text-select">
+				1
+			</view>
+			<view class="color-select"> 提交病史 > </view>
+		</view>
+
+    <view class="step-one-contain">
+			<view class="step-one-text-select">
+				2
+			</view>
+			<view class="color-select"> 选择就诊人 > </view>
+		</view>
+
+		<view class="step-one-contain">
+			<view class="step-one-text-no-select">
+				3
+			</view>
+			<view class="color-no-select"> 医生开药 > </view>
+		</view>
+
+		<view class="step-one-contain">
+			<view class="step-one-text-no-select">
+				4
+			</view>
+			<view class="color-no-select"> 支付订单 > </view>
+		</view>
+	</view>
+</template>
+
+<template name="fast-three">
+	<view class="step-one">
+		<view class="step-one-contain">
+			<view class="step-one-text-select">
+				1
+			</view>
+			<view class="color-select"> 提交病史 > </view>
+		</view>
+
+    <view class="step-one-contain">
+			<view class="step-one-text-select">
+				2
+			</view>
+			<view class="color-select"> 选择就诊人 > </view>
+		</view>
+
+		<view class="step-one-contain">
+			<view class="step-one-text-select">
+				3
+			</view>
+			<view class="color-select"> 医生开药 > </view>
+		</view>
+
+		<view class="step-one-contain">
+			<view class="step-one-text-no-select">
+				4
+			</view>
+			<view class="color-no-select"> 支付订单 > </view>
+		</view>
+	</view>
+</template>
+
+<template name="fast-four">
+	<view class="step-one">
+		<view class="step-one-contain">
+			<view class="step-one-text-select">
+				1
+			</view>
+			<view class="color-select"> 提交病史 > </view>
+		</view>
+
+    <view class="step-one-contain">
+			<view class="step-one-text-select">
+				2
+			</view>
+			<view class="color-select"> 选择就诊人 > </view>
+		</view>
+
+		<view class="step-one-contain">
+			<view class="step-one-text-select">
+				3
+			</view>
+			<view class="color-select"> 医生开药 > </view>
+		</view>
+
+		<view class="step-one-contain">
+			<view class="step-one-text-select">
+				4
+			</view>
+			<view class="color-select"> 支付订单 > </view>
+		</view>
+	</view>
+</template>

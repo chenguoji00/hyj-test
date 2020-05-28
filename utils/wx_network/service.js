@@ -20,10 +20,5 @@ export const allergenTree = () => get(WZ+'/allergen/tree')
 //新增患者病情描述
 export const symptomAdd =  (params,param) => post(`${WZ}/inquiry/patient/symptom/add?orderType=${param.orderType}&symptom=${param.symptom}&userId=${param.userId}`,params)
 
-//  {
-//   return axios({
-//     data: params,
-//     params:param
-//   }).then(res =>res.data)
-//   return requestPost(`/hyj-inquiry/inquiry/patient/symptom/add`, params).then(res => res.data)
-// }
+//获取商城药店的门店列表
+export const chainAll = (params) => get(`/api/chain/all?areaId2=305&location=%E5%B9%BF%E4%B8%9C%E7%9C%81%E4%B8%9C%E8%8E%9E%E5%B8%82%E4%B8%87%E6%B1%9F%E5%8C%BA%E8%B5%B5%E5%B1%8B%E6%9D%91`)

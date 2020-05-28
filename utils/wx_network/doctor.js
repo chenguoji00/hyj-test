@@ -12,11 +12,14 @@ export const dtcollectionList = (params) => get(WZ+'/patient/doctor/collect/list
 
 
 // 根据病情描述匹配医生
-export const matchingDoct= (params)=> post(`${WZ}/inquiry/patient/symptom/matchingDoct`,params);
+export const matchingDoct= (params)=> post(`${WZ}/inquiry/patient/symptom/matchingDoct?registerId=${params.registerId}`,params);
 
 //找医生分页
 export const findDoctorList = (params) => get(`${WZ}/doctor/findDoctorList`,params)
 
+
+//找医生详情
+export const doctorInfo = (params) => get(`${WZ}/doctor/info`,params)
 
 
 

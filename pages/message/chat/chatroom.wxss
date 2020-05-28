@@ -1,0 +1,4 @@
+/* pages/message/chat/chatroom.wxss */
+page{
+	background-color: #FAFAFA;
+}

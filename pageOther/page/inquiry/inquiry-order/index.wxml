@@ -1,0 +1,83 @@
+<!--pageOther/page/inquiry/inquiry-order/index.wxml-->
+
+<view class="gj-cell">
+	<view class="gj-cell-title">
+		{{orderType}} {{mallData.goodsName}}
+	</view>
+	<view class="gj-cell-value" style="color:#FE7047;">
+		￥{{mallData.itemAmount || 0}}
+	</view>
+</view>
+
+<view class="gj-cell">
+	<view class="gj-cell-title">
+		可选抵扣
+	</view>
+	<view class="gj-cell-value">
+		0个可选
+	</view>
+</view>
+
+<view class="gj-cell">
+	<view class="gj-cell-title">
+		优惠券抵扣
+	</view>
+	<view class="gj-cell-value">
+		无
+	</view>
+	<text  style="color:#858585;">></text>
+</view>
+
+
+<view style="margin-top:15rpx;">
+
+	<view class="gj-cell">
+		<view class="gj-cell-title">
+			就诊人
+		</view>
+		<view class="gj-cell-value">
+			XXX 男  32岁
+		</view>
+	</view>
+
+	<view class="gj-cell">
+		<view class="gj-cell-title">
+			过敏源
+		</view>
+		<view class="gj-cell-value">
+			无
+		</view>
+	</view>
+
+	<view class="gj-cell">
+		<view class="gj-cell-title">
+			就诊情况
+		</view>
+		<view class="gj-cell-value">
+			初诊
+		</view>
+	</view>
+
+	<view class="gj-cell">
+		<view class="gj-cell-title">
+			就诊机构
+		</view>
+		<view class="gj-cell-value">
+			东莞市滨海湾中心医院
+		</view>
+	</view>
+</view>
+
+
+<view style="position:absolute;bottom:0;right:0;padding:0 32rpx;text-align:center;left:0;height:130rpx;line-height:130rpx;background-color:#fff;">
+	<view style="float:left;">
+		<text>实际支付</text>
+		<text>￥{{mallData.appPrice0 || 0}}</text>
+	</view>
+	<view  style="float:right;margin-top:21rpx;">
+		<view bindtap="submitOrderBtn" style="width:311rpx;height:87rpx;border-radius:50rpx;background-color:#15D2C3;line-height:87rpx;color:#fff;">
+			提交订单
+		</view>
+	</view>
+
+</view>

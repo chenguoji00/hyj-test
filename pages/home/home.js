@@ -1,15 +1,19 @@
 // pages/home/home.js
+let WebIM = wx.WebIM = require("../../utils/huanxinIM/WebIM")["default"];
 import {
-  getHospitalDetail
+  getHospitalDetail,
+  bannerList
 } from '../../utils/wx_network/service'
 import {
-  recDoctorList,
+  // recDoctorList,
   dtcollectionList
 } from '../../utils/wx_network/doctor'
 import {
   findDeptlist,deptDoctor
 } from '../../utils/wx_network/dept'
 const app = getApp()
+const cng = require('../../utils/config.js')
+
 Page({
   /**
    * 页面的初始数据
@@ -23,8 +27,10 @@ Page({
     autoplay: true,
     vertical: false,
     interval: 2000,
-    backgroundList: ['demo-text-1'], //首页轮播图
+    backgroundList: [], //首页轮播图
     deptDoctorData: [],//医生列表
+    imgheights: [],
+
     
   },
   // 點擊tab切換
@@ -32,6 +38,9 @@ Page({
     this.deptDoctor(this.data.deptList[e.detail.index].id);
   },
 
+  unlockJoin: function() {
+    this.lock = false;
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -39,8 +48,10 @@ Page({
     this.getData();
   },
   async getData(){
-    let hospital = await this.getHostipal();
-    await this.recDoctorList();
+    this.bannerList();
+    this.deptDoctor();
+    await this.getHostipal();
+    // await this.recDoctorList();
     await this.getDeptList();
   },
   //获取医院信息
@@ -48,7 +59,7 @@ Page({
     //TODO  这里的医院ID写死了
     return new Promise((resolve, reject) => {
       getHospitalDetail({
-        'hospitalId': app.globalData.hospitalId
+        'hospitalId': cng.HOSPITAL_ID
       }).then(res => {
         wx.setNavigationBarTitle({
           title: res.data.hospitalName
@@ -60,6 +71,23 @@ Page({
       })
     }).catch(err=>{
       console.log(err)
+    })
+  },
+
+  // 获取Banner信息
+  bannerList(){
+    let params= {
+      hospitalId:cng.HOSPITAL_ID
+    }
+    bannerList(params).then(res => {
+      console.log(res,"this is params");
+      if(res.code == 200){
+        this.setData({
+          backgroundList:res.data
+        })
+      }else{
+
+      }
     })
   },
 
@@ -83,29 +111,23 @@ Page({
     })
   },
   //获取推荐医生
-  recDoctorList(){
-    return new Promise((resolve,reject)=>{
-      recDoctorList({'hospitalId':app.globalData.hospitalId}).then(res => {
-        this.data.deptDoctorData = res.data;
-        console.log(res.data,"this is res.data")
-        this.setData({
-          deptDoctorData : this.data.deptDoctorData 
-        })
-        resolve(res)
-      }).catch(err => {
-        reject(err)
-        console.log(err);
-      })
-    }).catch(err=>{
-      console.log(err)
+  imgH:function(e){
+    var winWid = wx.getSystemInfoSync().windowWidth;         //获取当前屏幕的宽度
+    var imgh=e.detail.height;　　　　　　　　　　　　　　　　//图片高度
+    var imgw=e.detail.width;
+    var swiperH=winWid*imgh/imgw + "px"　　　　　　　　　　//等比设置swiper的高度。  即 屏幕宽度 / swiper高度 = 图片宽度 / 图片高度    ==》swiper高度 = 屏幕宽度 * 图片高度 / 图片宽度
+    this.setData({
+        Hei:swiperH　　　　　　　　//设置高度
     })
+},
+  bindchange: function (e) {
+    // console.log(e.detail.current)
+    this.setData({ current: e.detail.current })
   },
-  
-  // TODOS 这里写死了医院ID
   deptDoctor(deptId){
-    let param = {
-      hospitalId:app.globalData.hospitalId,
-      deptId:deptId
+    let param = {hospitalId:app.globalData.hospitalId}
+    if(deptId){
+      param.deptId=deptId
     }
     deptDoctor(param).then(res => {
       this.data.deptDoctorData = res.data;
@@ -120,13 +142,13 @@ Page({
   onReady: function () {
     //获取地址  经纬度信息
     const _this = this;
-    wx.getLocation({
-      type: 'wgs84',
-      success(res) {
-        const latitude = res.latitude
-        const longitude = res.longitude
-      }
-    })
+    // wx.getLocation({
+    //   type: 'wgs84',
+    //   success(res) {
+    //     const latitude = res.latitude
+    //     const longitude = res.longitude
+    //   }
+    // })
   },
 
   /**
@@ -187,7 +209,8 @@ Page({
     } else if (type == "allDept") {
       // url = "/pageOther/page/privatypolicy/PrivatyPolicy";
     } else if (type == "sysm") {
-      url = "/pageOther/page/prescription-renewal/DeliverMedicine/index";
+      // url = "/pageOther/page/prescription-renewal/DeliverMedicine/index"; //跳转到送药上门
+      url = `/pageOther/page/prescription-renewal/all-prescription/index`; //跳转到我的用药
     } else if (type == "find-doctor"){
       wx.setStorageSync('flagDoctorShow', true);
       url = "/pageOther/page/doctor/find-doctor/index"
@@ -197,5 +220,19 @@ Page({
         url,
       })
     }
-  }
+  },
+
+  saoyisao(){
+    wx.setStorage({
+			key: "myUsername",
+			data: 'chenguojiqq'
+		});
+    app.conn.open({
+			apiUrl: WebIM.config.apiURL,
+			user: 'chenguojiqq',
+			pwd: '123456',
+			grant_type: 'password',
+			appKey: WebIM.config.appkey
+		});
+  },
 })

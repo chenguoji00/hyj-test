@@ -75,8 +75,6 @@ Page({
   consulDetail() {
     let params = {
       registerId: this.data.registerId
-      // TODOS:暂时没registerId
-      // registerId:'51482609845031008500'
     }
     consulDetail(params).then(res => {
       if (res.code == 200) {
@@ -95,7 +93,7 @@ Page({
   //跳转到电子处方列表
   goToCf(){
     console.log(this.data.csult,"this is csult");
-    if(this.data.csult.pgoupNo==null){
+    if(this.data.csult.pgoupNo==null || this.data.csult.pgoupNo==''){
       wx.showToast({
         title: '未找到该问诊的处方',
         icon:"none"
@@ -128,9 +126,16 @@ Page({
       })
       return;
     }
-    
     wx.navigateTo({
       url: `/pageOther/page/inquiry/fast-inquiry/index?doctorId=${e.currentTarget.dataset.csult.doctorId}&flagFastInquiry=true`,
+    })
+  },
+  //对话记录
+  gotoChat(){
+    getApp().globalData.tmId=this.data.csult.doctorId
+    getApp().globalData.isTmId =true;
+    wx.switchTab({
+      url: `/pages/message/main/main`,
     })
   },
 })

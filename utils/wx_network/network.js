@@ -8,7 +8,9 @@
  * http://es6.ruanyifeng.com/#docs/promise
  */
 import {
-  APP_SERVER,WG
+  APP_SERVER,
+  WG,
+  HOSPITAL_ID
 } from '../config'; //请求地址
 /**
  * 发起get请求
@@ -54,16 +56,17 @@ export const del = (url, data, headers) => request('DELETE', url, data, headers)
  * @returns {Promise}
  */
 export function request(method, url, data, header = {
-  'Client-Auth': 'aHlqX2g1X3VpOjZjYjcwODEzLTk0NTQtNWVlZC04NzUyLTQyZDZmNDk2MGJmMQ==',
-  'Authorization': wx.getStorageSync('hyjToken')
+  'Authorization': 'Basic d2VhcHA6d2VhcHBfc2VjcmV0',
+  'qdp-Auth': wx.getStorageSync('hyjToken'),
+  'hospitalId': HOSPITAL_ID
 }) {
   console.group('==============>新请求<==============');
   console.info(method, url);
-  if(url.includes('getOpenId') || url.includes('wx/decode')|| url.includes('/chain/all')
-  || url.includes('/api/member')
-  ){
+  if (url.includes('getOpenId') || url.includes('wx/decode') || url.includes('/chain/all') ||
+    url.includes('/api/member')
+  ) {
     url = APP_SERVER + url;
-  }else {
+  } else {
     url = APP_SERVER + WG + url;
   }
   if (data) console.info('参数：', data);
@@ -79,15 +82,15 @@ export function request(method, url, data, header = {
       complete() {
         if (response.success) {
           console.info('请求成功：', response.success);
-          if(response.success.code == 401) {
+          if (response.success.code == 401) {
             console.log("这个是因为没有权限导致的错误，需要跳转到登录页");
             wx.showToast({
-              title: response.success.msg +'',
-              icon:"none",
-              duration:3000
+              title: response.success.msg + '',
+              icon: "none",
+              duration: 3000
             })
-            
             setTimeout(() => {
+
               wx.navigateTo({
                 url: '/pageOther/page/other/login/login',
               })
@@ -96,11 +99,11 @@ export function request(method, url, data, header = {
           // 如果返回的code是401就是需要跳转到登录页面，然后code不是200就说明请求没成功
           // 这里还需要判断一下授权登录获取openid也是没有code返回的,但是有openid会返回,所以如果没有openid并且不是
           // code等于200的话就报错提示
-          else if(response.success.code != 200 && !response.success.openid && !response.success.phoneNumber){
+          else if (response.success.code != 200 && !response.success.openid && !response.success.phoneNumber) {
             wx.showToast({
-              title: response.success.msg||'请求出错请重试', 
-              duration:3000,
-              icon:'none'
+              title: response.success.msg || '请求出错请重试',
+              duration: 3000,
+              icon: 'none'
             })
           }
           resolve(response.success)
@@ -112,4 +115,26 @@ export function request(method, url, data, header = {
   });
 }
 
-
+export const fomtDataServe = (url, data) => {
+  const response = {};
+    return new Promise((resolve, reject) => {
+        wx.request({
+          // /member/buy/pay/wx/miniprogram/pay 
+          url: `${APP_SERVER}${url}`,
+          method: 'POST',
+          header: {
+            'content-type': 'application/x-www-form-urlencoded' //FormData请求修改此处即可
+          },
+          data: data,
+          success: (res) => response.success = res.data,
+          fail: (error) => response.fail = error,
+          complete() {
+            if (response.success) {
+              resolve(response.success)
+            }else {
+              reject(response.fail)
+            }
+          }
+        });
+      })
+    }

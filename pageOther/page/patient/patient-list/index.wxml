@@ -2,17 +2,17 @@
 <van-cell-group>
 	<van-field bind:input="patientNameInput" size="large" value="{{ patientName }}" clearable label="姓名" placeholder="请输入姓名" input-align="right" bind:click-icon="onClickIcon" />
 </van-cell-group>
-<van-cell title="性别" size="large">
+<!-- <van-cell title="性别" size="large">
 	<van-radio-group value="{{ isSex }}" bind:change="isSexClick">
 		<van-radio style="display:inline-block;margin-right:10rpx;" name="1"> 男 </van-radio>
-		<van-radio style="display:inline-block;" name="0"> 女</van-radio>
+		<van-radio style="display:inline-block;" name="2"> 女</van-radio>
 	</van-radio-group>
-</van-cell>
+</van-cell> -->
 <van-cell-group>
 	<van-field bind:input="idCartInput" size="large" value="{{ idCardNum }}" clearable label="证件号码" placeholder="请输入证件号码" input-align="right" bind:click-icon="onClickIdCard" />
 </van-cell-group>
 
-<van-cell style="font-size:32rpx;" title="出生日期" size="large">
+<!-- <van-cell style="font-size:32rpx;" title="出生日期" size="large">
 	<picker mode="date" value="{{date}}" start="1900-01-01" end="{{endDate}}" bindchange="bindDateChange">
 		<view class="picker">
 			<view wx:if="{{value}}">
@@ -23,11 +23,11 @@
 			</view>
 		</view>
 	</picker>
-</van-cell>
+</van-cell> -->
 
 
 <view bindtap="submitPatientBtn" wx:if="{{!updateState}}" style="text-align:center;width:685rpx;height:90rpx;margin:30rpx auto 0;background-color:#15D2C3;color:#fff;line-height:90rpx;">
-	创建档单并提交
+	添加就诊人
 </view>
 <view wx:else>
 	<view bindtap="updatePatientBtn" style="border-radius:6rpx;text-align:center;width:685rpx;height:90rpx;margin:30rpx auto 0;background-color:#15D2C3;color:#fff;line-height:90rpx;">

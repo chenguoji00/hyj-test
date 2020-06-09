@@ -9,9 +9,8 @@
 	<!-- 步驟條 -->
 <template wx:if="{{flagFastInquiry=='false'}}" is="fast-two"></template>
 	<view class="forwhotext">
-		 <text>请选择为谁提问</text>
-		 <text style="float:right;padding-right: 32rpx;color:#15D2C3;" bindtap="updatePatient">编辑</text>
-		
+		 <text>请选择为谁问诊</text>
+		 <text style="float:right;padding-right: 32rpx;color:#15D2C3;" wx:if="{{!patientItems.length}}" bindtap="updatePatient">编辑</text>
 	</view>
 	<view class="main">
 		<scroll-view scroll-y="true" style="height: 100%;"

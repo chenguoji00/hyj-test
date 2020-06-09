@@ -1,7 +1,9 @@
+<!-- 配置几个模板样式  文字，语音，emoji，图片.... start  -->
 <template name="txt">
 	<text class="msg-text" style="float:left;">{{ item.data }}</text>
 </template>
 <template name="emoji">
+{{item.data}}
 	<image
 		class="avatar"
 		src="{{ '../../../images/faces/' + item.data }}"
@@ -22,6 +24,8 @@
 <template name="audio">
 	<audio src="{{ item.msg.url }}" controls autoplay />
 </template>
+
+<!-- 配置几个模板样式 文字，语音，emoji，图片....  end  -->
 
 <!-- view 换成 scroll-view效果更好 用view是为了要stopPullDownRefresh -->
 <view
@@ -45,7 +49,7 @@
 			<view class="msg">
 				<image
 				class="err {{(item.style == 'self' && item.isFail) ? 'show' : 'hide'}}"
-				src="../../../images/msgerr.png"/>
+				src="../../../../public/img/chat/msgerr.png"/>
 
 				<image wx:if="{{item.style == 'self'}}" src="../../../../public/img/chat/poprightarrow@2x.png" class="msg_poprightarrow"/>
 				<image wx:if="{{item.style == ''}}" src="../../../../public/img/chat/popleftarrow@2x.png" class="msg_popleftarrow"/>

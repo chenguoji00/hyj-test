@@ -5,13 +5,15 @@
     <view style="position:absolute;left:34rpx;top:40rpx;width:100%;">
       <image src="../../../../public/img/common/userPic.png" style="width:86rpx;height:86rpx;" />
     </view>
-    <text style="position:absolute;left:147rpx;top:40rpx;">{{item.name}}</text>
-    <text style="position:absolute;left:493rpx;top:40rpx;font-size:24rpx;color:#858585;">医院就诊 {{item.time}}</text>
+    <text style="position:absolute;left:147rpx;top:40rpx;">{{item.name||''}}</text>
+    <text style="position:absolute;left:460rpx;top:40rpx;font-size:24rpx;color:#858585;">
+      {{item.orderType==1?"图文问诊":item.orderType==2?"视频问诊":"语音问诊"}} {{item.evaluateTime}}
+    </text>
     <view style="height:26rpx;position:absolute;left:147rpx;top:90rpx;font-size:24rpx;color:#858585;">
-      <van-rate size="15" readonly value="{{ item.rateValue }}" />
+      <van-rate size="15" readonly value="{{ item.scores }}" />
     </view>
     <view style="position:absolute;left:147rpx;top:128rpx;font-size:24rpx;color:#858585;" class="specialty-set three-line">
-      <text style="width:100%;">{{item.evaluation}}</text>
+      <text style="width:100%;">{{item.content}}</text>
     </view>
   </view>
 </template>

@@ -4,8 +4,7 @@ import {
   findDoctorList,
   updateDoctor
 } from '../../../../utils/wx_network/doctor'
-const cng =require('../../../../utils/config')
-const app = getApp()
+const cng = require('../../../../utils/config')
 Page({
 
   /**
@@ -14,29 +13,67 @@ Page({
   data: {
     inputValue: '', //查询的内容
     itemTitle: '筛选',
-    option1: [
-      {text: '全部商品',value: 0},
-      {text: '新款商品',value: 1},
-      {text: '活动商品',value: 2},
+    option1: [{
+        text: '全部商品',
+        value: 0
+      },
+      {
+        text: '新款商品',
+        value: 1
+      },
+      {
+        text: '活动商品',
+        value: 2
+      },
     ],
     comprehensiveSorting: [ //1综合排序，2问诊量，3价格从低到高，4价格从高到低 
-      {text: '综合排序',value: 1},
-      {text: '问诊量',value: 2},
-      {text: '价格从低到高',value: 3},
-      {text: '价格从高到低',value: 4},
+      {
+        text: '综合排序',
+        value: 1
+      },
+      {
+        text: '问诊量',
+        value: 2
+      },
+      {
+        text: '价格从低到高',
+        value: 3
+      },
+      {
+        text: '价格从高到低',
+        value: 4
+      },
     ],
     comprehensiveValue: 1,
-    hospitalCondition: [
-      {"name": '三甲医院',"value": '三甲医院'}],
-    inquiryCondition: [
-      {"name": '图文',"value": 1},
-      {"name": '电话',"value": 2},
-      {"name": '视频',"value": 3}
+    hospitalCondition: [{
+      "name": '三甲医院',
+      "value": '三甲医院'
+    }],
+    inquiryCondition: [{
+        "name": '图文',
+        "value": 1
+      },
+      {
+        "name": '电话',
+        "value": 2
+      },
+      {
+        "name": '视频',
+        "value": 3
+      }
     ],
-    doctorCondition: [
-      {"name": '主任医师',"value": '主任医生'},
-      {"name": '副主任医生',"value": '副主任医生'},
-      {"name": '主治医师',"value": '主治医生'}
+    doctorCondition: [{
+        "name": '主任医师',
+        "value": '主任医师'
+      },
+      {
+        "name": '副主任医师',
+        "value": '副主任医师'
+      },
+      {
+        "name": '主治医师',
+        "value": '主治医师'
+      }
     ],
     item1: [],
     item2: [],
@@ -47,28 +84,28 @@ Page({
     doctorItems: [],
     registerId: '',
     inputText: '', //搜索框搜索的内容
-    page:1,//当前页
-    pages:0,//获取的总页数
-    isLoading:1, //1：加载完毕2：正在加载 ，3 往下滑动获取数据
-    doctorId:'',//选中的医生
-    orderType:'',//订单类型
-    deptDoctorData: [],//医生列表
+    page: 1, //当前页
+    pages: 0, //获取的总页数
+    isLoading: 1, //1：加载完毕2：正在加载 ，3 往下滑动获取数据
+    doctorId: '', //选中的医生
+    orderType: '', //订单类型
+    deptDoctorData: [], //医生列表
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let height=320;
-    if(wx.getStorageSync('flagDoctorShow')) {
-      height=220;
+    let height = 320;
+    if (wx.getStorageSync('flagDoctorShow')) {
+      height = 220;
       wx.setNavigationBarTitle({
-        title: '找医生' 
+        title: '找医生'
       })
-    }else{
-      height=320;
+    } else {
+      height = 320;
       wx.setNavigationBarTitle({
-        title: '选医生' 
+        title: '选医生'
       })
     }
     this.setData({
@@ -76,15 +113,15 @@ Page({
       flagDoctorShow: wx.getStorageSync('flagDoctorShow')
     })
 
-    if(wx.getStorageSync('registerId')) {
+    if (wx.getStorageSync('registerId')) { //获取传递的openType和registerId
       this.data.registerId = wx.getStorageSync('registerId');
       this.data.orderType = options.orderType;
     }
     if (options.matchDoctor == 1) {
       this.matchDoctor();
     } else { //否则就查询医生列表，用户只是找医生
-      this.findDoctorList(this.data.page = 1,true);
-      this.data.doctorId = '';  //查找数据的时候重新设置医生为空
+      this.findDoctorList(this.data.page = 1, true);
+      this.data.doctorId = ''; //查找数据的时候重新设置医生为空
     }
   },
 
@@ -99,7 +136,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**
@@ -141,25 +178,29 @@ Page({
     matchingDoct({
       registerId: this.data.registerId
     }).then(res => {
-      if(res.code == 200) {
-        if(res.data.length) {
+      if (res.code == 200) {
+        if (res.data.length) {
           this.data.deptDoctorData = res.data;
-        }else {
+          this.setData({
+            deptDoctorData: this.data.deptDoctorData
+          })
+        } else {
           wx.showToast({
             title: '暂无匹配医生，正在刷新数据',
-            icon:"none",
-            duration:3000
+            icon: "none",
+            duration: 3000
           })
           setTimeout(() => {
-            this.findDoctorList(this.data.page = 1,true);
-            this.data.doctorId = '';  //查找数据的时候重新设置医生为空
+            this.findDoctorList(this.data.page = 1, true);
+            this.data.doctorId = ''; //查找数据的时候重新设置医生为空
           }, 2000);
         }
       }
     })
   },
   //查找医生
-  findDoctorList(current,override) {
+  //TODOS 这里的医生购买人数不对
+  findDoctorList(current, override) {
     let params = {
       sortBy: this.data.comprehensiveValue || null, //排序类型：1综合排序，2问诊量，3价格从低到高，4价格从高到低 ,
       current: current,
@@ -169,40 +210,35 @@ Page({
       //TODOS 这里还没有部门选择；
       // deptId : this.data.deptId||''
     }
-    if(this.data.inputText|| this.data.inputText ==''){
+    if (this.data.inputText || this.data.inputText == '') {
       params.keyWord = this.data.inputText
     }
-    if(this.data.item1){
+    if (this.data.item1) {
       params.hospitalGrade = this.data.item1.join(",")
     }
-    if(this.data.item2){
+    if (this.data.item2) {
       params.business = this.data.item2.join(",")
     }
-    if(this.data.item3){
+    if (this.data.item3) {
       params.level = this.data.item3.join(",")
     }
-    if(this.data.deptId){
+    if (this.data.deptId) {
       params.deptId = this.data.deptId;
     }
     findDoctorList(params).then(res => {
       if (res.code == 200) {
-        // if(current == 1){
-          // this.data.deptDoctorData = res.data.records;
-        //   for (let item of this.data.deptDoctorData) {
-        //     item.value = item.doctorId
-        //   }
-        // }else {
-        //   if(res.data.records.length) {
-        //     this.data.deptDoctorData = this.data.deptDoctorData.concat(res.data.records);
-        //   }
-        // }
         let deptDoctorData = res.data.records;
+        for(let i = 0; i < deptDoctorData.length;i++){
+          res.data.records[i].checked = false;
+        }
+        console.log("deptDoctorData",deptDoctorData);
+        console.log("this.data.deptDoctorData",this.data.deptDoctorData);
         setTimeout(() => {
           this.setData({
             deptDoctorData: override ? deptDoctorData : this.data.deptDoctorData.concat(res.data.records),
             isLoading: 3,
-            page:current,
-            pages:res.data.pages
+            page: current,
+            pages: res.data.pages
           })
         }, 500);
       }
@@ -210,65 +246,40 @@ Page({
   },
   //提问 (提交订单)
   submitBtn() {
-    console.log('提交订单',this.data.doctorId);
-    console.log('registerId',this.data.registerId);
-    //订单购买页面跳转
-    if(this.data.doctorId == ''){
+    if (this.data.doctorId == '') {
       wx.showToast({
         title: '请选择医生',
-        icon:'none'
+        icon: 'none'
       })
       return;
     }
-      let param = {
-        registerId: this.data.registerId,
-        doctorId: this.data.doctorId,
-        userId: wx.getStorageSync('userId')
-      };
-      // if(this.$route.query.isfastOrder){
-      //   fastOrder(param).then(res => {
-      //     if(res.data){
-      //       this.$router.push({
-      //       path : '/message',
-      //       query : {
-      //         tmId : res.data.doctorId
-      //         }
-      //       })
-      //     }
-      //   })
-      // }else{
-
-
-
-        updateDoctor(param).then(res => {
-          if (res.data != null) {
-            let cartList = res.data
-            let buyData = encodeURI(JSON.stringify(cartList));
-            //虚拟订单支付页面路径buy_virtual_step1
-            // let url = `${cng.APP_SERVER}/wap/tmpl/buy/buy_virtual_step1.html?registerId=${this.data.registerId}&orderType=1&token=${wx.getStorageSync('hyjToken')}&isCart=0&buyData=${buyData}`
-            // wx.navigateTo({
-            //   url: `/pageOther/page/other/shop-mall/index?url=${data}`,
-            // })
+    let param = {
+      registerId: this.data.registerId,
+      doctorId: this.data.doctorId,
+      userId: wx.getStorageSync('userId')
+    };
+    updateDoctor(param).then(res => {
+      if(res.code == 200){
+        if (res.data != null) {
+          let cartList = res.data
+          let buyData = encodeURI(JSON.stringify(cartList));
           wx.navigateTo({
-            url: `/pageOther/page/inquiry/inquiry-order/index?registerId=${this.data.registerId}&orderType=1&token=${wx.getStorageSync('hyjToken')}&isCart=0&buyData=${buyData}`,
+            url: `/pageOther/page/inquiry/inquiry-order/index?inquiry=true&registerId=${this.data.registerId}&orderType=${this.data.orderType}&token=${wx.getStorageSync('hyjToken')}&isCart=0&buyData=${buyData}`,
           })
-
-          }
-        });
-
-        // wx.navigateTo({
-        //   url: `/pageOther/page/other/shop-mall/index?url=${data}`,
-        // })
-
-
-      // }
-    
+        }
+      }else{
+        wx.showToast({
+          title: res.msg+''||"请求错误.",
+          icon:"none"
+        })
+      }
+    });
   },
   //改变综合查询的某一项触发
   changeComprehensive(event) {
     this.data.comprehensiveValue = event.detail;
-    this.findDoctorList(this.data.page=1,true);
-    this.data.doctorId = '';  //查找数据的时候重新设置医生为空
+    this.findDoctorList(this.data.page = 1, true);
+    this.data.doctorId = ''; //查找数据的时候重新设置医生为空
   },
   //搜索框查找
   searchInput(e) {
@@ -276,8 +287,8 @@ Page({
   },
   //搜索框确认查询
   searchConfirm() {
-    this.findDoctorList(this.data.page=1,true);
-    this.data.doctorId = '';  //查找数据的时候重新设置医生为空
+    this.findDoctorList(this.data.page = 1, true);
+    this.data.doctorId = ''; //查找数据的时候重新设置医生为空
   },
   //点击某一项医生触发
   radioChange(e) {
@@ -356,33 +367,33 @@ Page({
   confirmBtn() {
     this.selectComponent('#item').toggle();
     // 点确定的时候去查询数据
-    this.findDoctorList(this.data.page=1,true);
-    this.data.doctorId = '';  //查找数据的时候重新设置医生为空
+    this.findDoctorList(this.data.page = 1, true);
+    this.data.doctorId = ''; //查找数据的时候重新设置医生为空
   },
 
   // scroll-view 触底加载更多
   bindscrolltolower() {
-    if(this.data.page<this.data.pages){
+    if (this.data.page < this.data.pages) {
       this.setData({
-        isLoading:2
+        isLoading: 2
       })
-      this.findDoctorList(this.data.page+1);
-    }else{
+      this.findDoctorList(this.data.page + 1);
+      this.data.doctorId = ''; //查找数据的时候重新设置医生为空
+    } else {
       this.setData({
-        isLoading:1
+        isLoading: 1
       })
     }
-    this.data.doctorId = '';  //查找数据的时候重新设置医生为空
   },
   //scroll-view 下拉刷新
   bindrefresherrefresh() {
-    this.findDoctorList(this.data.page=1,true)
-    this.data.doctorId = '';  //查找数据的时候重新设置医生为空
+    this.findDoctorList(this.data.page = 1, true)
+    this.data.doctorId = ''; //查找数据的时候重新设置医生为空
     //延時不會讓動畫太突兀
     setTimeout(() => {
       this.setData({
         refresherState: false
-      })  
+      })
     }, 500);
   }
 })

@@ -13,3 +13,6 @@ export const getPrescriptionApp =(params) =>get(`${WZ}/prescription/getPrescript
 
 //处方列表
 export const getMyRecipelList = (param) => get(`${WZ}/medorder/getMyRecipel`, param)
+
+// 处方复购
+export const rebuyorder = (params) => get(`${WZ}/prescription/pay/again`,params)

@@ -24,6 +24,11 @@ page {
   height:100rpx!important;
 }
 
+.van-radio__label{
+  margin-left: 0!important;
+  padding-left: 20rpx;
+}
+
 
 .van-cell__title,
 .van-cell__value {
@@ -43,6 +48,7 @@ page {
 .placeholder-s {
   color: #B4B4B4;
 }
+
 
 /* 下一步 start */
 .next-click {

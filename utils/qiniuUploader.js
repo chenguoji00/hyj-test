@@ -26,6 +26,7 @@ function init(options) {
         qiniuUploadTokenFunction: null,
         qiniuShouldUseQiniuFileName: false
     };
+    console.log(options,"this is options")
     updateConfigWithOptions(options);
 }
 
@@ -93,6 +94,7 @@ function doUpload(filePath, success, fail, options, progress, cancelTask, before
       formData['key'] = fileName
     }
     before && before();
+    console.log(url,"我是URL")
     var uploadTask = wx.uploadFile({
         url: url,
         filePath: filePath,

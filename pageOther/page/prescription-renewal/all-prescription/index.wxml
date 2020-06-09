@@ -16,18 +16,20 @@
 					<text style="color:#000;"> {{item.itemName}}</text>
 				</view>
 				<view style="width:633rpx;margin:33rpx auto 0; height:80rpx;display:flex;justify-content:center;">
-					<view style="display:flex;flex-direction:column;width:70%;color:#858585;font-size:28rpx;">
-						<!-- 诊断结果没返回 -->
-						<text class="specialty-set one-line">诊断结果: {{}}</text>
-						<text>医生：{{item.doctorName}} {{item.createTime}}</text>
+					<view style="display:flex;flex-direction:column;width:90%;color:#858585;font-size:28rpx;">
+						<text class="specialty-set one-line" style="paddign: 10rpx 0;">诊断结果: {{item.diag||''}}</text>
+						<view class="specialty-set one-line">医生：
+							<text>{{item.doctorName}} </text>
+							<text style="font-size:26rpx;">{{item.createTime}}</text>
+						</view>
 					</view>
-					<view catchtap="goToPage1" data-navname="goumai" wx:if="{{item.useStatus==0}}" style="color:#fff;width:170rpx;height:64rpx;line-height:64rpx;text-align:center;font-size:28rpx;background-color:#15D2C3;border-radius:30rpx;">
+					<view catchtap="buyPrescript" wx:if="{{item.useStatus==0}}" data-item="{{item}}"  data-navname="goumai"  style="color:#fff;width:140rpx;height:64rpx;line-height:64rpx;text-align:center;font-size:28rpx;background-color:#15D2C3;border-radius:30rpx;">
 						购买
 					</view>
-					<view wx:elif="{{item.useStatus==1}}"  catchtap="goToPage1" data-navname="chufangxugou" style="color:#fff;width:170rpx;height:64rpx;line-height:64rpx;text-align:center;font-size:28rpx;background-color:#15D2C3;border-radius:30rpx;">
+					<view wx:elif="{{item.useStatus==1}}" data-item="{{item}}"  catchtap="reGotoOrder" data-navname="chufangxugou" style="color:#fff;width:140rpx;height:64rpx;line-height:64rpx;text-align:center;font-size:28rpx;background-color:#15D2C3;border-radius:30rpx;">
 						处方续购
 					</view>
-					<view wx:else style="width:170rpx;height:64rpx;line-height:64rpx;text-align:center;font-size:28rpx;">
+					<view wx:else="{{item.useStatus==3}}" style="width:140rpx;height:64rpx;line-height:64rpx;text-align:center;font-size:28rpx;">
 
 					</view>
 				</view>
@@ -39,7 +41,6 @@
 		<view wx:else>
 			<!-- 没有数据显示的模板 start -->
 				<template is="msgItem" />
-			<!-- 没有数据显示的模板 end -->
 		</view>
 	</view>
 

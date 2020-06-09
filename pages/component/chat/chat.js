@@ -1,6 +1,6 @@
-// let msgStorage = require("msgstorage");
-// let msgType = require("msgtype");
-// let WebIM = require("../../utils/WebIM")["default"];
+let msgStorage = require("msgstorage");
+let msgType = require("msgtype");
+let WebIM = require("../../../utils/huanxinIM/WebIM")["default"];
 Component({
 	properties: {
 		username: {
@@ -9,7 +9,7 @@ Component({
 		},
 		chatType: {
 			type: String,
-			value:'singleChat',
+			value: msgType.chatType.SINGLE_CHAT,
 		},
 	},
 	data: {
@@ -44,8 +44,8 @@ Component({
 		},
 
 		saveSendMsg(evt){
-			// msgStorage.saveMsg(evt.detail.msg, evt.detail.type);
-			// this.data.__comps__.inputbar.cancelEmoji();
+			msgStorage.saveMsg(evt.detail.msg, evt.detail.type);
+			this.data.__comps__.inputbar.cancelEmoji();
 		},
 
 		getMore(){
@@ -118,39 +118,39 @@ Component({
 		sendInviteMsg(members, confrId){
 			console.log("&c members","background: green")
 			console.log(members)
-			// members&&members.forEach((value) => {
-			// 	let id = WebIM.conn.getUniqueId();
-			// 	let msg = new WebIM.message('txt', id);
+			members&&members.forEach((value) => {
+				let id = WebIM.conn.getUniqueId();
+				let msg = new WebIM.message('txt', id); //发送消息
 
-			// 	msg.set({
-			// 		msg: wx.WebIM.conn.context.userId + ' invite you to video call',
-			// 		from: wx.WebIM.conn.context.userId,
-			// 		to: value,
-			// 		roomType: false,
-			// 		chatType: 'chat',
-			// 		ext: {
-			// 			msg_extension: JSON.stringify({
-			// 				inviter: wx.WebIM.conn.context.userId,
-			// 				group_id: this.data.username.groupId
-			// 			}),
-			// 			password: '',
-			// 			conferenceId: confrId
-			// 		},
-			// 		success(id, serverMsgId){
-			// 			console.log('发送邀请消息成功 to: '+value)
-			// 			//disp.fire('em.chat.sendSuccess', id, me.data.userMessage);
-			// 		},
-			// 		fail(id, serverMsgId){
-			// 			console.log('发送邀请消息失败了')
-			// 		}
-			// 	});
-			// 	// if(this.data.chatType == msgType.chatType.CHAT_ROOM){
-			// 	// 	msg.setGroup("groupchat");
-			// 	// }
-			// 	console.log('发送邀请')
-			// 	WebIM.conn.send(msg.body);
+				msg.set({
+					msg: wx.WebIM.conn.context.userId + ' invite you to video call',
+					from: wx.WebIM.conn.context.userId,
+					to: value,
+					roomType: false,
+					chatType: 'chat',
+					ext: {
+						msg_extension: JSON.stringify({
+							inviter: wx.WebIM.conn.context.userId,
+							group_id: this.data.username.groupId
+						}),
+						password: '',
+						conferenceId: confrId
+					},
+					success(id, serverMsgId){
+						console.log('发送邀请消息成功 to: '+value)
+						//disp.fire('em.chat.sendSuccess', id, me.data.userMessage);
+					},
+					fail(id, serverMsgId){
+						console.log('发送邀请消息失败了')
+					}
+				});
+				// if(this.data.chatType == msgType.chatType.CHAT_ROOM){
+				// 	msg.setGroup("groupchat");
+				// }
+				console.log('发送邀请')
+				WebIM.conn.send(msg.body);
 
-			// })
+			})
 		},
 
 		onClickInviteMsg(data){

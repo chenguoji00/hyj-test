@@ -13,7 +13,7 @@ Page({
    */
   onLoad: function (options) {
     console.log(options,"options");
-    let a = unescape(options.url)
+    let a = unescape(options.url);
     console.log(a,"this is a")
     this.setData({
       url:a

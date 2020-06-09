@@ -4,7 +4,21 @@
 		<text style="margin-right:10rpx;">{{csult.hospitalName}} </text>
 		<text bindtap="preChuFang" style="width:180rpx;height:50rpx;line-height:50rpx;font-size:28rpx;border:1px solid #858585;border-radius:30rpx;">原始处方＞</text>
 	</view>
-	<view style="width: 100%;height: 1px;border-top: solid #000 1px;margin-bottom:2rpx;"></view>
+		<image
+			wx:if="{{prescription.verifiedType==1}}"
+			src="/public/img/main-nav/checked.png"
+			style="display: block;width: 120rpx;height:70rpx;position:absolute;right:30rpx;top: 20rpx;"
+			mode="widthFix" 
+			lazy-load
+		/>
+		<image
+			wx:if="{{prescription.verifiedType==2}}"
+			src="/public/img/main-nav/unpass.png"
+			style="display: block;width: 128rpx;position:absolute;right:40rpx;top: 46rpx;"
+			mode="widthFix" 
+			lazy-load
+		/>
+	<view style="width: 100%;height: 1px;border-top: solid #ccc 1px;margin-bottom:2rpx;"></view>
 	<view style="width: 100%;height: 1px;border-top: solid #ccc 1px;"></view>
 
 	<view style="width:100%;height:100rpx;display:flex;line-height:100rpx;border-bottom:2rpx solid #ccc;">
@@ -30,7 +44,7 @@
 		诊断结果
 	</view>
 	<view style="width:100%;font-size:32rpx;margin-bottom:30rpx;">
-		{{csult.recordVO.diagnosis}}
+		{{csult.recordVO.diagnosis||''}}
 	</view>
 	<view style="width: 100%;height: 1px;border-top: dotted #ccc 1px;"></view>
 	<!-- 诊断结果 -->
@@ -57,7 +71,7 @@
 
 
 	<view style="width: 100%;height: 1px;border-top: solid #ccc 1px;margin-bottom:2rpx;"></view>
-	<view style="width: 100%;height: 1px;border-top: solid #000 1px;"></view>
+	<view style="width: 100%;height: 1px;border-top: solid #ccc 1px;"></view>
 
 
 	<!-- 药品处方 -->

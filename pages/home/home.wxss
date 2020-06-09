@@ -117,12 +117,12 @@ page {
 
 /* 轮播图 */
 .swiper {
-  height: 370rpx;
+  /* height: 470rpx; */
 }
 
 /* 主要功能区  三大功能   start */
 .main-func {
-  height: 374rpx;
+  /* height: 374rpx; */
   position: relative;
   left: 0;
   top: 0;
@@ -408,7 +408,7 @@ page {
 /* 医生推荐  start*/
 .doctor-rec {
   position: absolute;
-  top: 607rpx;
+  /* top: 607rpx; */
   width: 100%;
 }
 
@@ -431,6 +431,7 @@ page {
 }
 
 .doctor-rec-item-contain {
+  /* 四周阴影 */
   box-shadow: #f0f0f0 2px 2px 16px 3px;
   border-radius: 10rpx;
   margin-bottom: 30rpx;

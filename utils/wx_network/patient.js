@@ -3,7 +3,7 @@
  * 此文件管理项目所有接口
  */
 import {get, post} from './network';
-import { WZ } from '../config'; //请求地址
+import { WZ,HOSPITAL_ID } from '../config'; //请求地址
 
 
 
@@ -24,6 +24,7 @@ export const updatePatientDetail = (params) => post(`${WZ}/patient/update`,param
 //删除看诊人
 export const removePatient = (params) => post(`${WZ}/patient/remove`,params,{
   'content-type': 'application/x-www-form-urlencoded',
-  'Client-Auth': 'aHlqX2g1X3VpOjZjYjcwODEzLTk0NTQtNWVlZC04NzUyLTQyZDZmNDk2MGJmMQ==',
-  'Authorization': wx.getStorageSync('hyjToken')
+  'Authorization': 'Basic d2VhcHA6d2VhcHBfc2VjcmV0',
+  'qdp-Auth': wx.getStorageSync('hyjToken'),
+  'hospitalId': HOSPITAL_ID
 })

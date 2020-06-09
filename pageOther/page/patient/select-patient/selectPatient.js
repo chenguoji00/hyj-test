@@ -3,7 +3,9 @@ import {
   patientList,
   updatePatient
 } from '../../../../utils/wx_network/patient'
-import { APP_SERVER } from '../../../../utils/config'
+import {
+  APP_SERVER
+} from '../../../../utils/config'
 import {
   getAgeByIdCard
 } from '../../../../utils/util'
@@ -13,20 +15,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    patientItems: [],//病人列表
-    refresherState: false,//下拉刷新状态
-    patientId: '',//选中的patient
-    registerId: '',//订单ID
-    orderType: '',//订单类型
+    patientItems: [], //病人列表
+    refresherState: false, //下拉刷新状态
+    patientId: '', //选中的patient
+    registerId: '', //订单ID
+    orderType: '', //订单类型
   },
   //下拉刷新
   bindrefresherrefresh(e) {
     this.patientList().then(res => {
       //延時不會讓動畫太突兀
+      this.data.patientId = '';
       setTimeout(() => {
         this.setData({
           refresherState: false
-        })  
+        })
       }, 500);
     });
   },
@@ -35,9 +38,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options,"this is options")
     this.setData({
-      flagFastInquiry : options.flagFastInquiry
+      flagFastInquiry: options.flagFastInquiry
     })
     this.data.registerId = wx.getStorageSync('registerId') || '';
     this.data.orderType = options.orderType || 1;
@@ -117,17 +119,17 @@ Page({
     this.data.patientId = e.detail.value;
   },
   //编辑就诊人信息
-  updatePatient(){
-    let patient= {};
-    if(!this.data.patientId){
+  updatePatient() {
+    let patient = {};
+    if (!this.data.patientId) {
       wx.showToast({
         title: '请选择某一就诊人进行编辑操作',
-        icon:"none"
+        icon: "none"
       })
       return;
     }
-    for(let i of this.data.patientItems){
-      if(this.data.patientId == i.patientId){
+    for (let i of this.data.patientItems) {
+      if (this.data.patientId == i.patientId) {
         patient = i
       }
     }
@@ -137,35 +139,36 @@ Page({
   },
   //页面跳转
   goToPage() {
-    if(this.data.patientId){
+    if (this.data.patientId) {
       let params = {
         patientId: this.data.patientId,
         registerId: this.data.registerId
       }
-      updatePatient(`/inquiry/patient/symptom/updatePatient?patientId=${this.data.patientId}&registerId=${this.data.registerId}`,params).then(res => {
+      updatePatient(`/inquiry/patient/symptom/updatePatient?patientId=${this.data.patientId}&registerId=${this.data.registerId}`, params).then(res => {
         if (res.code == 200) {
-          if(res.data){
-            // let cartList = res.data;
-            // let buyData = encodeURI(JSON.stringify(cartList));
-            // //虚拟订单支付页面路径buy_virtual_step1
-            // let url = `${APP_SERVER}/wap/tmpl/buy/buy_virtual_step1.html?registerId=${this.data.registerId}&orderType=${this.data.orderType}&token=${wx.getStorageSync('hyjToken')}&isCart=0&buyData=${buyData}`;
-            // let data = escape(url) 
-            // wx.navigateTo({
-            //   url: `../other/shop-mall/index?url=${data}`,
-            // })
-            
-          }else{
+          if (res.data == null || JSON.stringify(res.data) == "{}") {
             wx.setStorageSync('flagDoctorShow', false);
             wx.navigateTo({
               url: `/pageOther/page/doctor/find-doctor/index?registerId=${this.data.registerId}&matchDoctor=1&patientId=${this.data.patientId}&orderType=${this.data.orderType}`,
             })
+          } else {
+            let cartList = res.data;
+            let buyData = JSON.stringify(cartList);
+            wx.navigateTo({
+              url: `/pageOther/page/inquiry/inquiry-order/index?isInquiry=true&registerId=${this.data.registerId}&orderType=${this.data.orderType}&isCart=0&buyData=${buyData}`,
+            })
           }
+        }else{
+          wx.showToast({
+            title: res.msg+''||"请求出错",
+            icon:"none"
+          })
         }
       })
-    }else{
+    } else {
       wx.showToast({
         title: '请选择就诊人',
-        icon:'none'
+        icon: 'none'
       })
     }
   },

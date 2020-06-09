@@ -26,7 +26,7 @@
 	<view style="color:#333333;font-size:32rpx;font-weight:bolder;">擅长疾病</view>
 </view>
 <view style="width:687rpx;margin:0 auto;color:#858585;font-size:24rpx;">
-	{{doctorInfo.specialty}}
+	{{doctorInfo.specialty||''}}
 </view>
 
 

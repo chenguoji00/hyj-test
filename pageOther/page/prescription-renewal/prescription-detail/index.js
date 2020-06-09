@@ -35,7 +35,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    getApp().globalData.norefreshMessage = true; //判断跳返回聊天页面需不需要刷新
   },
 
   /**
@@ -49,7 +49,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    // wx.reLaunch({
+    //   url: '../logs/logs'
+    // })
   },
 
   /**

@@ -23,8 +23,8 @@
 				<text>{{item.patientName}} {{filter.getSex(item.patientSex)}} {{item.age}}</text>
 			</view>
 			<view>
-				<text style="margin-right:20rpx;">预约时间:</text>
-				<text>{{item.seeTimeStr}}</text>
+				<text style="margin-right:20rpx;">创建时间:</text>
+				<text>{{item.createTime||''}}</text>
 			</view>
 		</view>
 	</view>

@@ -1,0 +1,81 @@
+<!--pageOther/page/inquiry/inquiry-prescription/inquiry-prescription.wxml-->
+<import src="../../../../pages/template/fastInquiryStep/fastInquiryStep.wxml" />
+
+<template is="fast-four"></template>
+
+<!-- 地址显示 start-->
+<view class="address-contain" bindtap="goAddressManagerBtn">
+  <block wx:if="{{freight}}">
+    <text class="address-name">{{freight.realName||''}} {{freight.mobPhone||''}}</text>
+    <view class="address-bottom">
+      <view>
+        <image src="../../../../public/img/common/dingwei2.png"/>
+      </view>
+      <text class="default-class" wx:if="{{freight.isDefault == 1}}">默认</text>
+      <view class="specialty-set one-line address-area">{{freight.areaInfo}} {{freight.address}}</view>
+    </view>
+    <view class="address-go">
+      <image src="../../../../public/img/common/go.png"  />
+    </view>
+  </block>
+  <view wx:else style="width:100%;line-height:150rpx;color:#999999;font-size:26rpx;text-align:center;">
+    您好，没有地址信息，请添加地址信息
+  </view>
+</view>
+<!-- 地址显示 end-->
+
+<view style="position:relative;width:686rpx;margin:34rpx auto 0;">
+<!-- 处方信息 start Prescription information -->
+  <view style="width:100%;height:258rpx;position:relative;border-bottom:2rpx dashed #DEDEDE;">
+    <view style="border-top-left-radius:20rpx;border-top-right-radius:20rpx;width:100%;height:80rpx;text-align:center;color:#fff;font-weight:500;font-size:32rpx;background-color:#15D2C3;line-height:80rpx;">处方信息</view>
+    <view style="background-color:#fff;height:178rpx;padding:20rpx 0 0 34rpx;line-height:50rpx;box-sizing: border-box;">
+      <view>就诊人: {{itemData.patientName}}</view>
+      <view>就诊医生:{{itemData.deptName}}  {{itemData.doctorName}}</view>
+      <view>就诊时间:{{itemData.createTime}}</view>
+    </view>
+  </view>
+
+
+  <view style="position:absolute;top:242rpx;left:-14rpx;border-radius:50%;background-color:rgb(245,245,245);width:30rpx;height:30rpx;"></view>
+  <view style="position:absolute;top:242rpx;right:-14rpx;border-radius:50%;background-color:rgb(245,245,245);width:30rpx;height:30rpx;"></view>
+  <view style="box-shadow: #f0f0f0 2px 2px 16px 3px;">
+    <view style="width:100%;height:110rpx;background-color:#fff;line-height:110rpx;display:flex;">
+      <view style="flex:2;text-align:left;padding-left:40rpx;">项目名称</view>
+      <view style="flex:1;text-align:center;">数量</view>
+      <view style="flex:1;text-align:center;">金额</view>
+    </view>
+    <view style="wdith:100%;background-color:#fff;display:flex;line-height:50rpx;"  wx:for="{{mallData}}" wx:key="index" >
+      <view style="flex:2;text-align:left;padding-left:40rpx;color:#858585;font-family:Source Han Sans CN;">{{item.goodsName}}</view>
+      <view style="flex:1;text-align:center;">{{item.buyNum}}{{item.unitName}}</view>
+      <view style="flex:1;text-align:center;color:#FE7047;">￥{{item.webPrice0}}</view>
+    </view>
+    <view style="height:60rpx;border-bottom:2rpx dashed #DEDEDE;background-color:#fff;"></view>
+    <view style="box-shadow: #f0f0f0 0px 4px 0px;border-bottom-left-radius:20rpx;border-bottom-right-radius:20rpx;width:100%;height:100rpx;background-color:#fff;text-align:right;font-size:28rpx;line-height:100rpx;">
+      <text>总计:</text><text style="margin-right:30rpx;color:#FE7047;">￥{{allmallData.buyItemAmount}}</text>
+    </view>
+  </view>
+</view>
+<!-- 处方信息  end -->
+
+<view style="width:100%;margin-top:50rpx;height:234rpx;background-color:#fff;position:relative;">
+  <!-- <view style="width:90%;padding-top:30rpx;margin:0 auto;height:60rpx;justify-content: space-between;align-items: center;display:flex;">
+    <text style="color:#333333;font-size:32rpx;font-weight:600;">预付药费</text>
+    <text style="color:#FE7047;">￥0</text>
+  </view>
+  <view style="width:90%;margin:0 auto;color:#858585;font-size:24rpx;">
+    药师对处方审核通过后，药品将会发货
+  </view> -->
+  <view style="width:90%;margin:30rpx auto;padding-top:30rpx;justify-content: space-between;align-items: center;display:flex;">
+    <text style="color:#333333;font-size:32rpx;font-weight:600;font-family:Source Han Sans CN;">运费{{freight.freightAmount}}</text>
+    <text style="color:#858585;font-size:24rpx;">{{freight? freight.freightAmount?('￥'+freight.freightAmount):"￥"+0 :"选择收货地址后计算"}}</text>
+  </view>
+
+  <view  style="width:90%;margin:0 auto;justify-content: space-between;align-items: center;display:flex;font-size:32rpx;">
+    <view>
+      <text style="color:#333333;font-weight:600;">实际支付:</text>
+      <text style="color:#FE7047;">￥{{calc.buyGoodsItemAmount}}</text> 
+    </view>
+    <view style="border-radius:50rpx;width:310rpx;color:#fff;height:88rpx;line-height:88rpx;text-align:center;font-size:32rpx;background-color:#15D2C3;" bindtap="submitOrderBtn">立即支付</view>
+  </view>
+</view>
+

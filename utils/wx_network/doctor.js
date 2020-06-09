@@ -22,7 +22,11 @@ export const findDoctorList = (params) => get(`${WZ}/doctor/findDoctorList`,para
 export const doctorInfo = (params) => get(`${WZ}/doctor/info`,params)
 
 
-
 //新增患者病情描述(绑定医生)
 export const updateDoctor = (params) => post(`${WZ}/inquiry/patient/symptom/updateDoctor?doctorId=${params.doctorId}&registerId=${params.registerId}`,params);
 
+//获取医生的评价列表
+export const evaluateList = (params) =>  get(`/hyj-drug/evaluate/page`,params)
+
+//获取医生排班出诊信息
+export const schedules = (params) =>get(`/hyj-inquiry/doctor/schedule/`,params)

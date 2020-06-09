@@ -4,7 +4,7 @@
 <view style="width:100%;height:180rpx;">
 	<view class="doctor" bindtap="goToPage" data-navname="doctorDetail" data-csult="{{csult}}">
 		<view class="dt-img">
-			<image src="{{csult.doctorPic?csult.doctorPic:filter.defaultDoctorImg(csult.doctorSex)}}" alt />
+			<image src="{{csult.doctorPic?csult.doctorPic:filter.defaultDoctorImg(csult.doctorSex)}}" lazy-load alt />
 		</view>
 		<view class="dt-info">
 			<view class="row1" style="color:#858585;font-size:24rpx;">
@@ -55,8 +55,7 @@
 				</view>
 			</view>
 		</van-cell>
-    <!-- TODOS 对话记录还没有 -->
-		<van-cell value="" is-link>
+		<van-cell value="" is-link bindtap="gotoChat">
 			<view slot="title">
 				<view style="display:flex;">
 					<image src="../../../public/img/common/dhjl.png" style="width:40rpx;height:40rpx;margin-right:50rpx;" />

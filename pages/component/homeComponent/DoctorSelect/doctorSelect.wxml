@@ -18,13 +18,13 @@
 						<!-- <text>知名医院</text> -->
 					</view>
 					<view class="special" style="position:absolute;top:133rpx;width:566rpx;overflow:hidden;left:0rpx;color:#858585;font-size:24rpx;">
-						擅长：{{item.specialty}}
+						擅长：{{item.specialty||''}}
 					</view>
 					<view class="link"></view>
 					<view style="position:absolute;top:238rpx;left:0rpx;font-size:28rpx;">
 						<text style="color:#FE7047;margin-right:20rpx;">{{item.textPrice?("￥"+ item.textPrice):"无"}}</text>
 						<!-- TODOS  ：这个价格和购买人数是哪个字段 -->
-						<text style="color:#858585;" wx:if="item.reply">{{item.reply}}人购买</text>
+						<text style="color:#858585;" wx:if="item.reply">{{item.reply||0}}人购买</text>
 					</view>
 				</view>
 				<view class="radio-show">

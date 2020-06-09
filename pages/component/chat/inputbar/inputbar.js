@@ -1,5 +1,5 @@
-// let RecordStatus = require("suit/audio/record_status").RecordStatus;
-// let msgType = require("../msgtype");
+let RecordStatus = require("suit/audio/record_status").RecordStatus;
+let msgType = require("../msgtype");
 
 Component({
 	properties: {
@@ -9,12 +9,12 @@ Component({
 		},
 		chatType: {
 			type: String,
-			value: 'singleChat',
+			value: msgType.chatType.SINGLE_CHAT,
 		},
 	},
 	data: {
-		// recordStatus: RecordStatus.HIDE,
-		// RecordStatus,
+		recordStatus: RecordStatus.HIDE,
+		RecordStatus,
 		__comps__: {
 			main: null,
 			emoji: null,

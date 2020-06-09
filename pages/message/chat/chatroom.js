@@ -1,73 +1,32 @@
-// pages/message/chat/chatroom.js
-Page({
+let disp = require("../../../utils/huanxinIM/broadcast");
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    username: {
+Page({
+	data: {
+		username: {
 			your: "",
 		},
-  },
+	},
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    console.log(options,"this is options 12 ");
+	// options = 系统传入的 url 参数
+	onLoad(options){
 		let username = JSON.parse(options.username);
+		console.log(options,"这个是在chatroom里的");
 		this.setData({ username: username });
 		wx.setNavigationBarTitle({
 			title: username.your
 		});
-  },
+	},
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+	onUnload(){
+		disp.fire("em.chatroom.leave");
+	},
 
-  },
+	onPullDownRefresh: function () {
+	  	wx.showNavigationBarLoading();
+	    this.selectComponent('#chat').getMore()
+	    // 停止下拉动作
+	    wx.hideNavigationBarLoading();
+	    wx.stopPullDownRefresh();
+  	},
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
-})
+});

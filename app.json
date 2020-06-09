@@ -28,6 +28,7 @@
         "prescription-renewal/DeliverMedicine/index",
         "other/informright/index",
         "other/allergen/index",
+        "other/login/login",
         "patient/select-patient/selectPatient",
         "doctor/find-doctor/index",
         "other/shop-mall/index",
@@ -41,7 +42,12 @@
         "inquiry/open-medicine/index",
         "person/person-info/index",
         "person/setting/index",
-        "prescription-renewal/prescription-detail/index"
+        "prescription-renewal/prescription-detail/index",
+        "meeting/meeting",
+        "inquiry/inquiry-prescription/inquiry-prescription",
+        "other/place-manager/index",
+        "other/add-place/add-place",
+        "doctor/doctor-schedule/index"
       ]
     }
   ],

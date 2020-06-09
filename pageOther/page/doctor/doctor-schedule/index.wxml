@@ -1,0 +1,65 @@
+<!--pageOther/page/doctor/doctor-schedule/index.wxml-->
+<wxs src="../../../../pages/filter/filter.wxs" module="filter"></wxs>
+<import src="../../../../pages/template/noData/noData.wxml" />
+<view class="header" style="height:20vh;">
+	<view class="doctor-info">
+		<view class="dt-image">
+			<view class="img">
+				<image class="img" mode="widthFix" src="{{doctor.doctorPic?doctor.doctorPic:filter.defaultDoctorImg(doctor.sex)}}" alt />
+			</view>
+		</view>
+		<view class="dt-text">
+			<view class="desc-row">
+				{{doctor.doctorName}}
+			</view>
+			<view class="desc-row">
+				<text class="doctor-dept">{{doctor.deptName}}</text>
+				<text class="doctor-grade">{{doctor.level}}</text>
+			</view>
+			<view class="desc-row">
+				<text class="doctor-oragn">{{doctor.hospitalName}}</text>
+			</view>
+		</view>
+	</view>
+</view>
+
+<view wx:if="{{items.length}}">
+	<scroll-view scroll-x="true" style="width: 98%;white-space:nowrap;margin:0 auto;">
+		<!-- tab -->
+		<view class="tab">
+			<view class="tab-nav" style='font-size:12px'>
+				<view wx:for="{{items}}" bindtap="setTab" data-tabindex="{{index}}" style="min-width:20%;max-width:20%;text-align:center;height: 80rpx;{{index>4?'border-bottom: 2rpx dotted #ddd;':''}}">{{item.label}}</view>
+				<view>
+					<view class="tab-line" style="width:{{100/tabnav.tabnum}}%;transform:translateX({{100*showtab}}%);"></view>
+				</view>
+			</view>
+		</view>
+	</scroll-view>
+
+	<swiper class="tab-box" current="{{currentTab}}" duration="300" style="height: 75vh;" bindchange="switchTab">
+		<swiper-item wx:for="{{items}}" style="height:100%;" wx:for-item="tabItem" wx:for-index="idx" wx:key="idx" class="tab-content" scroll-x='true' style="width:100%;">
+			<view wx:for="{{tabItem.item}}" style="margin:30rpx 0;" wx:for-item="subItem" wx:for-index="subIdx" wx:key="subIdx">
+				<view class="c-list" style="justify-content: space-around;">
+					<view style="display:flex;flex-direction: column;">
+						<text style="padding:20rpx 0;">{{subItem.start}}-{{subItem.end}}</text>
+						<text>{{subItem.week }} {{ subItem.noon}}</text>
+					</view>
+					<view>
+						<text>{{subItem.orderType==3?"视频问诊":subItem.orderType==2?"语言问诊":""}}</text>
+						<text>￥{{subItem.price||0}}元</text>
+					</view>
+					<view>
+						<view wx:if="{{subItem.item.staus==2}}" class="status-btn-tz">停诊</view>
+						<view wx:else class="status-btn-yy" bindtap="createOder" data-item="{{tabItem}}" class="{{subItem.resLeft<0?'status-btn-tz':'status-btn-active'}}">{{!(subItem.resLeft > 0) ?'无号':subItem.resLeft}}</view>
+					</view>
+				</view>
+			</view>
+
+
+
+		</swiper-item>
+	</swiper>
+</view>
+<view wx:else>
+	<template is="msgItem" />
+</view>

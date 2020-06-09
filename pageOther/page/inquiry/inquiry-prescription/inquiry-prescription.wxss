@@ -1,0 +1,60 @@
+/* pageOther/page/inquiry/inquiry-prescription/inquiry-prescription.wxss */
+@import '../../../../pages/template/fastInquiryStep/fastInquiryStep.wxss';
+page{
+  background-color: rgb(245,245,245);
+}
+.a {
+  flex-direction: column;
+}
+
+.address-contain {
+  width: 100%;
+  height: 150rpx;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.address-name {
+  margin: 35rpx 30rpx 20rpx 30rpx;
+}
+
+.address-bottom {
+  display: flex;
+  margin: 0 10rpx 35rpx 31rpx;
+}
+
+.address-bottom image {
+  width: 25rpx;
+  height: 30rpx;
+}
+
+.default-class {
+  margin: 0 18rpx 0 8rpx;
+  border-radius: 8rpx;
+  text-align: center;
+  background-color: #E25D6A;
+  font-size: 24rpx;
+  height: 30rpx;
+  width: 58rpx;
+  color: #fff;
+}
+
+.address-area {
+  color: #858585;
+  font-size: 28rpx;
+  width: 75%;
+}
+
+.address-go {
+  position: absolute;
+  right: 20rpx;
+  top: 75rpx;
+}
+
+.address-go image {
+  width: 15rpx;
+  height: 24rpx;
+}
+

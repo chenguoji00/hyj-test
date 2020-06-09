@@ -21,23 +21,25 @@ Page({
     osstoken: '', //七牛TOKEN
     fastOrder: {}, //快速问诊数据
     isfastOrder: false, //判断是否是快速问诊进来的
-    orderType:'1',
-    doctorId:'',//医生ID
-    flagFastInquiry:true,
-    show:false
+    orderType: '1',
+    doctorId: '', //医生ID
+    flagFastInquiry: true,
+    show: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getQINIUToken();//获取七牛token
-    if(options.doctorId){
+    if (options.doctorId) {
       this.data.doctorId = options.doctorId;
     }
-    if(options.flagFastInquiry=="true"){
+    if(options.orderType){
+      this.data.orderType = options.orderType;
+    }
+    if (options.flagFastInquiry == "true") {
       this.data.flagFastInquiry = true
-    }else{
+    } else {
       this.data.flagFastInquiry = false
     }
     if (options.fastOrder) {
@@ -47,7 +49,7 @@ Page({
       this.data.fastOrder = {}
     }
     this.setData({
-      flagFastInquiry:this.data.flagFastInquiry
+      flagFastInquiry: this.data.flagFastInquiry
     })
   },
 
@@ -62,9 +64,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if(!this.data.osstoken){
+      this.getQINIUToken(); //获取七牛token
+    }
     let showAllergies = '';
     // 如果字数超过10个就截取
-    if(wx.getStorageSync('showAllergy')){
+    if (wx.getStorageSync('showAllergy')) {
       if (wx.getStorageSync('showAllergy').join(',').length > 10) {
         showAllergies = wx.getStorageSync('showAllergy').join(',').substring(0, 10) + '...'
       } else {
@@ -116,6 +121,7 @@ Page({
     this.setData({
       illnessDescription: e.detail.value
     })
+    this.data.illnessDescription = this.data.illnessDescription.replace(/(^\s*)|(\s*$)/g, "");//去掉输入的空格
   },
   //获取七牛TOKEN
   getQINIUToken() {
@@ -210,18 +216,18 @@ Page({
       })
       return;
     }
-    if(this.data.doctorId){//判断是否有医生ID
+    if (this.data.doctorId) { //判断是否有医生ID
       this.data.fastOrder.doctorId = this.data.doctorId;
     }
     // this.data.fastOrder.imgsList = this.imgsList;
     this.data.fastOrder.symptom = this.data.illnessDescription; //症状
     this.data.fastOrder.userId = wx.getStorageSync('userId') || ''; //用户ID
-    this.data.fastOrder.hospitalId = wx.getStorageSync('HospitalId')||app.globalData.hospitalId; //医院ID
+    this.data.fastOrder.hospitalId = wx.getStorageSync('HospitalId') || app.globalData.hospitalId; //医院ID
     this.data.fastOrder.orderType = this.data.orderType || 1; //订单类型
     this.data.fastOrder.subsequentVisit = this.data.radio == '1' ? 1 : 0; //是否复诊 1复诊 0初诊
     this.data.fastOrder.allergy = this.data.isAllergy == '1' ? 1 : 0; //是否有过敏源  1：是 0 否
     if (Number(this.data.isAllergy)) {
-      console.log(this.data.isAllergy,"isAllergy");
+      console.log(this.data.isAllergy, "isAllergy");
       if (!wx.getStorageSync('AllergyList').length) {
         wx.showToast({
           title: '请选择过敏源',
@@ -231,18 +237,17 @@ Page({
       } else {
         this.data.fastOrder.allergiesHistory = this.data.allergiesHistory.join(','); //过敏源字段
       }
-    }else{
+    } else {
       this.data.fastOrder.allergiesHistory = '';
     }
     let params = {
-      //TODOS:orderType 写死1
-      orderType: 1,
+      orderType: this.data.orderType,
       symptom: this.data.illnessDescription,
       userId: wx.getStorageSync('userId') || ''
     }
     if (List.length == 0) {
       this.data.fastOrder.imgsList = [];
-      this.symptomAdd(this.data.fastOrder,params);
+      this.symptomAdd(this.data.fastOrder, params);
       return;
     }
     wx.showLoading({
@@ -300,27 +305,27 @@ Page({
       imgData = imgList1.join(',');
       console.info(imgData, "这个是图片的url，到时候传递到数据库中的图片地址字符串就是这个值");
       that.data.fastOrder.imgsList = imgList1;
-      that.symptomAdd(that.data.fastOrder,params)
+      that.symptomAdd(that.data.fastOrder, params)
     }).catch(err => {
       console.log(err, "错误啦")
       wx.hideLoading()
     })
   },
   //快速问诊提交信息
-  symptomAdd(fastOrder,params){
-    symptomAdd(fastOrder, params).then(res=>{
-      if(res.code == 200) {
-        wx.setStorageSync('registerId',res.data);//保存registerId
+  symptomAdd(fastOrder, params) {
+    symptomAdd(fastOrder, params).then(res => {
+      if (res.code == 200) {
+        wx.setStorageSync('registerId', res.data); //保存registerId
         wx.navigateTo({
           url: `/pageOther/page/patient/select-patient/selectPatient?registerId=${wx.getStorageSync('registerId')}&orderType=${this.data.fastOrder.orderType}&doctorId=${this.data.doctorId||''}&isfastOrder=${this.data.isfastOrder}&flagFastInquiry=${this.data.flagFastInquiry}`,
         })
         wx.hideLoading()
       }
-    }).catch(err=>{
+    }).catch(err => {
       wx.hideLoading()
     })
   },
-  
+
   //页面跳转
   goToPage(event) {
     let url = '';
@@ -336,12 +341,12 @@ Page({
     }
   },
   // 没有凭证
-  nopingzhen(){
+  nopingzhen() {
     this.setData({
-      show:true
+      show: true
     })
   },
-  onConfirm(){
+  onConfirm() {
     wx.setStorageSync('flagDoctorShow', true);
     wx.navigateTo({
       url: "/pageOther/page/doctor/find-doctor/index",

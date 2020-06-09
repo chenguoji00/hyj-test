@@ -31,7 +31,7 @@
 				<text> {{item.deptName || ' '}}</text>
 			</view>
 			<view class="doctor-item-contain-bottom">
-				<text class="specialty">擅长：{{item.specialty}}</text>
+				<text class="specialty">擅长：{{item.specialty|| ''}}</text>
 			</view>
 			<view>
 				<view class="doctor-item-contain-advi">

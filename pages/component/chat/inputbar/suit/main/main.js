@@ -1,6 +1,6 @@
-// let WebIM = require("../../../../../utils/WebIM")["default"];
-// let msgType = require("../../../msgtype");
-// let disp = require("../../../../../utils/broadcast");
+let WebIM = require("../../../../../../utils/huanxinIM/WebIM")["default"];
+let msgType = require("../../../msgtype");
+let disp = require("../../../../../../utils/huanxinIM/broadcast");
 Component({
 	properties: {
 		username: {
@@ -9,7 +9,7 @@ Component({
 		},
 		chatType: {
 			type: String,
-			value: 'singleChat',
+			value: msgType.chatType.SINGLE_CHAT,
 		},
 	},
 	data: {
@@ -27,7 +27,7 @@ Component({
 		},
 
 		isGroupChat(){
-			// return this.data.chatType == msgType.chatType.CHAT_ROOM;
+			return this.data.chatType == msgType.chatType.CHAT_ROOM;
 		},
 
 		getSendToParam(){
@@ -65,52 +65,55 @@ Component({
 		},
 
 		sendMessage(){
-			// let me = this;
+			let me = this;
 
-			// String.prototype.trim=function()
-			// {
-			//      return this.replace(/(^\s*)|(\s*$)/g, '');
-			// }
-			// if(!this.data.userMessage.trim()){
-			// 	return;
-			// }
-			// let id = WebIM.conn.getUniqueId();
-			// let msg = new WebIM.message(msgType.TEXT, id);
-			// msg.set({
-			// 	msg: this.data.userMessage,
-			// 	from: this.data.username.myName,
-			// 	to: this.getSendToParam(),
-			// 	roomType: false,
-			// 	chatType: this.data.chatType,
-			// 	success(id, serverMsgId){
-			// 		//console.log('成功了')
-			// 		disp.fire('em.chat.sendSuccess', id, me.data.userMessage);
-			// 	},
-			// 	fail(id, serverMsgId){
-			// 		console.log('失败了')
-			// 	}
-			// });
-			// if(this.data.chatType == msgType.chatType.CHAT_ROOM){
-			// 	msg.setGroup("groupchat");
-			// }
-			// console.log('发送消息', msg)
-			// WebIM.conn.send(msg.body);
-			// this.triggerEvent(
-			// 	"newTextMsg",
-			// 	{
-			// 		msg: msg,
-			// 		type: msgType.TEXT,
-			// 	},
-			// 	{
-			// 		bubbles: true,
-			// 		composed: true
-			// 	}
-			// );
-			// //
-			// this.setData({
-			// 	userMessage: "",
-			// 	inputMessage: "",
-			// });
+			String.prototype.trim=function()
+			{
+			     return this.replace(/(^\s*)|(\s*$)/g, '');
+			}
+			//在String的原型上添加去空格的方法
+			// 当这个输入框的值去掉空格之后然后什么都没有的话就不发送消息，return出去
+			if(!this.data.userMessage.trim()){
+				return;
+			}
+			let id = WebIM.conn.getUniqueId(); // 生成本地消息id
+			let msg = new WebIM.message(msgType.TEXT, id);
+			console.log(this.data.username,"这个是什么东西来的哦  在 inputbar 里面的main")
+			msg.set({
+				msg: this.data.userMessage,
+				from: this.data.username.myName,
+				to: this.getSendToParam(),
+				roomType: false,
+				chatType: this.data.chatType,
+				success(id, serverMsgId){
+					console.log('成功了')
+					disp.fire('em.chat.sendSuccess', id, me.data.userMessage);
+				},
+				fail(id, serverMsgId){
+					console.log('失败了')
+				}
+			});
+			if(this.data.chatType == msgType.chatType.CHAT_ROOM){
+				msg.setGroup("groupchat");
+			}
+			console.log('发送消息', msg)
+			WebIM.conn.send(msg.body);
+			this.triggerEvent(
+				"newTextMsg",
+				{
+					msg: msg,
+					type: msgType.TEXT,
+				},
+				{
+					bubbles: true,
+					composed: true
+				}
+			);
+			//
+			this.setData({
+				userMessage: "",
+				inputMessage: "",
+			});
 		},
 	},
 

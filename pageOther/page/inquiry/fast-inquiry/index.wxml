@@ -7,7 +7,7 @@
 
 <van-cell title="是否有过敏史">
 	<van-radio-group value="{{ isAllergy }}" bind:change="isAllergyClick">
-		<van-radio style="display:inline-block;margin-right:10rpx;" name="1">有 </van-radio>
+		<van-radio style="display:inline-block;padding-right:10rpx;" name="1">有 </van-radio>
 		<van-radio style="display:inline-block;" name="0"> 无</van-radio>
 	</van-radio-group>
 </van-cell>
@@ -16,7 +16,7 @@
 <!-- 初诊复诊 start -->
 <van-cell title="本次为">
 	<van-radio-group value="{{ radio }}" bind:change="onChange">
-		<van-radio style="display:inline-block;margin-right:10rpx;" name="0">初诊 </van-radio>
+		<van-radio style="display:inline-block;padding-right:10rpx;" name="0">初诊 </van-radio>
 		<van-radio style="display:inline-block;" name="1"> 复诊</van-radio>
 	</van-radio-group>
 </van-cell>

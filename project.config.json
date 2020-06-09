@@ -98,13 +98,6 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/login/login",
-					"pathName": "pages/login/login",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "pageOther/page/doctor/doctor-detail/index",
 					"pathName": "pageOther/page/doctor/doctor-detail/index",
 					"query": "",
@@ -149,6 +142,35 @@
 					"id": -1,
 					"name": "pages/message/main/main",
 					"pathName": "pages/message/main/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 12,
+					"name": "pageOther/page/other/login/login",
+					"pathName": "pageOther/page/other/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 13,
+					"name": "pageOther/page/doctor/doctor-schedule/index",
+					"pathName": "pageOther/page/doctor/doctor-schedule/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pageOther/page/inquiry/inquiry-prescription/inquiry-prescription",
+					"pathName": "pageOther/page/inquiry/inquiry-prescription/inquiry-prescription",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pageOther/page/other/add-place/add-place",
+					"pathName": "pageOther/page/other/add-place/add-place",
+					"query": "",
 					"scene": null
 				}
 			]

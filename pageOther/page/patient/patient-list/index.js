@@ -17,7 +17,7 @@ Page({
     isSex: "1",
     show: false,
     idCardNum: '', //身份證號碼
-    patientId:'',//看诊人ID
+    patientId: '', //看诊人ID
   },
   //选择日期触发
   bindDateChange(event) {
@@ -47,17 +47,16 @@ Page({
   //提交檔案 
   submitPatientBtn(e) {
     //TODOS 接口没要求要填入出生年月日以及性别要求
-    if(!this.data.patientName){
+    if (!this.data.patientName) {
       wx.showToast({
         title: '姓名不能为空',
-        icon:"none"
+        icon: "none"
       })
       return;
-    }
-    else if(!this.data.idCardNum){
+    } else if (!this.data.idCardNum) {
       wx.showToast({
         title: '证件号码不能为空',
-        icon:"none"
+        icon: "none"
       })
       return;
     }
@@ -72,10 +71,10 @@ Page({
       userId: wx.getStorageSync('userId')
     }
     aadPatient(params).then(res => {
-      if(res.code == 200){
+      if (res.code == 200) {
         wx.showToast({
           title: '新增成功，正在跳转',
-          icon:"none"
+          icon: "none"
         })
         setTimeout(() => {
           wx.navigateBack();
@@ -84,19 +83,18 @@ Page({
     })
   },
   // 修改就诊人
-  updatePatientBtn(){
+  updatePatientBtn() {
     //TODOS 接口没要求要填入出生年月日以及性别要求
-    if(!this.data.patientName){
+    if (!this.data.patientName) {
       wx.showToast({
         title: '姓名不能为空',
-        icon:"none"
+        icon: "none"
       })
       return;
-    }
-    else if(!this.data.idCardNum){
+    } else if (!this.data.idCardNum) {
       wx.showToast({
         title: '证件号码不能为空',
-        icon:"none"
+        icon: "none"
       })
       return;
     }
@@ -110,11 +108,11 @@ Page({
       setDefault: 1,
       userId: wx.getStorageSync('userId')
     }
-    updatePatientDetail(params).then(res=>{
-      if(res.code == 200){
+    updatePatientDetail(params).then(res => {
+      if (res.code == 200) {
         wx.showToast({
           title: '修改成功，正在跳转',
-          icon:"none"
+          icon: "none"
         })
         setTimeout(() => {
           wx.navigateBack();
@@ -122,24 +120,28 @@ Page({
       }
     })
   },
-  deletePatientBtn(){
-    if(this.data.patientId){
-      removePatient({patientId:this.data.patientId}).then(res=>{
-        if(res.code == 200){
+  deletePatientBtn() {
+    console.log(1)
+    if (this.data.patientId) {
+      console.log(2)
+      removePatient({
+        patientId: this.data.patientId
+      }).then(res => {
+        console.log(3)
+        if (res.code == 200) {
           wx.showToast({
             title: '删除成功',
-            icon:"none"
+            icon: "none"
           })
           setTimeout(() => {
             wx.navigateBack();
           }, 1000);
         }
-        
       })
-    }else{
+    } else {
       wx.showToast({
         title: '就诊人信息有误，请重试',
-        icon:'none'
+        icon: 'none'
       })
     }
   },
@@ -147,15 +149,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(options.patient){
+    if (options.patient) {
       let optPatient = JSON.parse(options.patient);
       this.data.patientId = optPatient.patientId;
       this.setData({
-        idCardNum:optPatient.idCard,
-        value:optPatient.birthDate.substring(0,10),
-        patientName:optPatient.patientName,
-        isSex:optPatient.sex.toString(),
-        updateState:true
+        idCardNum: optPatient.idCard,
+        value: optPatient.birthDate.substring(0, 10),
+        patientName: optPatient.patientName,
+        isSex: optPatient.sex.toString(),
+        updateState: true
       })
     }
     this.setData({

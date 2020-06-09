@@ -1,0 +1,47 @@
+<!--pageOther/page/other/add-place/add-place.wxml-->
+
+<van-cell-group>
+  <van-field
+    value="{{ receiverPerson }}"
+    placeholder="请输入收货人"
+    border="{{ true }}"
+    label="收货人"
+    bind:change="receiverOnChange"
+    clearable
+  />
+  <van-field
+    value="{{ phone }}"
+    label="手机号"
+    placeholder="请输入手机号"
+    error-message="{{errPhoneMessage}}"
+    border="{{ true }}"
+    bind:change="phoneOnChange"
+    type="number"
+    clearable
+  />
+
+  <!-- <van-picker columns="{{ columns }}" bind:change="onChange" /> -->
+
+
+    <van-field
+    value="{{ addressDetail }}"
+    clearable
+    border="{{ true }}"
+    label="详细地址"
+    placeholder="请输入详细地址"
+    bind:change="addressDetailChange"
+  />
+
+
+
+
+
+
+<van-cell title="默认地址">
+	<van-switch size="24px"  checked="{{ isAddressChecked }}" bind:change="isAddressOnChange" />
+</van-cell>
+</van-cell-group>
+
+<view bindtap="submitAddress" style="width:95%;margin-top:40rpx;line-height:70rpx;height:70rpx;margin:0 auto;text-align:center;background-color:#f00;color:#fff;">
+  保存并使用
+</view>
